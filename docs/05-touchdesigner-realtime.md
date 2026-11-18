@@ -46,3 +46,81 @@
 3. **Grabación Maestra para Post:** Captura mediante `Movie File Out TOP` en **ProRes 4444**, **HAP Q Alpha** o secuencias **EXR 16F** (si exportas Normal/Depth) para llevarlo limpio a **FilmCraft / Premiere / After Effects / EffectCraft**.
 
 > 👉 **Guía práctica completa (Fase 2):** Sigue el paso a paso completo de TDMCP, Embody, StreamDiffusionTD y el puente Spout/OSC con Blender en [`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](modules/MODULE_C_TD_BLENDER_VFX.md) y la guía dedicada de **Capa de Normales Tiempo Real + Post** en [`docs/08-normal-passes-realtime-post.md`](08-normal-passes-realtime-post.md).
+
+---
+
+## 5. Relighting PBR Multi-Luz (`SSDO`) + Fuego GPU en Vivo a 60 FPS `[OK-12GB]`
+
+Complementando `DAViDNormals.tox` (`Relight.tox`), `td_mrt_normal_pass.frag` y `td_depth_to_normal.frag` de [Pilar 08](08-normal-passes-realtime-post.md), cuando necesitas proyectar **múltiples emisores de fuego/energía adheridos a dedos o cuerpo** sin sangrado plano sobre ropa oscura:
+
+1. **Topología Modular (`Base COMPs` sin rutas absolutas):**
+   - `comp_video_input` ➔ `comp_vision_normals` (`DAViDHuman.tox` o `DAViDNormals.tox` en `16-bit Float RGBA` + MediaPipe Hands; **evita** el fallback Sobel 2D sobre RGB para relighting anatómico) ➔ `comp_fluid_fire` (Navier-Stokes advectado por velocidad de dedos + deflexión por gradiente de normales + **POPs** para 50,000+ chispas GPU) ➔ `comp_relight_master` (`GLSL TOP` en **`32-bit Float RGBA`**) ➔ Tone Mapper **ACES Filmic / AgX** antes de salida SDR.
+2. **Ahorro de GPU en Vivo:** Si el efecto vive en un banco VJ inactivo, enlaza `allowCooking = False` en el `Base COMP` de normales/fluidos para recuperar los `10–21 ms` de inferencia en la RTX 3060.
+
+### Shader GLSL TOP de Referencia (6 Luces + Screen-Space Depth Shadows + Material Dual)
+
+```glsl
+// TouchDesigner GLSL TOP — Multi-Light Fire Relighting con Normales 16F + Sombras SSDO + Material Dual
+// Inputs: [0]=Plate(Linear), [1]=DAViD_Normals(16F OpenGL +Y), [2]=Depth(16F), [3]=Mattes(R=Piel,G=Tela)
+uniform vec3  uFireLights[6];     // xyz en UV + Z relativa (de MediaPipe/Tracker)
+uniform float uFireStrengths[6];  // intensidad HDR por emisor
+uniform int   uNumLights;
+uniform vec3  uFireColor;         // ej. vec3(1.0, 0.42, 0.08)
+uniform float uLightRadius;       // ej. 0.45 - 0.85
+uniform float uInvertNormalY;     // 0.0 OpenGL (+Y), 1.0 DirectX (-Y)
+
+out vec4 fragColor;
+
+float depthRaymarchShadow(vec2 uv, float zSurf, vec3 lightPos, sampler2D depthTex) {
+    vec3 rayDir = lightPos - vec3(uv, zSurf);
+    float shadow = 1.0;
+    const int STEPS = 8;
+    for (int i = 1; i <= STEPS; i++) {
+        float t = float(i) / float(STEPS + 1);
+        vec3 samplePos = vec3(uv, zSurf) + rayDir * t;
+        float sceneZ = texture(depthTex, samplePos.xy).r;
+        // Asume mayor Z = más cerca de cámara; invierte '>' por '<' si tu Depth TOP usa Near=0.0
+        if (sceneZ > samplePos.z + 0.018) {
+            shadow *= 0.25;
+        }
+    }
+    return shadow;
+}
+
+void main() {
+    vec2 uv = vUV.st;
+    vec3 albedo = texture(sTD2DInputs[0], uv).rgb;
+    vec3 N = texture(sTD2DInputs[1], uv).rgb * 2.0 - 1.0;
+    if (uInvertNormalY > 0.5) N.y = -N.y;
+    N = normalize(N);
+
+    float zSurf = texture(sTD2DInputs[2], uv).r;
+    vec2 mattes = texture(sTD2DInputs[3], uv).rg;
+    float roughness = mix(0.88, 0.34, mattes.r);
+    float albedoBounce = mix(0.22, 1.0, mattes.r) * max(mattes.r, mattes.g);
+
+    vec3 V = vec3(0.0, 0.0, 1.0);
+    vec3 totalLight = vec3(0.0);
+
+    for (int i = 0; i < 6; i++) {
+        if (i >= uNumLights) break;
+        vec3 Lvec = uFireLights[i] - vec3(uv, zSurf);
+        float dist = length(Lvec);
+        vec3 L = normalize(Lvec);
+        float atten = pow(clamp(1.0 - dist / max(uLightRadius, 0.001), 0.0, 1.0), 2.0);
+        if (atten <= 0.001) continue;
+
+        float vis = depthRaymarchShadow(uv, zSurf, uFireLights[i], sTD2DInputs[2]);
+        float NdotL = max(dot(N, L), 0.0);
+        vec3 H = normalize(L + V);
+        float shininess = mix(12.0, 96.0, 1.0 - roughness);
+        float spec = pow(max(dot(N, H), 0.0), shininess) * mix(0.04, 0.45, mattes.r);
+        float sss = pow(1.0 - max(dot(N, V), 0.0), 2.5) * clamp(NdotL * 0.5 + 0.5, 0.0, 1.0) * mattes.r;
+
+        vec3 contrib = uFireColor * (NdotL * albedoBounce + spec) + vec3(1.0, 0.16, 0.02) * (sss * 0.35);
+        totalLight += contrib * atten * vis * uFireStrengths[i];
+    }
+
+    fragColor = TDOutputSwizzle(vec4(albedo + albedo * totalLight + totalLight * 0.05, 1.0));
+}
+```

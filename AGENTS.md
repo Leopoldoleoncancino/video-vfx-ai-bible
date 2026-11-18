@@ -43,7 +43,7 @@ Toda recomendación, workflow, comando o código generado a partir de esta Bibli
 
 ### Módulo Profundo (`docs/modules/`) & Workflows (`workflows/`)
 - **[`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](docs/modules/MODULE_C_TD_BLENDER_VFX.md)** — Manual completo Fase 2 de TouchDesigner (`TDMCP` + 19 `td-*` skills / `Embody`) + Blender Spout2/OSC + StreamDiffusionTD + 3DGS + MoCap (`GVHMR`), con los 3 modos de presupuesto VRAM.
-- **[`workflows/END_TO_END_PIPELINES.md`](workflows/END_TO_END_PIPELINES.md)** — 3 blueprints completos listos para ejecutar (VFX Híbrido con roto/normales, Sweet-Spot 480p→SeedVR2→RIFE, Automatización Híbrida JS/Adobe/ArtCraft/TD).
+- **[`workflows/END_TO_END_PIPELINES.md`](workflows/END_TO_END_PIPELINES.md)** — 4 blueprints completos listos para ejecutar (VFX Híbrido con roto/normales, Sweet-Spot 480p→SeedVR2→RIFE, Automatización Híbrida JS/Adobe/ArtCraft/TD y **Workflow 4: Fuego/Energía sobre Anatomía con 6 Rutas Comparadas**).
 
 ### Skills, MCPs, Scripts, Shaders y Radar (`skills/`, `mcps/`, `scripts/`, `automation/`)
 - **`skills/`** *(cargar según tarea):*
@@ -71,6 +71,7 @@ Toda recomendación, workflow, comando o código generado a partir de esta Bibli
 | **Capa de Normales o relighting (vivo o post)** | [`docs/08`](docs/08-normal-passes-realtime-post.md) | `blender_normal_pass_setup.py`, `td_mrt_normal_pass.frag`, `td_depth_to_normal.frag` |
 | **Camera Tracking 3D, Matchmoving, Point Track o 3DGS** | [`docs/09`](docs/09-camera-tracking-matchmoving-3d.md) | `DA3-Streaming`, `VGGT-1B`, `Pi3X`, `CoTracker3`, `COLMAP`, `fSpy` |
 | **Color ACES 2.0/AgX, Foley/STT/TTS, Face VFX o OBS** | [`docs/10`](docs/10-color-ocio-audio-face-obs.md) | `OpenColorIO`, `MMAudio`, `WhisperX`, `LivePortrait`, `obs-spout2-plugin`, `obs-mcp` |
+| **Fuego / energía hiperrealista sobre anatomía (6 rutas PBR)** | [`Workflow 4`](workflows/END_TO_END_PIPELINES.md#workflow-4--fuego--energ%C3%ADa-hiperrealista-adherido-a-anatom%C3%ADa-con-capa-de-normales-6-rutas-comparadas--sin-ganador-prematuro) + [`docs/08`](docs/08-normal-passes-realtime-post.md) + [`docs/02`](docs/02-rotoscoping-matting-chroma-depth.md) + [`docs/06`](docs/06-blender-3d-vfx-compositing.md) + [`docs/10`](docs/10-color-ocio-audio-face-obs.md) | Matting dual piel/tela, `SSDO` (`docs/02`/`05`), `UniLumos`/`VACE` (`docs/01`), `WiLoR`/`Dyn-HaMR` + EXR `ACEScg`/`AgX` |
 | **TouchDesigner + Blender + StreamDiffusionTD + MCP** | [`docs/05`](docs/05-touchdesigner-realtime.md) + [`docs/06`](docs/06-blender-3d-vfx-compositing.md) + [`MODULE_C`](docs/modules/MODULE_C_TD_BLENDER_VFX.md) | `antigravity_td_blender_mcp.json` + `blender_td_osc_bridge.py` |
 | **ArtCraft, EffectCraft, FilmCraft, Premiere o After Effects** | [`docs/03`](docs/03-artcraft-deep-dive.md) + [`docs/04`](docs/04-adobe-video-deep-dive.md) | `artcraft-adobe-vfx-bridge` + `artcraft_adobe_mcp.json` |
 | **Animaciones JS, HUDs, 3D WebGL, Remotion o Motion Canvas** | [`docs/07 §3`](docs/07-opensource-nles-cli-upscaling.md#3-video-como-c%C3%B3digo--animaciones-javascript-offline-prores-4444-y-tiempo-real-60-fps) + [`docs/05`](docs/05-touchdesigner-realtime.md) | `Remotion` ProRes 4444 Alpha, `Web Render TOP`, `ffmpeg_nvenc_prores_helpers.ps1` |

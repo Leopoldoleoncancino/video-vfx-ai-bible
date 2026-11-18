@@ -67,3 +67,62 @@
 - **Oficial:** [`Comfy-Org/comfy-mcp`](https://github.com/Comfy-Org/comfy-mcp) (★357) — 42 herramientas MCP sobre `comfy-cli>=1.14.0`; permite lanzar grafos, inspeccionar nodos, gestionar modelos y conectar con Comfy Cloud desde Antigravity/Claude/Cursor.
 - **Comunidad:** [`filliptm/ComfyUI_FL-MCP`](https://github.com/filliptm/ComfyUI_FL-MCP) (★126 · MIT) — puente directo a tu servidor ComfyUI local (`127.0.0.1:8188`).
 - Configs listas para copiar en [`mcps/`](../mcps/README.md).
+
+---
+
+## 5. Control Geométrico Avanzado, Trayectorias (`CoTracker3`/`ATI`) y Relighting en ComfyUI (12 GB VRAM)
+
+Cuando generas efectos emisivos adheridos a anatomía (como fuego sobre una mano en movimiento, humo o fluidos con interacción de luz real), los flujos simples T2V/I2V rompen dedos o flotan desconectados del plano. En **RTX 3060 12 GB + 32 GB RAM** combina estas piezas **por fases secuenciales** (descargando VRAM entre etapas con `CleanVRAMUsed`):
+
+### 5.1 Control Estructural Multi-Condición (`Wan2.1/2.2 VACE` + `Fun-Control`) `[TIGHT-12GB]`
+- **Repositorios clave:** [`kijai/ComfyUI-WanVideoWrapper`](https://github.com/kijai/ComfyUI-WanVideoWrapper) y [`drozbay/ComfyUI-WanVaceAdvanced`](https://github.com/drozbay/ComfyUI-WanVaceAdvanced).
+- **Inyección Depth + Normales + Máscara:** En lugar de generar fuego sobre fondo negro aislado, `Wan2.1_14B_VACE-Q4_K_M.gguf` o `Wan2.2-VACE-Fun-A14B` permiten condicionar la difusión con secuencias temporalmente consistentes de profundidad y normales (ver [Pilar 08](08-normal-passes-realtime-post.md)) junto a una máscara temporal suave que congela el fondo lejano (`mask = 0`) y limita la síntesis al sujeto y su zona inmediata de rebote lumínico.
+- **Precaución con LoRAs aceleradoras en fuego/fluidos:** Las LoRAs destiladas de pocos pasos (ej. *CausVid*) tienden a empastar la micro-turbulencia de las llamas en manchas blandas. Para combustión hiperrealista, prioriza **18–24 pasos (`euler` / `dpmpp_2m`)**, `shift 5.0–7.0`, en ventanas solapadas a `480x848` con `BlockSwap` (20–32 bloques a CPU) + `SageAttention` y **Premiere/Blender cerrados**.
+
+### 5.2 Trayectorias Explícitas (`CoTracker3` + `WanVideo ATI Tracks`) `[OK-12GB / TIGHT-12GB]`
+- **Nodos de tracking denso:** [`s9roll7/comfyui_cotracker_node`](https://github.com/s9roll7/comfyui_cotracker_node) (Meta CoTracker3, incluye `PerlinNoiseCoordinateRandomizerNode` y `XYMotionAmplifierNode` — `[OK-12GB]` a `480p`) y [`aharley/alltracker`](https://github.com/aharley/alltracker).
+- **Anclaje físico:** Extrae las trayectorias 2D de yemas de dedos, nudillos y muñeca e inyéctalas en `WanVideo ATI Tracks` (`Wan2_1-I2V-ATI-14B_fp8`, `[TIGHT-12GB]` con offload) para que las llamas o partículas hereden la inercia real en giros rápidos de cámara/mano sin despegarse.
+
+### 5.3 Relighting Neuronal Temporal y Separación de Frecuencias (`Frequency Separation`)
+- **Modelos para ComfyUI:**
+  - **[`Alibaba-DAMO-Academy/Lumos-Custom`](https://github.com/alibaba-damo-academy/Lumos-Custom) (`UniLumos`):** Integrado en `ComfyUI-WanVideoWrapper` vía `WanVideoUniLumosEmbeds` (variante 1.3B basada en Wan 2.1 — `[TIGHT-12GB]` con `fp8`/offload y text encoder `umt5_xxl` cuantizado).
+  - **[`smthemex/ComfyUI_Light_A_Video`](https://github.com/smthemex/ComfyUI_Light_A_Video):** Relighting *training-free* por *Progressive Light Fusion* compatible con AnimateDiff/IC-Light (`[OK-12GB]`), CogVideoX y Wan 2.1 (`[TIGHT-12GB]` / `[CLOUD / >24GB]` en 4090 si se corre BF16 sin offload).
+  - **[`Aleafy/RelightVid`](https://github.com/Aleafy/RelightVid)** (`[TIGHT-12GB]` en chunks cortos) y **`IC-Light V2`** (`[OK-12GB]` en SD1.5 con [`huchenlei/ComfyUI-IC-Light-Native`](https://github.com/huchenlei/ComfyUI-IC-Light-Native); `[TIGHT-12GB]` en Flux cuantizado).
+- **Regla Crítica de Producción (No Reemplazar Piel/Tela Directa):** La salida RGB directa de un modelo de relighting suele suavizar poros, huellas dactilares, uñas o hilos de ropa. Extrae únicamente la **baja/media frecuencia lumínica (`Light Ratio Pass`)** en espacio lineal y multiplícala sobre las altas frecuencias intactas del plate original, diferenciando piel de tela mediante un **matte dual** (ver [Doc 02 §3.1](02-rotoscoping-matting-chroma-depth.md#31-matting-dual-por-material-regla-anti-sangrado-de-glowrelight-ok-12gb)):
+
+```python
+# Referencia: Frequency Separation Relighting (Light Ratio Pass) en espacio lineal
+# Conserva 100% poros, uñas e hilos del plate original mientras transfiere el rebote de luz IA.
+import cv2
+import numpy as np
+
+
+def apply_ai_relight_ratio(
+    plate_lin: np.ndarray,
+    relit_ai_lin: np.ndarray,
+    matte_skin: np.ndarray,
+    matte_fabric: np.ndarray,
+    sigma_low: float = 18.0,
+    eps: float = 1e-3,
+) -> np.ndarray:
+    plate_low = cv2.GaussianBlur(plate_lin, (0, 0), sigmaX=sigma_low)
+    relit_low = cv2.GaussianBlur(relit_ai_lin, (0, 0), sigmaX=sigma_low)
+    light_ratio = np.clip((relit_low + eps) / (plate_low + eps), 0.25, 4.5)
+
+    # Atenúa ganancia difusa en tela oscura mate para evitar sangrado plano naranja/gris
+    material_gain = matte_skin[..., None] * 1.0 + matte_fabric[..., None] * 0.25
+    blended_ratio = 1.0 + (light_ratio - 1.0) * material_gain
+    return plate_lin * blended_ratio
+
+
+def extract_vace_residual_fire(
+    plate_lin: np.ndarray,
+    vace_out_lin: np.ndarray,
+    warm_bias_threshold: float = 0.04,
+) -> np.ndarray:
+    """Extrae solo emisión y luz cálida añadida por VACE/I2V preservando fondo/piel base."""
+    delta = np.maximum(vace_out_lin - plate_lin, 0.0)
+    lum = 0.2126 * delta[..., 0] + 0.7152 * delta[..., 1] + 0.0722 * delta[..., 2]
+    mask = np.clip((lum - warm_bias_threshold) / 0.15, 0.0, 1.0)[..., None]
+    return delta * mask
+```
