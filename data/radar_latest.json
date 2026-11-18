@@ -1,12 +1,21 @@
 {
-  "generated_at_utc": "2026-11-18 21:24:23",
+  "generated_at_utc": "2026-11-18 21:38:02",
   "since_date": "2026-11-11",
   "lookback_days": 7,
   "watchlist": [
     {
+      "full_name": "mrdoob/three.js",
+      "url": "https://github.com/mrdoob/three.js",
+      "stars": 118846,
+      "pushed_at": "2026-11-18",
+      "latest_release": "r187",
+      "release_date": "2026-10-30",
+      "license": "MIT"
+    },
+    {
       "full_name": "OpenCut-app/OpenCut",
       "url": "https://github.com/OpenCut-app/OpenCut",
-      "stars": 98844,
+      "stars": 98846,
       "pushed_at": "2026-09-24",
       "latest_release": "v0.3.0",
       "release_date": "2026-04-15",
@@ -15,11 +24,29 @@
     {
       "full_name": "storytold/photocraft",
       "url": "https://github.com/storytold/photocraft",
-      "stars": 80280,
+      "stars": 80282,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.23.1",
       "release_date": "2026-11-12",
       "license": "Apache-2.0"
+    },
+    {
+      "full_name": "juliangarnier/anime",
+      "url": "https://github.com/juliangarnier/anime",
+      "stars": 74888,
+      "pushed_at": "2026-11-02",
+      "latest_release": "v4.5.0",
+      "release_date": "2026-06-22",
+      "license": "MIT"
+    },
+    {
+      "full_name": "remotion-dev/remotion",
+      "url": "https://github.com/remotion-dev/remotion",
+      "stars": 74125,
+      "pushed_at": "2026-11-18",
+      "latest_release": "v4.0.545",
+      "release_date": "2026-11-18",
+      "license": "NOASSERTION"
     },
     {
       "full_name": "mifi/lossless-cut",
@@ -33,7 +60,7 @@
     {
       "full_name": "storytold/artcraft",
       "url": "https://github.com/storytold/artcraft",
-      "stars": 41527,
+      "stars": 41528,
       "pushed_at": "2026-11-18",
       "latest_release": "artcraft-v0.41.1",
       "release_date": "2026-11-07",
@@ -49,6 +76,24 @@
       "license": "MIT"
     },
     {
+      "full_name": "greensock/GSAP",
+      "url": "https://github.com/greensock/GSAP",
+      "stars": 30895,
+      "pushed_at": "2026-11-04",
+      "latest_release": "-",
+      "release_date": "-",
+      "license": "Custom"
+    },
+    {
+      "full_name": "motion-canvas/motion-canvas",
+      "url": "https://github.com/motion-canvas/motion-canvas",
+      "stars": 20045,
+      "pushed_at": "2026-07-02",
+      "latest_release": "v3.17.2",
+      "release_date": "2024-12-14",
+      "license": "MIT"
+    },
+    {
       "full_name": "Wan-Video/Wan2.2",
       "url": "https://github.com/Wan-Video/Wan2.2",
       "stars": 18759,
@@ -60,7 +105,7 @@
     {
       "full_name": "storytold/filmcraft",
       "url": "https://github.com/storytold/filmcraft",
-      "stars": 18549,
+      "stars": 18550,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.20.1",
       "release_date": "2026-11-12",
@@ -69,7 +114,7 @@
     {
       "full_name": "storytold/lightcraft",
       "url": "https://github.com/storytold/lightcraft",
-      "stars": 16163,
+      "stars": 16164,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.21.1",
       "release_date": "2026-11-12",
@@ -87,7 +132,7 @@
     {
       "full_name": "deepbeepmeep/WanGP",
       "url": "https://github.com/deepbeepmeep/WanGP",
-      "stars": 12011,
+      "stars": 12012,
       "pushed_at": "2026-11-17",
       "latest_release": "manager-v0.1.18",
       "release_date": "2026-11-17",
@@ -132,7 +177,7 @@
     {
       "full_name": "storytold/soundcraft",
       "url": "https://github.com/storytold/soundcraft",
-      "stars": 4449,
+      "stars": 4451,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.20.1",
       "release_date": "2026-11-12",
@@ -164,6 +209,15 @@
       "latest_release": "v1.3.2",
       "release_date": "2026-11-11",
       "license": "Apache-2.0"
+    },
+    {
+      "full_name": "rive-app/rive-wasm",
+      "url": "https://github.com/rive-app/rive-wasm",
+      "stars": 1029,
+      "pushed_at": "2026-11-18",
+      "latest_release": "2.51.0",
+      "release_date": "2026-11-16",
+      "license": "MIT"
     },
     {
       "full_name": "pq-yang/MatAnyone2",
@@ -258,7 +312,7 @@
     {
       "full_name": "storytold/anicraft",
       "url": "https://github.com/storytold/anicraft",
-      "stars": 468,
+      "stars": 469,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.2.1",
       "release_date": "2026-11-12",
@@ -412,12 +466,28 @@
   "topics": {
     "IA Video Local & ComfyUI": [
       {
+        "full_name": "dughogan/comfy_workflow_audit",
+        "url": "https://github.com/dughogan/comfy_workflow_audit",
+        "stars": 24,
+        "pushed_at": "2026-11-18",
+        "description": "A tool to evaluate whether a ComfyUI workflow can be used in production.",
+        "license": "MIT"
+      },
+      {
         "full_name": "liangci-ai/MOSS-YXBOX",
         "url": "https://github.com/liangci-ai/MOSS-YXBOX",
         "stars": 13,
         "pushed_at": "2026-11-18",
         "description": "把 ComfyUI 官方 Create Bounding Boxes 与 MOSS-Image Layout Prompt 融合成单节点的中文画布排版工作台",
         "license": "MIT"
+      },
+      {
+        "full_name": "Comfy-Org/ComfyUI",
+        "url": "https://github.com/Comfy-Org/ComfyUI",
+        "stars": 147510,
+        "pushed_at": "2026-11-18",
+        "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the w",
+        "license": "GPL-3.0"
       },
       {
         "full_name": "orex2121/comfyui-OreX",
@@ -428,6 +498,22 @@
         "license": "Ver repo"
       },
       {
+        "full_name": "doodersrage/castcut",
+        "url": "https://github.com/doodersrage/castcut",
+        "stars": 18,
+        "pushed_at": "2026-11-18",
+        "description": "Local-first AI filmmaking workbench on ComfyUI: consistent characters across every still and clip, plan a Day or a Story, talking clips with",
+        "license": "MIT"
+      },
+      {
+        "full_name": "fblissjr/ComfyUI-h3-explorations",
+        "url": "https://github.com/fblissjr/ComfyUI-h3-explorations",
+        "stars": 16,
+        "pushed_at": "2026-11-18",
+        "description": "my personal tinkering and research hub for the minimax H3 ecosystem",
+        "license": "MIT"
+      },
+      {
         "full_name": "kristopolous/dyva",
         "url": "https://github.com/kristopolous/dyva",
         "stars": 33,
@@ -436,44 +522,12 @@
         "license": "MIT"
       },
       {
-        "full_name": "dughogan/comfy_workflow_audit",
-        "url": "https://github.com/dughogan/comfy_workflow_audit",
-        "stars": 24,
-        "pushed_at": "2026-11-18",
-        "description": "A tool to evaluate whether a ComfyUI workflow can be used in production.",
-        "license": "MIT"
-      },
-      {
-        "full_name": "Comfy-Org/ComfyUI",
-        "url": "https://github.com/Comfy-Org/ComfyUI",
-        "stars": 147508,
-        "pushed_at": "2026-11-18",
-        "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the w",
-        "license": "GPL-3.0"
-      },
-      {
         "full_name": "LuqP2/Image-MetaHub",
         "url": "https://github.com/LuqP2/Image-MetaHub",
         "stars": 337,
         "pushed_at": "2026-11-18",
         "description": "Local-first AI image organizer and generative media library manager for ComfyUI, A1111, InvokeAI & more. Search huge output folders by promp",
         "license": "MPL-2.0"
-      },
-      {
-        "full_name": "mrbizarro/Phosphene",
-        "url": "https://github.com/mrbizarro/Phosphene",
-        "stars": 429,
-        "pushed_at": "2026-11-18",
-        "description": "Phosphene is a free, open-source Mac app for making AI videos, pictures, speech and songs offline. Run LTX-2.5 and MiniMax H3 (Hailuo) local",
-        "license": "MIT"
-      },
-      {
-        "full_name": "AnniCodex/ComfyUI-H3-FaceRefine-Plus",
-        "url": "https://github.com/AnniCodex/ComfyUI-H3-FaceRefine-Plus",
-        "stars": 18,
-        "pushed_at": "2026-11-18",
-        "description": "Add-on nodes for ComfyUI-H3-FaceRefine (MiniMax H3): anti-wobble Flow Lock, Stitch Plus, Tone Match, strength presets and method B workflows",
-        "license": "MIT"
       }
     ],
     "Rotoscopia, Matting, Depth & Inpainting": [
@@ -580,15 +634,23 @@
       {
         "full_name": "storytold/pdfcraft",
         "url": "https://github.com/storytold/pdfcraft",
-        "stars": 21123,
+        "stars": 21125,
         "pushed_at": "2026-11-18",
         "description": "PdfCraft: An open-source PDF reader and editor written from scratch in pure Rust",
         "license": "Apache-2.0"
       },
       {
+        "full_name": "storytold/photocraft",
+        "url": "https://github.com/storytold/photocraft",
+        "stars": 80282,
+        "pushed_at": "2026-11-18",
+        "description": "PhotoCraft: An open-source photo editor written from scratch in pure Rust",
+        "license": "Apache-2.0"
+      },
+      {
         "full_name": "storytold/craft-anything",
         "url": "https://github.com/storytold/craft-anything",
-        "stars": 36863,
+        "stars": 36874,
         "pushed_at": "2026-11-18",
         "description": "Craft Anything: understand how any software works, and craft your own.",
         "license": "Apache-2.0"
@@ -612,7 +674,7 @@
       {
         "full_name": "storytold/vectorcraft",
         "url": "https://github.com/storytold/vectorcraft",
-        "stars": 11887,
+        "stars": 11888,
         "pushed_at": "2026-11-18",
         "description": "VectorCraft: An open-source vector art tool written from scratch in pure Rust",
         "license": "Apache-2.0"
@@ -620,7 +682,7 @@
       {
         "full_name": "storytold/lightcraft",
         "url": "https://github.com/storytold/lightcraft",
-        "stars": 16163,
+        "stars": 16164,
         "pushed_at": "2026-11-18",
         "description": "LightCraft: An open-source non-destructive photo editor written from scratch in pure Rust",
         "license": "Apache-2.0"
@@ -631,14 +693,6 @@
         "stars": 689,
         "pushed_at": "2026-11-18",
         "description": "TextureCraft: An open-source, 3D texture painting workflow written from scratch in pure Rust",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "storytold/photocraft",
-        "url": "https://github.com/storytold/photocraft",
-        "stars": 80280,
-        "pushed_at": "2026-11-18",
-        "description": "PhotoCraft: An open-source photo editor written from scratch in pure Rust",
         "license": "Apache-2.0"
       }
     ],
@@ -839,6 +893,72 @@
         "description": "Web front end for making video and music on your own ComfyUI — MiniMax H3, Music 3, SeedVR2 upscaling and FLUX Kontext edits. Deploys to Ver",
         "license": "MIT"
       }
+    ],
+    "Animaciones JS, WebGL & Video-as-Code": [
+      {
+        "full_name": "MerlinStacks/socaliseit",
+        "url": "https://github.com/MerlinStacks/socaliseit",
+        "stars": 32,
+        "pushed_at": "2026-11-18",
+        "description": "A powerful social media management platform with multi-track video editing (Remotion), unified publishing across Instagram, TikTok, YouTube ",
+        "license": "MIT"
+      },
+      {
+        "full_name": "Remocn/remocn",
+        "url": "https://github.com/Remocn/remocn",
+        "stars": 1800,
+        "pushed_at": "2026-11-18",
+        "description": "Production-ready animations, transitions, backgrounds, and scenes for Remotion",
+        "license": "MIT"
+      },
+      {
+        "full_name": "riaz37/remotion-ui",
+        "url": "https://github.com/riaz37/remotion-ui",
+        "stars": 83,
+        "pushed_at": "2026-11-18",
+        "description": "Production-ready motion for Remotion. Source you own.",
+        "license": "MIT"
+      },
+      {
+        "full_name": "thorvg/thorvg",
+        "url": "https://github.com/thorvg/thorvg",
+        "stars": 1927,
+        "pushed_at": "2026-11-18",
+        "description": "A production-ready C++ vector graphics engine supporting SVG and Lottie formats, featuring advanced rendering backends such as WebGPU for hi",
+        "license": "MIT"
+      },
+      {
+        "full_name": "zhuyansen/awesome-claude-video-skills",
+        "url": "https://github.com/zhuyansen/awesome-claude-video-skills",
+        "stars": 2338,
+        "pushed_at": "2026-11-18",
+        "description": "Open-source skills and toolkits that let Claude Code, Codex and other coding agents make video. 180 repos by type, each security-graded. Eng",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "Vincentwei1021/anything2explainer",
+        "url": "https://github.com/Vincentwei1021/anything2explainer",
+        "stars": 3398,
+        "pushed_at": "2026-11-18",
+        "description": "Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "Vincentwei1021/video-talkcraft",
+        "url": "https://github.com/Vincentwei1021/video-talkcraft",
+        "stars": 2418,
+        "pushed_at": "2026-11-18",
+        "description": "Agent skill that turns Claude Code / Codex into a motion-design studio for voiceover-driven explainer videos — word-level voiceover sync, 10",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "Vincentwei1021/video-shotcraft",
+        "url": "https://github.com/Vincentwei1021/video-shotcraft",
+        "stars": 21266,
+        "pushed_at": "2026-11-18",
+        "description": "AI video skill for Claude Code & Codex — cinematic, editable product promos with Remotion: 124 shot recipe cards, 150 motion previews, beat ",
+        "license": "Apache-2.0"
+      }
     ]
   },
   "huggingface_trending": {
@@ -847,7 +967,7 @@
         "id": "apple/FastFrames-L",
         "url": "https://huggingface.co/apple/FastFrames-L",
         "downloads": 0,
-        "likes": 201
+        "likes": 203
       },
       {
         "id": "Comfy-Org/PAN2",
@@ -859,7 +979,7 @@
         "id": "apple/FastFrames-S",
         "url": "https://huggingface.co/apple/FastFrames-S",
         "downloads": 0,
-        "likes": 35
+        "likes": 36
       },
       {
         "id": "Wan-AI/Wan2.2-TI2V-5B",
@@ -885,7 +1005,7 @@
         "id": "Lightricks/LTX-2.5",
         "url": "https://huggingface.co/Lightricks/LTX-2.5",
         "downloads": 2871190,
-        "likes": 12538
+        "likes": 12539
       },
       {
         "id": "Comfy-Org/Wan-2.2",

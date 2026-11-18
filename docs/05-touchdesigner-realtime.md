@@ -35,12 +35,13 @@
 | **TD Native Inference** | [`cacheflowe/td-native-inference`](https://github.com/cacheflowe/td-native-inference) | ~1–3 GB (GPU) | Nodos C++ ONNX/TensorRT nativos GPU sin copia CPU: incluye **`DAViDNormals.tox` (~10 ms GPU)** y **`DAViDHuman.tox` (~21 ms Depth+Normals+Matte)** + **`Relight.tox`** PBR. |
 | **TouchDiffusion** | [`olegchomp/TouchDiffusion`](https://github.com/olegchomp/TouchDiffusion) (★306) | ~5–7 GB | Referencia open-source de StreamDiffusion en TD (sin mantenimiento activo reciente desde 2024; preferir StreamDiffusionTD o ComfyUI-TD para proyectos nuevos). |
 | **Spout2 + NDI** | Integrados de serie en TD Windows (TOP `Spout In/Out`, `NDI In/Out`) | ~0 overhead | **Spout2** comparte texturas GPU en memoria directa a 0 ms entre **TouchDesigner ↔ Blender (`maybites/TextureSharing`) ↔ OBS ↔ Resolume**. **NDI** envía video alfa sobre LAN a Premiere/OBS. |
+| **`Web Render TOP`** *(Nativo TD `2025.31550+`)* | Chromium 132.0 integrado + `Use Shared Textures` | ~0.2–1.5 GB según escena WebGL | Ejecuta **animaciones JavaScript (`GSAP`, `Three.js / R3F`, `Rive`, `Lottie`, `p5.js`)** con `background: transparent` a **60 FPS con alpha real** + control bidireccional **CHOP ↔ WebSocket/OSC** (**nota:** usa distinto *User Cache Directory* si abres más de uno; ver [Pilar 07](07-opensource-nles-cli-upscaling.md)). |
 
 ---
 
 ## 4. Pipeline Recomendado: TouchDesigner + IA Generativa en tu PC
 
-1. **Pre-proceso en vivo (0 difusión pesada):** Usa **MediaPipe TD**, **Z-Depth / Normal Pass por Spout desde Blender**, **`Render TOP` MRT (`# Of Color Buffers = 2`)** o **`DAViDNormals.tox`** (~10 ms GPU) y **POPs** (`Point File In POP` para `.ply` 3DGS) a 30–60 FPS en GPU.
+1. **Pre-proceso en vivo (0 difusión pesada):** Usa **MediaPipe TD**, **Z-Depth / Normal Pass por Spout desde Blender**, **`Render TOP` MRT (`# Of Color Buffers = 2`)** o **`DAViDNormals.tox`** (~10 ms GPU), **`Web Render TOP`** (overlays HUD/Three.js/GSAP transparentes a 60 FPS) y **POPs** (`Point File In POP` para `.ply` 3DGS) en GPU.
 2. **Estilización interactiva:** Pasa la textura por **StreamDiffusionTD** (`stabilityai/sd-turbo` en 1–2 steps con **TensorRT 10.16** + `depth_tensorrt` / Normal ControlNet) o envía frames clave vía **ComfyUI-TD**.
 3. **Grabación Maestra para Post:** Captura mediante `Movie File Out TOP` en **ProRes 4444**, **HAP Q Alpha** o secuencias **EXR 16F** (si exportas Normal/Depth) para llevarlo limpio a **FilmCraft / Premiere / After Effects / EffectCraft**.
 

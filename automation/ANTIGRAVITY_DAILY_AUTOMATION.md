@@ -26,18 +26,18 @@ Ejecuta la actualización diaria de nuestra "Biblia de Herramientas de Video IA 
 Contexto fijo de hardware y entorno:
 - GPU: NVIDIA RTX 3060 12 GB VRAM
 - CPU: AMD Ryzen 9 5900X | RAM: 32 GB | OS: Windows 11
-- Prioridades especiales: ArtCraft (storytold/*, FilmCraft, EffectCraft, AniCraft, etc.), Adobe (Premiere Pro & After Effects MCP/UXP/CEP), TouchDesigner (TDMCP/Embody/POPs), Blender VFX/MCP, IA Video local cuantizada (GGUF/FP8/mmgp), Rotoscopia/Matting (MatAnyone 2, SAM 3, VideoMaMa), y Open Source CLI/VSR.
+- **Prioridades especiales:** ArtCraft (`storytold/*`, FilmCraft, EffectCraft, AniCraft, etc.), Adobe (Premiere Pro & After Effects MCP/UXP/CEP), TouchDesigner (`TDMCP`/`Embody`/POPs/`Web Render TOP`), Blender VFX/MCP, IA Video local cuantizada (GGUF/INT8/`mmgp`), Rotoscopia/Matting (`MatAnyone 2`, `SAM 3`, `VideoMaMa`), Capa de Normales (`NormalCrafter`, `Lotus`, `StableNormal`, `MoGe`, `DAViD`), Animaciones JS (`Remotion`, `Motion Canvas`, `GSAP`, `Three.js`, `Rive`), y Open Source CLI/VSR.
 
 Pasos obligatorios:
-1. Lee RADAR_DAILY.md y data/radar_latest.json (o ejecuta `python3 scripts/daily_radar.py` si tienen más de 24h de antigüedad).
+1. Lee `AGENTS.md`, `RADAR_DAILY.md` y `data/radar_latest.json` (o ejecuta `python3 scripts/daily_radar.py` si tienen más de 24h de antigüedad).
 2. Busca en la web/GitHub novedades de las últimas 24-48 horas sobre:
-   - Nuevos modelos/pesos cuantizados aptos para <=12GB VRAM y <=32GB RAM (Wan, LTX, Hunyuan, FramePack, FlashVSR, SeedVR2, MatAnyone, SAM).
+   - Nuevos modelos/pesos cuantizados aptos para <=12GB VRAM y <=32GB RAM (Wan, LTX, Hunyuan, FramePack, FlashVSR, SeedVR2, MatAnyone, SAM, NormalCrafter, Lotus, MoGe).
    - Releases y avances de paridad en storytold/artcraft, effectcraft y filmcraft.
    - Nuevos MCP servers, plugins UXP/CEP o skills para Adobe Premiere Pro, After Effects, TouchDesigner, Blender y DaVinci Resolve.
-   - Nuevas versiones de Kdenlive, Shotcut, OpenCut, LosslessCut, auto-editor, Natron y ComfyUI nodes críticos.
-3. Filtra cualquier herramienta que NO corra localmente en 12GB VRAM / 32GB RAM (márcala claramente como "Solo Cloud o >24GB VRAM / No viable en 3060 12GB sin cuantización extrema").
-4. Actualiza la sección correspondiente en `docs/` y añade la ficha del día en `changelog/DAILY_LOG.md` con enlace verificado, licencia, requisito VRAM/RAM y si tiene MCP/CLI.
-5. Si detectas una nueva config `.mcp.json` o script útil, añádelo a `mcps/` o `scripts/` y valida sintaxis JSON/Python.
+   - Nuevas versiones de Kdenlive, Shotcut, OpenCut, LosslessCut, auto-editor, Natron, frameworks Video-as-Code/JS (`Remotion`, `Motion Canvas`, `Three.js`, `GSAP`, `Rive`) y ComfyUI nodes críticos.
+3. Filtra cualquier herramienta que NO corra localmente en 12GB VRAM / 32GB RAM (`[OK-12GB]`, `[TIGHT-12GB]`, `[CLOUD / >24GB]`).
+4. Actualiza la sección correspondiente en `docs/`, añade la ficha del día en `changelog/DAILY_LOG.md` (con enlace verificado, licencia, requisito VRAM/RAM y si tiene MCP/CLI) y mantén alineados `AGENTS.md` y `skills/*/SKILL.md` si cambian flujos clave.
+5. Si detectas una nueva config `.mcp.json` o script útil, añádelo a `mcps/` o `scripts/` y valida sintaxis JSON/Python/Markdown.
 6. Crea una rama `radar/YYYY-MM-DD`, haz commit de los cambios y abre un Pull Request (o haz push directo si estás autorizado) con un resumen ejecutivo de 5 puntos en español.
 ```
 

@@ -94,6 +94,7 @@ Lo que hace única a esta suite frente a **Adobe** es que **la automatización p
 1. Un agente genera un motion graphic procedural en archivo declarativo **`.ecproj`** o scripts CLI (`effectcraft-cli script` / herramienta MCP `run_script`) ➔ exporta directo a **Lottie JSON** o secuencia de video con alpha.
 2. **FilmCraft** ensambla el montaje en headless CLI o vivo sobre la UI en el puerto `9876` con **0 frames de desfase** gracias a su matemática entera de tiempos.
 3. Todo el proyecto vive en **Git** con diffs legibles (`.ecproj`, scripts Rust/JS) — imposible con `.aep` o `.prproj` binarios sin convertir.
+4. Si además necesitas animaciones JS complejas del navegador (**GSAP, Three.js / R3F, Anime.js, Remotion, Motion Canvas, Rive**) tanto para overlays **ProRes 4444 Alpha** como para tiempo real en TouchDesigner (`Web Render TOP`), consulta [Pilar 07 · Animaciones JavaScript](07-opensource-nles-cli-upscaling.md#3-video-como-c%C3%B3digo--animaciones-javascript-offline-prores-4444-y-tiempo-real-60-fps).
 
 ---
 

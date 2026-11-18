@@ -1,0 +1,82 @@
+# AGENTS.md — Guía Maestra de Lectura y Operación para Agentes IA
+
+> **Propósito:** Este repositorio (`Leopoldoleoncancino/video-vfx-ai-bible`) es la base de conocimiento técnica viva del usuario para producir **Video IA Local, VFX, Motion Graphics, TouchDesigner, Blender y Automatización híbrida (ArtCraft + Adobe + JavaScript)** en su estación local **Windows 11**.
+
+---
+
+## 1. Reglas Duras de Hardware y Calidad (Leer Antes de Responder o Editar)
+
+Toda recomendación, workflow, comando o código generado a partir de esta Biblia DEBE respetar el perfil físico de la estación de trabajo del usuario:
+
+| Componente | Especificación | Regla Operativa Obligatoria para Agentes |
+|---|---|---|
+| **GPU** | **NVIDIA RTX 3060 · 12 GB VRAM** *(Ampere, sin FP8 Tensor Core nativo)* | Prioriza **`GGUF (Q4_K_M / Q5_K_M)`** o **`INT8` (`mmgp`)** + `SageAttention` + `Tiled VAE`. **Nunca** asumas 24 GB VRAM; **nunca** dejes dos modelos de difusión/VLM o dos apps GPU pesadas abiertas simultáneamente (ej. cerrar Premiere/AE/Blender pesado antes de difundir en ComfyUI o Wan2GP). |
+| **CPU** | **AMD Ryzen 9 5900X** *(12C / 24T)* | Aprovecha CPU para BlockSwap, **Remotion / Playwright / FFmpeg**, **FilmCraft / EffectCraft (Rust)** y VapourSynth cuando la GPU esté ocupada en IA. |
+| **RAM** | **32 GB DDR4** *(techo operativo real ~22–24 GB libres en Win 11)* | Evita Text Encoders `BF16/FP16` de 9–12 GB (`UMT5-XXL`, `T5`, `Gemma`) junto a modelos 14B sin cuantizar: usa versiones **GGUF Q4/Q5** o embeddings precalculados (`flux_empty_embed.pt` en Lotus-2). |
+| **OS** | **Windows 11** | Usa `woct0rdho/triton-windows`, `woct0rdho/SageAttention`, `Spout2` en la misma GPU NVIDIA, `127.0.0.1` IPv4-only para `TDMCP` (no `localhost`) y rutas Windows escapadas en JSON (`C:\\...`). |
+
+### Reglas de Honestidad Técnica
+1. **No inventes** URLs de GitHub, números de stars, FPS o compatibilidades no verificadas en `docs/` o en [`RADAR_DAILY.md`](RADAR_DAILY.md).
+2. **Clasifica claramente** cualquier novedad externa:
+   - `[OK-12GB]` Corre cómodo en 12 GB VRAM + 32 GB RAM.
+   - `[TIGHT-12GB]` Viable con GGUF / BlockSwap / Tiling / 480p y cerrando apps pesadas.
+   - `[CLOUD / >24GB]` Solo referencia o nube; **no** recomendar para flujo diario local sin advertencia explícita.
+3. **ArtCraft vs Adobe:** `FilmCraft` / `EffectCraft` **NO** abren archivos `.prproj` / `.aep` ni plugins `.aex` / OFX propietarios; el intercambio entre suites se hace vía **ProRes 4444 (`yuva444p10le` Straight Alpha)**, **EXR 16F/32F lineal**, **Lottie JSON/`.lottie`** o **OTIO/XML**.
+
+---
+
+## 2. Mapa de Contenidos del Repositorio (Índice Actualizado)
+
+### Pilares Principales (`docs/`)
+- **[`README.md`](README.md)** — Mapa maestro y matriz comparativa rápida *"¿Qué herramienta uso hoy en mi PC?"*.
+- **[`docs/01-local-ai-video-12gb-32gb.md`](docs/01-local-ai-video-12gb-32gb.md)** — Generación de video IA local: Wan 2.2 (5B/14B GGUF), LTX-2.3/2.5 + LTX-Desktop, HunyuanVideo 1.5, FramePack, VACE, Wan2GP (`mmgp`), ComfyUI, InfiniteTalk, EchoMimic v3.
+- **[`docs/02-rotoscoping-matting-chroma-depth.md`](docs/02-rotoscoping-matting-chroma-depth.md)** — Rotoscopia, matting, borrado con sombras y profundidad: MatAnyone 2, SAM 3, VideoMaMa, BiRefNet/RMBG, EffectErase, ProPainter, Video Depth Anything, DepthCrafter, Relit-LiVE.
+- **[`docs/03-artcraft-deep-dive.md`](docs/03-artcraft-deep-dive.md)** — Suite completa ArtCraft (`storytold/artcraft`) + 17 Crafting Apps en Rust puro (`FilmCraft`, `EffectCraft`, `AniCraft`, `PhotoCraft`, `TextureCraft`, `MaterialCraft`, `SoundCraft`), `.mcp.json` nativo y paridad real vs Adobe.
+- **[`docs/04-adobe-video-deep-dive.md`](docs/04-adobe-video-deep-dive.md)** — Premiere Pro & After Effects: Object Mask, Media Intelligence, MCPs (`premiere-pro-mcp`, `Adobe_Premiere_Pro_MCP`, `opencutagent`, `@kumoproductions/mcp-aftereffects`, `Dakkshin/after-effects-mcp`), `Bolt UXP/CEP` y expresiones JS ES6+.
+- **[`docs/05-touchdesigner-realtime.md`](docs/05-touchdesigner-realtime.md)** — TouchDesigner 2025+: POPs/POPX GPU, `TouchDesigner/TDMCP` (oficial con soporte Antigravity), `Embody/Envoy` (TDXN YAML Git), `StreamDiffusionTD`, `ComfyUI-TD`, `td-native-inference` (`DAViD`), Spout2/NDI y **`Web Render TOP`** (Chromium 132.0 para animaciones JS a 60 FPS).
+- **[`docs/06-blender-3d-vfx-compositing.md`](docs/06-blender-3d-vfx-compositing.md)** — Blender 4.5/5.x MCP oficial & comunitarios (`mcp-for-blender`, `vfx-agent-toolkit`), TRELLIS.2, Hunyuan3D 2.1, 3DGS (`Kiri-Innovation`, `gsplat`, `spark`), MoCap sin traje (`GVHMR`, `FreeMoCap`), `davinci-resolve-mcp`, Natron y OpenTimelineIO.
+- **[`docs/07-opensource-nles-cli-upscaling.md`](docs/07-opensource-nles-cli-upscaling.md)** — NLEs open-source (`OpenCut`, `LosslessCut`, `Shotcut`, `Kdenlive`), CLI (`auto-editor`, `PySceneDetect`, `MoviePy`, `VapourSynth + vs-mlrt`), **Video-as-Code & Animaciones JavaScript** (**`Remotion` ProRes 4444 Alpha, `Motion Canvas`, `Three.js/R3F`, `GSAP`, `Anime.js`, `Theatre.js`, `p5.js`, `Rive`, `Lottie`, Playwright + `Web Render TOP`**), VSR (**`SeedVR2`**, **`FlashVSR`**) y **`Practical-RIFE`**.
+- **[`docs/08-normal-passes-realtime-post.md`](docs/08-normal-passes-realtime-post.md)** — Capa de Normales: convención OpenGL `+Y` vs DX `-Y`, EXR 16F/32F lineal, tiempo real (`DAViDNormals.tox` ~10 ms, TD MRT GLSL, Blender Spout2, Depth-to-Normal) y postproducción (`NormalCrafter --max-res 512`, `Lotus / Lotus-2`, `StableNormal-turbo`, `MoGe-2/3`, `DSINE`, Resolve `ReLight`, AE `Normality`).
+
+### Módulo Profundo (`docs/modules/`) & Workflows (`workflows/`)
+- **[`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](docs/modules/MODULE_C_TD_BLENDER_VFX.md)** — Manual completo Fase 2 de TouchDesigner (`TDMCP` + 19 `td-*` skills / `Embody`) + Blender Spout2/OSC + StreamDiffusionTD + 3DGS + MoCap (`GVHMR`), con los 3 modos de presupuesto VRAM.
+- **[`workflows/END_TO_END_PIPELINES.md`](workflows/END_TO_END_PIPELINES.md)** — 3 blueprints completos listos para ejecutar (VFX Híbrido con roto/normales, Sweet-Spot 480p→SeedVR2→RIFE, Automatización Híbrida JS/Adobe/ArtCraft/TD).
+
+### Skills, MCPs, Scripts, Shaders y Radar (`skills/`, `mcps/`, `scripts/`, `automation/`)
+- **`skills/`** *(cargar según tarea):*
+  - [`skills/video-vfx-3060-12gb-local/SKILL.md`](skills/video-vfx-3060-12gb-local/SKILL.md)
+  - [`skills/artcraft-adobe-vfx-bridge/SKILL.md`](skills/artcraft-adobe-vfx-bridge/SKILL.md)
+  - [`skills/daily-vfx-radar/SKILL.md`](skills/daily-vfx-radar/SKILL.md)
+- **`mcps/`** ([`mcps/README.md`](mcps/README.md)):
+  - [`mcps/win11_unified_mcp_config.json`](mcps/win11_unified_mcp_config.json) (Claude Code / Cursor)
+  - [`mcps/antigravity_td_blender_mcp.json`](mcps/antigravity_td_blender_mcp.json) (Google Antigravity con `"serverUrl"` para `TDMCP`)
+  - [`mcps/artcraft_adobe_mcp.json`](mcps/artcraft_adobe_mcp.json) (ArtCraft + Adobe)
+- **`scripts/`**:
+  - Windows & Video: [`check_3060_env.ps1`](scripts/check_3060_env.ps1), [`comfyui_3060_12gb_launch.bat`](scripts/comfyui_3060_12gb_launch.bat), [`ffmpeg_nvenc_prores_helpers.ps1`](scripts/ffmpeg_nvenc_prores_helpers.ps1), [`batch_matting_pipeline.py`](scripts/batch_matting_pipeline.py), [`setup_module_c_win11.ps1`](scripts/setup_module_c_win11.ps1)
+  - TouchDesigner + Blender + Normales: [`blender_td_osc_bridge.py`](scripts/blender_td_osc_bridge.py), [`blender_normal_pass_setup.py`](scripts/blender_normal_pass_setup.py), [`td_mrt_normal_pass.frag`](scripts/td_mrt_normal_pass.frag), [`td_depth_to_normal.frag`](scripts/td_depth_to_normal.frag)
+  - Radar diario: [`daily_radar.py`](scripts/daily_radar.py)
+- **Estado Vivo & Radar:** [`RADAR_DAILY.md`](RADAR_DAILY.md), [`data/radar_latest.json`](data/radar_latest.json), [`changelog/DAILY_LOG.md`](changelog/DAILY_LOG.md), [`automation/ANTIGRAVITY_DAILY_AUTOMATION.md`](automation/ANTIGRAVITY_DAILY_AUTOMATION.md).
+
+---
+
+## 3. Tabla de Enrutamiento Rápido para el Agente
+
+| Si el usuario te pide... | Lee primero | Skill / Recurso a usar |
+|---|---|---|
+| **Generar video IA local (T2V/I2V/Lip-sync/VSR)** | [`docs/01`](docs/01-local-ai-video-12gb-32gb.md) + [`docs/07`](docs/07-opensource-nles-cli-upscaling.md) | `video-vfx-3060-12gb-local` + `comfyui_3060_12gb_launch.bat` |
+| **Rotoscopia, croma, borrado de sombras o Z-Depth** | [`docs/02`](docs/02-rotoscoping-matting-chroma-depth.md) | `video-vfx-3060-12gb-local` + `batch_matting_pipeline.py` |
+| **Capa de Normales o relighting (vivo o post)** | [`docs/08`](docs/08-normal-passes-realtime-post.md) | `blender_normal_pass_setup.py`, `td_mrt_normal_pass.frag`, `td_depth_to_normal.frag` |
+| **TouchDesigner + Blender + StreamDiffusionTD + MCP** | [`docs/05`](docs/05-touchdesigner-realtime.md) + [`docs/06`](docs/06-blender-3d-vfx-compositing.md) + [`MODULE_C`](docs/modules/MODULE_C_TD_BLENDER_VFX.md) | `antigravity_td_blender_mcp.json` + `blender_td_osc_bridge.py` |
+| **ArtCraft, EffectCraft, FilmCraft, Premiere o After Effects** | [`docs/03`](docs/03-artcraft-deep-dive.md) + [`docs/04`](docs/04-adobe-video-deep-dive.md) | `artcraft-adobe-vfx-bridge` + `artcraft_adobe_mcp.json` |
+| **Animaciones JS, HUDs, 3D WebGL, Remotion o Motion Canvas** | [`docs/07 §3`](docs/07-opensource-nles-cli-upscaling.md#3-video-como-c%C3%B3digo--animaciones-javascript-offline-prores-4444-y-tiempo-real-60-fps) + [`docs/05`](docs/05-touchdesigner-realtime.md) | `Remotion` ProRes 4444 Alpha, `Web Render TOP`, `ffmpeg_nvenc_prores_helpers.ps1` |
+| **Actualizar radar diario o auditar repos recientes** | [`RADAR_DAILY.md`](RADAR_DAILY.md) + [`automation/`](automation/ANTIGRAVITY_DAILY_AUTOMATION.md) | `daily-vfx-radar` + `python3 scripts/daily_radar.py` |
+
+---
+
+## 4. Checklist Antes de Hacer Commit en Este Repositorio
+
+1. Si añadiste o modificaste **scripts Python**, valida `python3 -m py_compile ...`.
+2. Si modificaste configs en `mcps/` o datos en `data/`, valida que sean **JSON válido** (`json.load`).
+3. Verifica que **todas las rutas relativas Markdown** en `docs/`, `README.md`, `AGENTS.md`, `workflows/` y `skills/` apunten a archivos existentes y ninguna tabla tenga columnas rotas.
+4. Si actualizas capacidades importantes o skills del repo, mantén alineados `README.md`, `AGENTS.md`, `changelog/DAILY_LOG.md` y la copia correspondiente dentro de `skills/*/SKILL.md`.
+5. No hagas commit de archivos temporales, cachés (`__pycache__/`) ni medios pesados (`*.mp4`, `*.mov`, `*.exr`, `*.png`).

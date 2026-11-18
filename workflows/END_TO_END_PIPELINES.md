@@ -48,14 +48,14 @@ Evita renders eternos de 45 minutos por un clip fallido siguiendo la regla **Dra
 
 ---
 
-## Workflow 3 · Automatización Total de Video Híbrido (Premiere / EffectCraft / TouchDesigner)
+## Workflow 3 · Automatización Total de Video Híbrido (Premiere / EffectCraft / JS / TouchDesigner)
 
-### Para YouTube / Talking-Head / Documental Técnico
+### Para YouTube / Talking-Head / Documental Técnico / Motion Graphics JS
 1. **Corte automático de silencios y retakes:** **`Open Cut Agent`** (en vivo en Premiere) o **`auto-editor`** CLI exportando XML.
-2. **Gráficos animados vectoriales/datos por código:** Agente IA genera componentes en **Remotion** o proyectos JSON **`.ecproj` en EffectCraft** (`effectcraft-cli mcp`) exportando a `.lottie` / ProRes 4444 alpha.
+2. **Gráficos animados vectoriales, 3D WebGL y datos por código JS (0 GB VRAM IA):** Agente IA genera componentes en **Remotion** (`--codec=prores --prores-profile=4444 --pixel-format=yuva444p10le`), **Motion Canvas**, **GSAP / Three.js / Anime.js** (Playwright RGBA ➔ ProRes 4444 vía [`ConvertTo-ProRes4444Alpha`](../scripts/ffmpeg_nvenc_prores_helpers.ps1)) o proyectos JSON **`.ecproj` en EffectCraft** (`effectcraft-cli mcp`) exportando a `.lottie`.
 3. **Avatares / Traducción Lip-Sync:** **`InfiniteTalk`** o **`EchoMimic v3` (1.3B)** cuando necesites tomas parlantes sincronizadas con un audio nuevo.
 
 ### Para Visuales Generativos / Escenario / Instalaciones en Vivo
 1. **Esqueleto de nodos IA:** **`TouchDesigner/TDMCP`** (oficial, soporte directo Antigravity en `http://127.0.0.1:13316/mcp`) o **`Embody / Envoy`** (con TDXN YAML versionado en Git).
-2. **Tracking, Normales en Vivo & Física GPU:** **MediaPipe TD** + **`DAViDNormals.tox`** (~10 ms GPU en `td-native-inference` ➔ `Relight.tox`) o **`Render TOP` MRT + `td_mrt_normal_pass.frag`** alimentando **POPs** en GPU.
+2. **Tracking, Normales en Vivo, HUDs JS & Física GPU:** **MediaPipe TD** + **`DAViDNormals.tox`** (~10 ms GPU en `td-native-inference` ➔ `Relight.tox`), **`Render TOP` MRT + `td_mrt_normal_pass.frag`** alimentando **POPs** en GPU, y **`Web Render TOP` (Chromium 132.0)** inyectando overlays **GSAP / Three.js / Rive / p5.js** transparentes a **60 FPS** vía CHOP/WebSocket.
 3. **Difusión en vivo / puente:** **StreamDiffusionTD** (Turbo/LCM en 3060 guiado por Z-Depth o `BlenderNormals` vía **Spout2**) y grabación master ProRes / EXR 16F ([ver Pilar 08](../docs/08-normal-passes-realtime-post.md)).

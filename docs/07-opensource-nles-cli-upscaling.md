@@ -29,12 +29,44 @@ Para acelerar tu producción local en **Windows 11 + RTX 3060 12 GB + Ryzen 9 59
 
 ---
 
-## 3. Video como Código (*Programmatic Motion Graphics*)
+## 3. Video como Código & Animaciones JavaScript (*Offline* ProRes 4444 y *Tiempo Real* 60 FPS)
 
-| Framework | Repo | Stars | Cuándo usarlo en lugar de After Effects |
-|---|---|---|---|
-| **Remotion** | [`remotion-dev/remotion`](https://github.com/remotion-dev/remotion) | **74,117** | Gráficos de datos, UI/SaaS demos, subtítulos dinámicos y videos masivos generados desde APIs/JSON usando **React + TypeScript** (los agentes IA escriben código TSX casi perfecto!). *(Nota: licencia custom gratuita para individuos y equipos pequeños; revisar si superas umbral empresarial).* |
-| **Motion Canvas** | [`motion-canvas/motion-canvas`](https://github.com/motion-canvas/motion-canvas) | 20,045 | **100% MIT**, enfocado a diagramas técnicos y animaciones vectoriales sincronizadas con línea de tiempo visual en TypeScript. |
+Usar **JavaScript / TypeScript / WebGL** para motion graphics e interfaces animadas encaja perfecto con tu PC porque **renderiza usando los 24 hilos del Ryzen 9 5900X + WebGL ligero sin ocupar los 12 GB VRAM de tus modelos de difusión**. Además, los agentes IA generan código JS/TSX/GLSL con precisión altísima.
+
+### A. Ecosistema Verificado de Librerías JS para Video & VFX
+
+| Framework / Librería | Repo Oficial (Verificado Nov 2026) | Stars | Licencia | Cuándo usarlo en lugar de After Effects o Blender |
+|---|---|---:|---|---|
+| **Three.js** + **React Three Fiber** | [`mrdoob/three.js`](https://github.com/mrdoob/three.js) · [`pmndrs/react-three-fiber`](https://github.com/pmndrs/react-three-fiber) | **118,845** / **33,817** | MIT | Escenas 3D ligeras en WebGL, shaders GLSL, cámaras de datos, Gaussian Splatting web (`storytold/spark`) y **pases de Normales/Depth en vivo** dentro de Chromium / TouchDesigner. |
+| **Anime.js** | [`juliangarnier/anime`](https://github.com/juliangarnier/anime) | **74,887** | MIT | Motor v4 modular y ultra-rápido para animar SVG, DOM, Web Animation API (WAAPI) y valores numéricos de HUDs o subtítulos cinéticos. |
+| **Remotion** | [`remotion-dev/remotion`](https://github.com/remotion-dev/remotion) | **74,125** | Custom *(gratis uso personal y equipos ≤3 personas)* | Estándar **React + TypeScript ➔ video determinista frame-a-frame**. Ideal para gráficos de datos, UI/SaaS demos, subtítulos dinámicos y batches desde JSON/APIs. |
+| **Lottie (`lottie-web`)** | [`airbnb/lottie-web`](https://github.com/airbnb/lottie-web) | **32,512** | MIT | Reproducción vectorial `.json` / `.lottie` ultra-ligera compatible de ida y vuelta con **EffectCraft** y **After Effects (Bodymovin)**. |
+| **GSAP** *(GreenSock)* | [`greensock/GSAP`](https://github.com/greensock/GSAP) | **30,895** | Licencia estándar GSAP *(uso web/gratis según términos)* | Coreografías SVG/HTML complejas (`Timeline`, `MorphSVG`, `SplitText`, física de resorte) con control milimétrico de *easing*. |
+| **p5.js** | [`processing/p5.js`](https://github.com/processing/p5.js) | **24,396** | LGPL-2.1 | Arte generativo 2D/3D procedural, partículas y tipografía algorítmica lista para grabar o conectar a audio en vivo. |
+| **Motion Canvas** | [`motion-canvas/motion-canvas`](https://github.com/motion-canvas/motion-canvas) | **20,045** | MIT | **100% MIT**, editor visual + generadores TypeScript para diagramas técnicos, tutoriales de código y explicadores sincronizados con audio. |
+| **Theatre.js** | [`theatre-js/theatre`](https://github.com/theatre-js/theatre) | **13,055** | Apache-2.0 | Añade **timeline visual con curvas de Bézier e inspector de keyframes** encima de **Three.js / R3F / DOM** directo en el navegador. |
+| **Rive (`rive-wasm`)** | [`rive-app/rive-wasm`](https://github.com/rive-app/rive-wasm) | **1,029** | MIT | Animaciones vectoriales con **State Machines interactivas** (reaccionan en vivo a señales OSC/CHOP o clic sin re-renderizar video). |
+
+---
+
+### B. 3 Formas Reales de Sacar Animaciones JS a tu Pipeline VFX / Live
+
+1. **Postproducción Sin Pérdida en Premiere, After Effects, Resolve o FilmCraft (`ProRes 4444 Alpha`):**
+   - **Con Remotion (comando exacto con transparencia real):** deja `<AbsoluteFill>` sin color de fondo sólido y renderiza directo a 10-bit `4:4:4:4`:
+     ```bash
+     npx remotion render MyComp out/overlay.mov --codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le
+     ```
+   - **Con GSAP / Three.js / Anime.js / Motion Canvas:** evita grabadores antiguos en desuso (ej. `timecut`) y usa exportación de secuencia PNG RGBA desde Motion Canvas o un script **Playwright** con avance determinista de reloj (`requestAnimationFrame` controlado frame a frame + `page.screenshot({ omitBackground: true })`), empaquetado con [`ConvertTo-ProRes4444Alpha`](../scripts/ffmpeg_nvenc_prores_helpers.ps1).
+   - **Tip Adobe:** en After Effects verifica `Interpret Footage → Alpha: Straight - Unmatted` (o premultiplied según tu fondo CSS/canvas) para cero bordes negros.
+
+2. **Tiempo Real a 60 FPS en TouchDesigner (`Web Render TOP` — Sin Pre-render):**
+   - TouchDesigner `2025.31550+` incorpora **Chromium 132.0** con **`Use Shared Textures`** en Windows (`Web Render TOP`).
+   - Carga tu HTML/Vite local con **GSAP, Three.js, Rive, Lottie o p5.js** y fondo CSS `background: transparent` (`rgba(0,0,0,0)`): TouchDesigner recibe el **canal Alpha real GPU a 60 FPS** para enviarlo directo a `Composite TOP`, **StreamDiffusionTD** o HUDs reactivos vía **WebSocket / OSC** desde tus CHOPs.
+   - *(Gotcha Windows 11):* si usas dos `Web Render TOP` al mismo tiempo, asigna un **`User Cache Directory` distinto a cada uno** o el segundo lanzará error de bloqueo de caché Chromium.
+
+3. **Puente Nativo Dentro de After Effects & EffectCraft:**
+   - **After Effects moderno** ejecuta **JavaScript ES6+** de serie en su motor de **Expresiones** (mucho más limpio que ExtendScript clásico): los agentes IA pueden escribir expresiones reactivas de inercia, *overshoot*, contadores o rigs de texto directamente sobre capas AE.
+   - **EffectCraft** ([`storytold/effectcraft`](03-artcraft-deep-dive.md)) ejecuta expresiones JS sobre JSON declarativo `.ecproj` y exporta/importa `.lottie` sin necesitar navegador headless.
 
 ---
 

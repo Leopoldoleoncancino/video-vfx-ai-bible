@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Daily Radar para la Biblia de Video IA, VFX, ArtCraft, Adobe, TouchDesigner y Blender.
+"""Daily Radar para la Biblia de Video IA, VFX, Normales, Animaciones JS, ArtCraft, Adobe, TouchDesigner y Blender.
 
 Consulta las APIs públicas de GitHub y Hugging Face para detectar:
-1. Nuevos repositorios / MCP servers / custom nodes / plugins en los 6 pilares.
-2. Releases recientes y actividad en el watchlist estratégico (ArtCraft, Adobe MCPs, TD, Blender, Wan/LTX, MatAnyone).
+1. Nuevos repositorios / MCP servers / custom nodes / plugins en los 8 pilares.
+2. Releases recientes y actividad en el watchlist estratégico (ArtCraft, Adobe MCPs, TD, Blender, Wan/LTX, MatAnyone, Normales, JS Video).
 3. Modelos trending relevantes en Hugging Face (Video Gen, Matting, Depth, VSR, Audio/Lip-sync).
 
 Uso local (Windows 11 / Linux):
@@ -43,6 +43,7 @@ SEARCH_TOPICS: list[tuple[str, str, int]] = [
     ("Adobe Premiere / After Effects MCP & UXP", '"premiere pro mcp" OR "after effects mcp" OR premiere-pro-mcp OR after-effects-mcp OR "adobe uxp" in:name,description,topics', 3),
     ("TouchDesigner MCP, POPs & Real-Time", "touchdesigner OR StreamDiffusionTD OR TDMCP in:name,description,topics", 3),
     ("Blender, DaVinci Resolve, VFX & Open-Source Video", '"blender mcp" OR davinci-resolve-mcp OR OpenCut OR FlashVSR OR SeedVR2 in:name,description,topics', 5),
+    ("Animaciones JS, WebGL & Video-as-Code", "remotion OR motion-canvas OR lottie OR theatrejs OR rive-wasm in:topics", 20),
 ]
 
 WATCHLIST_REPOS: list[str] = [
@@ -91,6 +92,12 @@ WATCHLIST_REPOS: list[str] = [
     "OpenCut-app/OpenCut",
     "WyattBlue/auto-editor",
     "mifi/lossless-cut",
+    "mrdoob/three.js",
+    "remotion-dev/remotion",
+    "greensock/GSAP",
+    "juliangarnier/anime",
+    "motion-canvas/motion-canvas",
+    "rive-app/rive-wasm",
 ]
 
 HF_PIPELINES: list[tuple[str, str]] = [

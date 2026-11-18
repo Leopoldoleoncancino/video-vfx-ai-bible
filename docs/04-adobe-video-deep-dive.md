@@ -73,6 +73,6 @@ Si quieres construir tus propios paneles de IA en Premiere Pro o After Effects (
 2. Exporta **FCP XML / OTIO** ([`OpenTimelineIO`](https://github.com/AcademySoftwareFoundation/OpenTimelineIO)) o selecciona los huecos (*B-roll slots*).
 3. Genera insertos B-roll de 5s en **Wan2GP (`Wan 2.2`)** o **LTX-2.3** mientras Premiere está cerrado, escálalos con **SeedVR2** + **RIFE**, y vuelve a colocarlos automáticamente usando **`premiere-pro-mcp`**.
 
-### Workflow C: Motion Procedural por Agente (EffectCraft / Lottie / AE)
-1. Pide al agente que genere gráficos vectoriales animados en **EffectCraft** (exporta `.lottie` / Lottie JSON) o **Remotion** / **Motion Canvas**.
-2. Carga el Lottie JSON directo en After Effects mediante plugins importadores Lottie/Bodymovin, o haz que `@kumoproductions/mcp-aftereffects` construya directamente los Shape Layers y Keyframes nativos en AE con un grupo de Undo.
+### Workflow C: Motion Procedural por Agente (EffectCraft / JavaScript / Lottie / AE)
+1. Pide al agente que genere gráficos vectoriales/UI animados en **EffectCraft** (exporta `.lottie` / Lottie JSON), **Remotion** (`--codec=prores --prores-profile=4444 --pixel-format=yuva444p10le`), **Motion Canvas** o **GSAP / Three.js** (ver [Pilar 07](07-opensource-nles-cli-upscaling.md#3-video-como-c%C3%B3digo--animaciones-javascript-offline-prores-4444-y-tiempo-real-60-fps)).
+2. Carga el Lottie JSON en After Effects vía plugins Lottie/Bodymovin, importa el MOV ProRes 4444 (`Straight - Unmatted`), o haz que `@kumoproductions/mcp-aftereffects` construya Shape Layers y **Expresiones JavaScript ES6+ nativas** de AE en un solo Undo atómico.
