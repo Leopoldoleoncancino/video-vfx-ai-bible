@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "effectcraft-headless": {
+      "command": "C:\\Tools\\storytold\\effectcraft\\target\\release\\effectcraft-cli.exe",
+      "args": ["mcp", "--demo"]
+    },
+    "effectcraft-app": {
+      "command": "C:\\Tools\\storytold\\effectcraft\\target\\release\\effectcraft-cli.exe",
+      "args": ["mcp", "--bridge", "9877"]
+    },
+    "filmcraft-headless": {
+      "command": "C:\\Tools\\storytold\\filmcraft\\target\\release\\filmcraft-cli.exe",
+      "args": ["mcp", "--demo"]
+    },
+    "filmcraft-app": {
+      "command": "C:\\Tools\\storytold\\filmcraft\\target\\release\\filmcraft-cli.exe",
+      "args": ["mcp", "--bridge", "127.0.0.1:9876"]
+    },
+    "premiere-pro": {
+      "command": "npx",
+      "args": ["-y", "premiere-pro-mcp"],
+      "env": {
+        "PREMIERE_MCP_PROTOCOL_MODE": "auto"
+      }
+    },
+    "after-effects-kumo": {
+      "command": "npx",
+      "args": ["-y", "@kumoproductions/mcp-aftereffects"]
+    },
+    "after-effects-dakkshin": {
+      "command": "node",
+      "args": ["C:\\Tools\\after-effects-mcp\\build\\index.js"]
+    }
+  }
+}

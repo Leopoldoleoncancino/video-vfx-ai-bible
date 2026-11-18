@@ -1,0 +1,46 @@
+name: Daily Video & VFX AI Radar
+
+on:
+  schedule:
+    # Ejecuta todos los días a las 12:00 UTC (06:00 AM CST / Ciudad de México)
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      lookback_days:
+        description: 'Días hacia atrás para buscar novedades en GitHub y Hugging Face'
+        required: false
+        default: '7'
+
+permissions:
+  contents: write
+
+jobs:
+  update-daily-radar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Daily Video & VFX Radar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '7' }}
+        run: |
+          python3 scripts/daily_radar.py
+
+      - name: Commit and push radar updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add RADAR_DAILY.md data/radar_latest.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(radar): actualización diaria $(date -u +'%Y-%m-%d')"
+            git push
+          fi

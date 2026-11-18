@@ -1,0 +1,177 @@
+# Radar Diario Automatizado — Video IA, VFX, ArtCraft & Adobe
+
+> Última actualización automática: **2026-11-18 20:52:54 UTC** | Ventana de búsqueda: desde **2026-11-11** (`LOOKBACK_DAYS=7`)
+
+Este archivo se regenera automáticamente cada día mediante [`.github/workflows/daily-radar.yml`](.github/workflows/daily-radar.yml) ejecutando [`scripts/daily_radar.py`](scripts/daily_radar.py), y también sirve como base de contexto para la automatización diaria `/automation` de Antigravity.
+
+---
+
+## 1. Watchlist Estratégico (Releases & Actividad Reciente)
+
+| Repositorio | Stars | Último Push | Último Release | Fecha Release | Licencia |
+|---|---:|---|---|---|---|
+| [OpenCut-app/OpenCut](https://github.com/OpenCut-app/OpenCut) | 98,843 | 2026-09-24 | `v0.3.0` | 2026-04-15 | MIT |
+| [storytold/photocraft](https://github.com/storytold/photocraft) | 80,277 | 2026-11-18 | `v0.23.1` | 2026-11-12 | Apache-2.0 |
+| [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | 46,167 | 2026-11-14 | `v3.70.2` | 2026-10-28 | GPL-2.0 |
+| [storytold/artcraft](https://github.com/storytold/artcraft) | 41,523 | 2026-11-18 | `artcraft-v0.41.1` | 2026-11-07 | Apache-2.0 |
+| [ahujasid/mcp-for-blender](https://github.com/ahujasid/mcp-for-blender) | 34,937 | 2026-11-18 | `-` | - | MIT |
+| [Wan-Video/Wan2.2](https://github.com/Wan-Video/Wan2.2) | 18,759 | 2026-09-21 | `-` | - | Apache-2.0 |
+| [storytold/filmcraft](https://github.com/storytold/filmcraft) | 18,548 | 2026-11-18 | `v0.20.1` | 2026-11-12 | Apache-2.0 |
+| [storytold/lightcraft](https://github.com/storytold/lightcraft) | 16,160 | 2026-11-18 | `v0.21.1` | 2026-11-12 | Apache-2.0 |
+| [facebookresearch/sam3](https://github.com/facebookresearch/sam3) | 12,334 | 2026-11-17 | `-` | - | NOASSERTION |
+| [deepbeepmeep/WanGP](https://github.com/deepbeepmeep/WanGP) | 12,010 | 2026-11-17 | `manager-v0.1.18` | 2026-11-17 | NOASSERTION |
+| [Lightricks/LTX-2](https://github.com/Lightricks/LTX-2) | 10,296 | 2026-11-12 | `v1.6.2` | 2026-11-12 | Apache-2.0 |
+| [storytold/effectcraft](https://github.com/storytold/effectcraft) | 8,949 | 2026-11-18 | `v0.24.1` | 2026-11-12 | Apache-2.0 |
+| [WyattBlue/auto-editor](https://github.com/WyattBlue/auto-editor) | 5,986 | 2026-11-18 | `31.9.0` | 2026-11-13 | Unlicense |
+| [Tencent-Hunyuan/HunyuanVideo-1.5](https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5) | 4,609 | 2026-04-10 | `-` | - | NOASSERTION |
+| [storytold/soundcraft](https://github.com/storytold/soundcraft) | 4,449 | 2026-11-18 | `v0.20.1` | 2026-11-12 | Apache-2.0 |
+| [samuelgursky/davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) | 4,196 | 2026-11-18 | `v5.3.4` | 2026-11-18 | MIT |
+| [Lightricks/LTX-Desktop](https://github.com/Lightricks/LTX-Desktop) | 2,294 | 2026-11-11 | `v1.3.2` | 2026-11-11 | Apache-2.0 |
+| [pq-yang/MatAnyone2](https://github.com/pq-yang/MatAnyone2) | 945 | 2026-07-28 | `v1.0.0` | 2026-03-06 | NOASSERTION |
+| [IceClear/SeedVR2](https://github.com/IceClear/SeedVR2) | 937 | 2026-01-27 | `-` | - | Apache-2.0 |
+| [Dakkshin/after-effects-mcp](https://github.com/Dakkshin/after-effects-mcp) | 898 | 2026-04-01 | `-` | - | MIT |
+| [hetpatel-11/Adobe_Premiere_Pro_MCP](https://github.com/hetpatel-11/Adobe_Premiere_Pro_MCP) | 896 | 2026-11-02 | `v1.2.11` | 2026-10-24 | MIT |
+| [storytold/texturecraft](https://github.com/storytold/texturecraft) | 689 | 2026-11-18 | `v0.6.1` | 2026-11-12 | Apache-2.0 |
+| [8beeeaaat/touchdesigner-mcp](https://github.com/8beeeaaat/touchdesigner-mcp) | 638 | 2026-10-31 | `v2.2.0` | 2026-10-30 | MIT |
+| [cvlab-kaist/VideoMaMa](https://github.com/cvlab-kaist/VideoMaMa) | 554 | 2026-10-21 | `-` | - | NOASSERTION |
+| [leancoderkavy/premiere-pro-mcp](https://github.com/leancoderkavy/premiere-pro-mcp) | 550 | 2026-11-18 | `v1.30.0` | 2026-11-08 | MIT |
+| [storytold/anicraft](https://github.com/storytold/anicraft) | 468 | 2026-11-18 | `v0.2.1` | 2026-11-12 | Apache-2.0 |
+| [storytold/materialcraft](https://github.com/storytold/materialcraft) | 411 | 2026-11-18 | `v0.4.1` | 2026-11-12 | Apache-2.0 |
+| [Comfy-Org/comfy-mcp](https://github.com/Comfy-Org/comfy-mcp) | 357 | 2026-11-18 | `v0.11.0` | 2026-11-16 | NOASSERTION |
+| [OpenImagingLab/FlashVSR_Plus](https://github.com/OpenImagingLab/FlashVSR_Plus) | 250 | 2026-11-17 | `-` | - | Apache-2.0 |
+| [dylanroscover/Embody](https://github.com/dylanroscover/Embody) | 222 | 2026-11-18 | `v6.3.6` | 2026-11-17 | MIT |
+| [kumoproductions/mcp-aftereffects](https://github.com/kumoproductions/mcp-aftereffects) | 186 | 2026-10-23 | `v0.3.2` | 2026-10-16 | MIT |
+| [FudanCVL/EffectErase](https://github.com/FudanCVL/EffectErase) | 173 | 2026-04-10 | `-` | - | NOASSERTION |
+| [zhuxing0/Relit-LiVE](https://github.com/zhuxing0/Relit-LiVE) | 128 | 2026-06-07 | `-` | - | Apache-2.0 |
+| [TouchDesigner/TDMCP](https://github.com/TouchDesigner/TDMCP) | 107 | 2026-11-16 | `1.1.58` | 2026-11-15 | NOASSERTION |
+| [sideshowroberto/vfx-agent-toolkit](https://github.com/sideshowroberto/vfx-agent-toolkit) | 19 | 2026-11-09 | `-` | - | MIT |
+| [leonardogrig/opencutagent](https://github.com/leonardogrig/opencutagent) | 11 | 2026-09-29 | `-` | - | NOASSERTION |
+| [Verbalize-public/td-mcp-rs](https://github.com/Verbalize-public/td-mcp-rs) | 6 | 2026-10-29 | `v0.3.0` | 2026-10-28 | MIT |
+
+---
+
+## 2. Radar por Pilares en GitHub (Activos Recientemente)
+
+### IA Video Local & ComfyUI
+
+| Proyecto | Stars | Último Push | Licencia | Descripción |
+|---|---:|---|---|---|
+| [liangci-ai/MOSS-YXBOX](https://github.com/liangci-ai/MOSS-YXBOX) | 13 | 2026-11-18 | MIT | 把 ComfyUI 官方 Create Bounding Boxes 与 MOSS-Image Layout Prompt 融合成单节点的中文画布排版工作台 |
+| [mrbizarro/Phosphene](https://github.com/mrbizarro/Phosphene) | 429 | 2026-11-18 | MIT | Phosphene is a free, open-source Mac app for making AI videos, pictures, speech and songs offline. Run LTX-2.5 and MiniMax H3 (Hailuo) local |
+| [AnniCodex/ComfyUI-H3-FaceRefine-Plus](https://github.com/AnniCodex/ComfyUI-H3-FaceRefine-Plus) | 18 | 2026-11-18 | MIT | Add-on nodes for ComfyUI-H3-FaceRefine (MiniMax H3): anti-wobble Flow Lock, Stitch Plus, Tone Match, strength presets and method B workflows |
+| [Code2Collapse/ComfyUI-CustomNodePacks](https://github.com/Code2Collapse/ComfyUI-CustomNodePacks) | 59 | 2026-11-18 | Apache-2.0 | Experimental nodes! This is a production suite for ComfyUI — SAM2.1/SAM3 segmentation, alpha matting, inpaint crop/stitch, VFX tools (EXR I/ |
+| [r34vtraining/Longshot_Studio](https://github.com/r34vtraining/Longshot_Studio) | 61 | 2026-11-18 | Ver repo | User friendly Interface for ComfyUI MInimax H3 |
+| [AbrahamPaulJ/nightmare-mobile](https://github.com/AbrahamPaulJ/nightmare-mobile) | 263 | 2026-11-18 | NOASSERTION | On-device, ComfyUI-style node graph for image/video diffusion on Android. Run MiniMax H3 and WAN 2.2 14B on the Qualcomm Hexagon NPU. SD1.5, |
+| [Comfy-Org/ComfyUI_frontend](https://github.com/Comfy-Org/ComfyUI_frontend) | 2,133 | 2026-11-18 | GPL-3.0 | Official front-end implementation of ComfyUI |
+| [ComfyAssets/ComfyUI-KikoTools](https://github.com/ComfyAssets/ComfyUI-KikoTools) | 22 | 2026-11-18 | MIT | Simple tools for ComfyUI |
+
+### Rotoscopia, Matting, Depth & Inpainting
+
+| Proyecto | Stars | Último Push | Licencia | Descripción |
+|---|---:|---|---|---|
+| [Code2Collapse/ComfyUI-CustomNodePacks](https://github.com/Code2Collapse/ComfyUI-CustomNodePacks) | 59 | 2026-11-18 | Apache-2.0 | Experimental nodes! This is a production suite for ComfyUI — SAM2.1/SAM3 segmentation, alpha matting, inpaint crop/stitch, VFX tools (EXR I/ |
+| [leelongjiang/SnapSharp](https://github.com/leelongjiang/SnapSharp) | 21 | 2026-11-18 | Apache-2.0 | SnapSharp 是一款 Windows 截图与图像处理工具：区域/长截图、标注、贴图、本地 OCR、翻译、AI 抠图与录屏，一站式搞定。SnapSharp is a Windows screenshot & image toolkit: capture, annotate,  |
+| [aws-deadline/deadline-cloud-for-nuke](https://github.com/aws-deadline/deadline-cloud-for-nuke) | 15 | 2026-11-18 | Apache-2.0 | Nuke is Foundry's node-based digital compositing and visual effects software. This repository provides an AWS Deadline Cloud submitter and O |
+| [fishfinger44/MatteDesk](https://github.com/fishfinger44/MatteDesk) | 47 | 2026-11-17 | GPL-3.0 | Interactive matte / roto tool for VFX – repairs damaged plate frames, generates alpha mattes for multiple objects (SAM3, CoTracker3, MatAnyo |
+| [AndrianLeah/ai-remove-lightcraft](https://github.com/AndrianLeah/ai-remove-lightcraft) | 46 | 2026-11-17 | NOASSERTION | Remove objects, people and reflections from photos with local AI, inside LightCraft and Chromaforge (unofficial plug-in) or on its own: SAM  |
+| [facebookresearch/sam3](https://github.com/facebookresearch/sam3) | 12,334 | 2026-11-17 | NOASSERTION | The repository provides code for running inference and finetuning with the Meta Segment Anything Model 3 (SAM 3), links for downloading the  |
+| [grblHAL/SAM3X8E](https://github.com/grblHAL/SAM3X8E) | 21 | 2026-11-17 | NOASSERTION | grblHAL driver for Atmel SAM3X8E (Arduino Due) |
+| [1038lab/ComfyUI-RMBG](https://github.com/1038lab/ComfyUI-RMBG) | 2,238 | 2026-11-17 | GPL-3.0 | A ComfyUI custom node designed for advanced image background removal and object, face, clothes, and fashion segmentation, utilizing multiple |
+
+### ArtCraft (Storytold Rust Suite)
+
+| Proyecto | Stars | Último Push | Licencia | Descripción |
+|---|---:|---|---|---|
+| [storytold/texturecraft](https://github.com/storytold/texturecraft) | 689 | 2026-11-18 | Apache-2.0 | TextureCraft: An open-source, 3D texture painting workflow written from scratch in pure Rust |
+| [storytold/photocraft](https://github.com/storytold/photocraft) | 80,277 | 2026-11-18 | Apache-2.0 | PhotoCraft: An open-source photo editor written from scratch in pure Rust |
+| [storytold/craft-libs](https://github.com/storytold/craft-libs) | 455 | 2026-11-18 | Apache-2.0 | Rust libraries for the Craft Apps |
+| [storytold/craft-common-actions](https://github.com/storytold/craft-common-actions) | 92 | 2026-11-18 | Ver repo | - |
+| [storytold/craft-anything](https://github.com/storytold/craft-anything) | 36,823 | 2026-11-18 | Apache-2.0 | Craft Anything: understand how any software works, and craft your own. |
+| [storytold/effectcraft](https://github.com/storytold/effectcraft) | 8,949 | 2026-11-18 | Apache-2.0 | EffectCraft: An open-source motion graphics and compositing tool written from scratch in pure Rust |
+| [storytold/figcraft](https://github.com/storytold/figcraft) | 5,142 | 2026-11-18 | Apache-2.0 | FigCraft: interface design and prototyping; an open-source, clean-room reimplementation of collaborative design workflows in pure Rust |
+| [storytold/vectorcraft](https://github.com/storytold/vectorcraft) | 11,885 | 2026-11-18 | Apache-2.0 | VectorCraft: An open-source vector art tool written from scratch in pure Rust |
+
+### Adobe Premiere / After Effects MCP & UXP
+
+| Proyecto | Stars | Último Push | Licencia | Descripción |
+|---|---:|---|---|---|
+| [zachshallbetter/adobe-mcp](https://github.com/zachshallbetter/adobe-mcp) | 37 | 2026-11-18 | MIT | Local MCP servers for Adobe InDesign, Illustrator, Photoshop, After Effects and Premiere Pro: 1,198 tools for AI assistants. Part of Creativ |
+| [catl24/uxp-plugin-knowledge-graph](https://github.com/catl24/uxp-plugin-knowledge-graph) | 3 | 2026-11-18 | Ver repo | Adobe UXP Plugin AI Assistant 2026 🤖 \| Dev Tools & Spectrum WC Guide |
+| [leancoderkavy/premiere-pro-mcp](https://github.com/leancoderkavy/premiere-pro-mcp) | 550 | 2026-11-18 | MIT | Adobe Premiere Pro MCP — independent, local-first server for supported workflows. Connect Claude, Codex, or Cursor through a local CEP bridg |
+| [koptsev63/premiere-claude-bridge](https://github.com/koptsev63/premiere-claude-bridge) | 3 | 2026-11-17 | MIT | AI assistant editor for Premiere Pro and DaVinci Resolve. Open-source MCP server for Claude Code and Codex: logs footage, transcribes, build |
+| [CodeBuffalo0225/claude-ai-mcp-bridge](https://github.com/CodeBuffalo0225/claude-ai-mcp-bridge) | 7 | 2026-11-18 | Ver repo | Claude AI MCP Bridge for Adobe Premiere Pro — edit, color grade, and build sequences via AI through a CEP WebSocket bridge |
+| [MakeMyClip/editor](https://github.com/MakeMyClip/editor) | 16 | 2026-11-16 | MIT | Open-source AI video editor for Claude Code and any MCP client. Removes silence and repeated takes, edits by transcript with local whisper.c |
+| [a-y-ibrahim/after-effects-mcp](https://github.com/a-y-ibrahim/after-effects-mcp) | 31 | 2026-11-14 | MIT | MCP server for controlling Adobe After Effects from AI clients (Claude, etc.) - ExtendScript execution, background rendering, deep project/l |
+| [Engine-Room-Games/after-effects-mcp](https://github.com/Engine-Room-Games/after-effects-mcp) | 55 | 2026-11-13 | MIT | Control Adobe After Effects with AI — describe the animation you want and it gets built: layers, keyframes, effects, expressions and text, a |
+
+### TouchDesigner MCP, POPs & Real-Time
+
+| Proyecto | Stars | Último Push | Licencia | Descripción |
+|---|---:|---|---|---|
+| [cacheflowe/td-native-inference](https://github.com/cacheflowe/td-native-inference) | 6 | 2026-11-18 | Apache-2.0 | Custom TouchDesigner c++ nodes for running ONNX & MediaPipe models... fast! |
+| [ok-vj/okVJ-Shared](https://github.com/ok-vj/okVJ-Shared) | 82 | 2026-11-18 | NOASSERTION | A collection of TouchDesigner components for making live-performance easier |
+| [dylanroscover/Embody](https://github.com/dylanroscover/Embody) | 222 | 2026-11-18 | MIT | The most comprehensive MCP toolkit for TouchDesigner |
+| [burakkagann/Pixels2GenAI-2.0](https://github.com/burakkagann/Pixels2GenAI-2.0) | 5 | 2026-11-17 | NOASSERTION | Write the code behind generative art. |
+| [TouchDesigner/TDMCPSkills](https://github.com/TouchDesigner/TDMCPSkills) | 46 | 2026-11-16 | NOASSERTION | TD Skills for MCPs |
+| [TouchDesigner/TDMCP](https://github.com/TouchDesigner/TDMCP) | 107 | 2026-11-16 | NOASSERTION | MCP server for controlling TouchDesigner from AI coding agents |
+| [MikanseiLaboratory/touchdesigner-omt](https://github.com/MikanseiLaboratory/touchdesigner-omt) | 3 | 2026-11-16 | MIT | OMT Send/Receice Plugin for Touch Designer |
+| [TouchDesigner/TouchEngine-UE](https://github.com/TouchDesigner/TouchEngine-UE) | 224 | 2026-11-16 | NOASSERTION | The TouchEngine-UE plugin allows UE developers to load TouchDesigner components within UE while relying on the TouchEngine API. |
+
+### Blender, DaVinci Resolve, VFX & Open-Source Video
+
+| Proyecto | Stars | Último Push | Licencia | Descripción |
+|---|---:|---|---|---|
+| [dcc-mcp/dcc-mcp-blender](https://github.com/dcc-mcp/dcc-mcp-blender) | 64 | 2026-11-18 | MIT | Blender MCP addon for AI agents to model, edit meshes and UVs, rig, build materials and render scenes through typed tools in the DCC-MCP eco |
+| [bpy-dev/blender-mcp](https://github.com/bpy-dev/blender-mcp) | 97 | 2026-11-18 | GPL-3.0 | Independent enhanced distribution of Blender Lab MCP: standalone bpy, runtime API documentation, and benchmark tooling |
+| [willturner-maker/resolve-ai-workflow](https://github.com/willturner-maker/resolve-ai-workflow) | 30 | 2026-11-18 | MIT | DaVinci Resolve Studio + local AI workstation: installer, start/stop launchers, three MCP servers, headless Blender title pipeline |
+| [ReSerendipity/SeedVR2-Lite](https://github.com/ReSerendipity/SeedVR2-Lite) | 18 | 2026-11-18 | Apache-2.0 | 基于 SeedVR2 的本地视频与图像超分工具，提供 Web 界面和桌面交互，无需 ComfyUI。 \| A local video and image super-resolution tool based on SeedVR2, with a web UI and deskt |
+| [Draise14/bfa_coworker](https://github.com/Draise14/bfa_coworker) | 9 | 2026-11-18 | GPL-3.0 | Blender MCP fork with a self-contained local setup |
+| [mflux-community/mflux](https://github.com/mflux-community/mflux) | 2,626 | 2026-11-18 | MIT | Apple MLX native implementations of state-of-the-art generative image & video models |
+| [samuelgursky/davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) | 4,196 | 2026-11-18 | MIT | MCP server integration for DaVinci Resolve Studio |
+| [pwillia7/sorant](https://github.com/pwillia7/sorant) | 21 | 2026-11-17 | MIT | Web front end for making video and music on your own ComfyUI — MiniMax H3, Music 3, SeedVR2 upscaling and FLUX Kontext edits. Deploys to Ver |
+
+---
+
+## 3. Modelos Trending en Hugging Face Hub
+
+### Text-to-Video
+
+| Modelo HF | Likes | Descargas |
+|---|---:|---:|
+| [apple/FastFrames-L](https://huggingface.co/apple/FastFrames-L) | 200 | 0 |
+| [Comfy-Org/PAN2](https://huggingface.co/Comfy-Org/PAN2) | 38 | 7,160 |
+| [apple/FastFrames-S](https://huggingface.co/apple/FastFrames-S) | 35 | 0 |
+| [Wan-AI/Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B) | 1,019 | 21,054 |
+| [larryvrh/MiniMax-H3-Turbo-Lora](https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora) | 1,265 | 204,568 |
+| [ZhengmingYu/DMAD](https://huggingface.co/ZhengmingYu/DMAD) | 196 | 89,707 |
+
+### Image-to-Video
+
+| Modelo HF | Likes | Descargas |
+|---|---:|---:|
+| [Lightricks/LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5) | 12,537 | 2,871,190 |
+| [Comfy-Org/Wan-2.2](https://huggingface.co/Comfy-Org/Wan-2.2) | 1,039 | 9,837,533 |
+| [WarmBloodAban/Minimax-h3_Singularity](https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity) | 999 | 1,251,687 |
+| [lucidml/gta](https://huggingface.co/lucidml/gta) | 20 | 170 |
+| [Pika-Labs/Pika-H3-Flex](https://huggingface.co/Pika-Labs/Pika-H3-Flex) | 749 | 166,236 |
+| [Pika-Labs/Pika-H3-Flex-Turbo-LoRA](https://huggingface.co/Pika-Labs/Pika-H3-Flex-Turbo-LoRA) | 199 | 168,607 |
+
+### Video Classification / Segmentation / Depth
+
+| Modelo HF | Likes | Descargas |
+|---|---:|---:|
+| [speridlabs/iris-z](https://huggingface.co/speridlabs/iris-z) | 54 | 0 |
+| [Comfy-Org/Depth-Anything-3](https://huggingface.co/Comfy-Org/Depth-Anything-3) | 33 | 75,912 |
+| [huawei-bayerlab/marigold-v2-0](https://huggingface.co/huawei-bayerlab/marigold-v2-0) | 127 | 0 |
+| [apple/DepthPro](https://huggingface.co/apple/DepthPro) | 566 | 6,139 |
+| [KosmoResearch/Kosmo-GFM](https://huggingface.co/KosmoResearch/Kosmo-GFM) | 2 | 42 |
+| [depth-anything/Depth-Anything-V2-Small](https://huggingface.co/depth-anything/Depth-Anything-V2-Small) | 86 | 35,173 |
+
+---
+
+## 4. Recordatorio de Filtro RTX 3060 12GB + 32GB RAM
+
+Antes de adoptar cualquier modelo nuevo detectado arriba en tu PC local (Windows 11, 12 GB VRAM, 32 GB RAM):
+1. Verificar si existen pesos **GGUF (`Q4_K_M` / `Q5_K_M`)** o **FP8/INT8** compatibles con `ComfyUI-GGUF` o `Wan2GP (mmgp)`.
+2. Comprobar requisitos de **RAM de sistema**: en 32 GB RAM (~22-24 GB libres), evitar text-encoders BF16 >10 GB sin offloading o quantización.
+3. Revisar si ya existe un **MCP Server** o nodo oficial para **TouchDesigner / Blender / Premiere / After Effects / EffectCraft / FilmCraft**.

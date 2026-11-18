@@ -1,0 +1,44 @@
+{
+  "mcpServers": {
+    "comfy-mcp": {
+      "command": "C:\\Tools\\ComfyUI\\venv\\Scripts\\comfy-mcp.exe",
+      "env": {
+        "COMFY_BIN": "C:\\Tools\\ComfyUI\\venv\\Scripts\\comfy.exe"
+      }
+    },
+    "blender": {
+      "command": "uvx",
+      "args": ["mcp-for-blender"]
+    },
+    "touchdesigner-official": {
+      "url": "http://127.0.0.1:13316/mcp"
+    },
+    "touchdesigner-legacy-webserver": {
+      "command": "npx",
+      "args": ["-y", "touchdesigner-mcp-server@latest", "--stdio", "--host=http://127.0.0.1", "--port=9981"]
+    },
+    "davinci-resolve": {
+      "command": "C:\\Tools\\davinci-resolve-mcp\\venv\\Scripts\\python.exe",
+      "args": ["C:\\Tools\\davinci-resolve-mcp\\src\\server.py"]
+    },
+    "premiere-pro": {
+      "command": "npx",
+      "args": ["-y", "premiere-pro-mcp"],
+      "env": {
+        "PREMIERE_MCP_PROTOCOL_MODE": "auto"
+      }
+    },
+    "after-effects-kumo": {
+      "command": "npx",
+      "args": ["-y", "@kumoproductions/mcp-aftereffects"]
+    },
+    "effectcraft-app": {
+      "command": "C:\\Tools\\storytold\\effectcraft\\target\\release\\effectcraft-cli.exe",
+      "args": ["mcp", "--bridge", "9877"]
+    },
+    "filmcraft-app": {
+      "command": "C:\\Tools\\storytold\\filmcraft\\target\\release\\filmcraft-cli.exe",
+      "args": ["mcp", "--bridge", "127.0.0.1:9876"]
+    }
+  }
+}
