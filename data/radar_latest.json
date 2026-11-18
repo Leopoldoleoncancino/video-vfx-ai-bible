@@ -1,12 +1,12 @@
 {
-  "generated_at_utc": "2026-11-18 20:52:54",
+  "generated_at_utc": "2026-11-18 21:24:23",
   "since_date": "2026-11-11",
   "lookback_days": 7,
   "watchlist": [
     {
       "full_name": "OpenCut-app/OpenCut",
       "url": "https://github.com/OpenCut-app/OpenCut",
-      "stars": 98843,
+      "stars": 98844,
       "pushed_at": "2026-09-24",
       "latest_release": "v0.3.0",
       "release_date": "2026-04-15",
@@ -15,7 +15,7 @@
     {
       "full_name": "storytold/photocraft",
       "url": "https://github.com/storytold/photocraft",
-      "stars": 80277,
+      "stars": 80280,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.23.1",
       "release_date": "2026-11-12",
@@ -33,7 +33,7 @@
     {
       "full_name": "storytold/artcraft",
       "url": "https://github.com/storytold/artcraft",
-      "stars": 41523,
+      "stars": 41527,
       "pushed_at": "2026-11-18",
       "latest_release": "artcraft-v0.41.1",
       "release_date": "2026-11-07",
@@ -42,7 +42,7 @@
     {
       "full_name": "ahujasid/mcp-for-blender",
       "url": "https://github.com/ahujasid/mcp-for-blender",
-      "stars": 34937,
+      "stars": 34938,
       "pushed_at": "2026-11-18",
       "latest_release": "-",
       "release_date": "-",
@@ -60,7 +60,7 @@
     {
       "full_name": "storytold/filmcraft",
       "url": "https://github.com/storytold/filmcraft",
-      "stars": 18548,
+      "stars": 18549,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.20.1",
       "release_date": "2026-11-12",
@@ -69,7 +69,7 @@
     {
       "full_name": "storytold/lightcraft",
       "url": "https://github.com/storytold/lightcraft",
-      "stars": 16160,
+      "stars": 16163,
       "pushed_at": "2026-11-18",
       "latest_release": "v0.21.1",
       "release_date": "2026-11-12",
@@ -87,7 +87,7 @@
     {
       "full_name": "deepbeepmeep/WanGP",
       "url": "https://github.com/deepbeepmeep/WanGP",
-      "stars": 12010,
+      "stars": 12011,
       "pushed_at": "2026-11-17",
       "latest_release": "manager-v0.1.18",
       "release_date": "2026-11-17",
@@ -114,7 +114,7 @@
     {
       "full_name": "WyattBlue/auto-editor",
       "url": "https://github.com/WyattBlue/auto-editor",
-      "stars": 5986,
+      "stars": 5988,
       "pushed_at": "2026-11-18",
       "latest_release": "31.9.0",
       "release_date": "2026-11-13",
@@ -141,11 +141,20 @@
     {
       "full_name": "samuelgursky/davinci-resolve-mcp",
       "url": "https://github.com/samuelgursky/davinci-resolve-mcp",
-      "stars": 4196,
+      "stars": 4198,
       "pushed_at": "2026-11-18",
       "latest_release": "v5.3.4",
       "release_date": "2026-11-18",
       "license": "MIT"
+    },
+    {
+      "full_name": "microsoft/MoGe",
+      "url": "https://github.com/microsoft/MoGe",
+      "stars": 3167,
+      "pushed_at": "2026-11-14",
+      "latest_release": "-",
+      "release_date": "-",
+      "license": "NOASSERTION"
     },
     {
       "full_name": "Lightricks/LTX-Desktop",
@@ -193,6 +202,24 @@
       "license": "MIT"
     },
     {
+      "full_name": "EnVision-Research/Lotus",
+      "url": "https://github.com/EnVision-Research/Lotus",
+      "stars": 838,
+      "pushed_at": "2025-11-28",
+      "latest_release": "v1.0.0",
+      "release_date": "2025-04-03",
+      "license": "Apache-2.0"
+    },
+    {
+      "full_name": "Stable-X/StableNormal",
+      "url": "https://github.com/Stable-X/StableNormal",
+      "stars": 791,
+      "pushed_at": "2025-08-02",
+      "latest_release": "-",
+      "release_date": "-",
+      "license": "Apache-2.0"
+    },
+    {
       "full_name": "storytold/texturecraft",
       "url": "https://github.com/storytold/texturecraft",
       "stars": 689,
@@ -238,6 +265,15 @@
       "license": "Apache-2.0"
     },
     {
+      "full_name": "microsoft/DAViD",
+      "url": "https://github.com/microsoft/DAViD",
+      "stars": 418,
+      "pushed_at": "2026-07-10",
+      "latest_release": "-",
+      "release_date": "-",
+      "license": "MIT"
+    },
+    {
       "full_name": "storytold/materialcraft",
       "url": "https://github.com/storytold/materialcraft",
       "stars": 411,
@@ -254,6 +290,15 @@
       "latest_release": "v0.11.0",
       "release_date": "2026-11-16",
       "license": "NOASSERTION"
+    },
+    {
+      "full_name": "Binyr/NormalCrafter",
+      "url": "https://github.com/Binyr/NormalCrafter",
+      "stars": 267,
+      "pushed_at": "2025-07-10",
+      "latest_release": "-",
+      "release_date": "-",
+      "license": "MIT"
     },
     {
       "full_name": "OpenImagingLab/FlashVSR_Plus",
@@ -335,6 +380,33 @@
       "latest_release": "v0.3.0",
       "release_date": "2026-10-28",
       "license": "MIT"
+    },
+    {
+      "full_name": "cacheflowe/td-native-inference",
+      "url": "https://github.com/cacheflowe/td-native-inference",
+      "stars": 6,
+      "pushed_at": "2026-11-18",
+      "latest_release": "v0.6.0",
+      "release_date": "2026-11-14",
+      "license": "Apache-2.0"
+    },
+    {
+      "full_name": "1038lab/ComfyUI-Lotus-2",
+      "url": "https://github.com/1038lab/ComfyUI-Lotus-2",
+      "stars": 5,
+      "pushed_at": "2026-10-02",
+      "latest_release": "-",
+      "release_date": "-",
+      "license": "GPL-3.0"
+    },
+    {
+      "full_name": "zuanfilm/ComfyUI-VizClick-NormalCrafter",
+      "url": "https://github.com/zuanfilm/ComfyUI-VizClick-NormalCrafter",
+      "stars": 3,
+      "pushed_at": "2026-10-14",
+      "latest_release": "-",
+      "release_date": "-",
+      "license": "Apache-2.0"
     }
   ],
   "topics": {
@@ -346,6 +418,46 @@
         "pushed_at": "2026-11-18",
         "description": "把 ComfyUI 官方 Create Bounding Boxes 与 MOSS-Image Layout Prompt 融合成单节点的中文画布排版工作台",
         "license": "MIT"
+      },
+      {
+        "full_name": "orex2121/comfyui-OreX",
+        "url": "https://github.com/orex2121/comfyui-OreX",
+        "stars": 66,
+        "pushed_at": "2026-11-18",
+        "description": "Nodes for ComfyUI to work with LLM",
+        "license": "Ver repo"
+      },
+      {
+        "full_name": "kristopolous/dyva",
+        "url": "https://github.com/kristopolous/dyva",
+        "stars": 33,
+        "pushed_at": "2026-11-18",
+        "description": "Dyva is an AI router for the untame wild web",
+        "license": "MIT"
+      },
+      {
+        "full_name": "dughogan/comfy_workflow_audit",
+        "url": "https://github.com/dughogan/comfy_workflow_audit",
+        "stars": 24,
+        "pushed_at": "2026-11-18",
+        "description": "A tool to evaluate whether a ComfyUI workflow can be used in production.",
+        "license": "MIT"
+      },
+      {
+        "full_name": "Comfy-Org/ComfyUI",
+        "url": "https://github.com/Comfy-Org/ComfyUI",
+        "stars": 147508,
+        "pushed_at": "2026-11-18",
+        "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the w",
+        "license": "GPL-3.0"
+      },
+      {
+        "full_name": "LuqP2/Image-MetaHub",
+        "url": "https://github.com/LuqP2/Image-MetaHub",
+        "stars": 337,
+        "pushed_at": "2026-11-18",
+        "description": "Local-first AI image organizer and generative media library manager for ComfyUI, A1111, InvokeAI & more. Search huge output folders by promp",
+        "license": "MPL-2.0"
       },
       {
         "full_name": "mrbizarro/Phosphene",
@@ -361,46 +473,6 @@
         "stars": 18,
         "pushed_at": "2026-11-18",
         "description": "Add-on nodes for ComfyUI-H3-FaceRefine (MiniMax H3): anti-wobble Flow Lock, Stitch Plus, Tone Match, strength presets and method B workflows",
-        "license": "MIT"
-      },
-      {
-        "full_name": "Code2Collapse/ComfyUI-CustomNodePacks",
-        "url": "https://github.com/Code2Collapse/ComfyUI-CustomNodePacks",
-        "stars": 59,
-        "pushed_at": "2026-11-18",
-        "description": "Experimental nodes! This is a production suite for ComfyUI — SAM2.1/SAM3 segmentation, alpha matting, inpaint crop/stitch, VFX tools (EXR I/",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "r34vtraining/Longshot_Studio",
-        "url": "https://github.com/r34vtraining/Longshot_Studio",
-        "stars": 61,
-        "pushed_at": "2026-11-18",
-        "description": "User friendly Interface for ComfyUI MInimax H3",
-        "license": "Ver repo"
-      },
-      {
-        "full_name": "AbrahamPaulJ/nightmare-mobile",
-        "url": "https://github.com/AbrahamPaulJ/nightmare-mobile",
-        "stars": 263,
-        "pushed_at": "2026-11-18",
-        "description": "On-device, ComfyUI-style node graph for image/video diffusion on Android. Run MiniMax H3 and WAN 2.2 14B on the Qualcomm Hexagon NPU. SD1.5,",
-        "license": "NOASSERTION"
-      },
-      {
-        "full_name": "Comfy-Org/ComfyUI_frontend",
-        "url": "https://github.com/Comfy-Org/ComfyUI_frontend",
-        "stars": 2133,
-        "pushed_at": "2026-11-18",
-        "description": "Official front-end implementation of ComfyUI",
-        "license": "GPL-3.0"
-      },
-      {
-        "full_name": "ComfyAssets/ComfyUI-KikoTools",
-        "url": "https://github.com/ComfyAssets/ComfyUI-KikoTools",
-        "stars": 22,
-        "pushed_at": "2026-11-18",
-        "description": "Simple tools for ComfyUI",
         "license": "MIT"
       }
     ],
@@ -470,53 +542,55 @@
         "license": "GPL-3.0"
       }
     ],
+    "Capa de Normales, 3D Geometry & Relighting": [
+      {
+        "full_name": "cacheflowe/td-native-inference",
+        "url": "https://github.com/cacheflowe/td-native-inference",
+        "stars": 6,
+        "pushed_at": "2026-11-18",
+        "description": "Custom TouchDesigner c++ nodes for running ONNX & MediaPipe models... fast!",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "mogenius/mogenius-operator",
+        "url": "https://github.com/mogenius/mogenius-operator",
+        "stars": 11,
+        "pushed_at": "2026-11-18",
+        "description": "mogenius-operator is a Go (>=1.25) service that coordinates cluster resources, patterns, metrics collection, and auxiliary runtime capabilit",
+        "license": "MIT"
+      },
+      {
+        "full_name": "microsoft/MoGe",
+        "url": "https://github.com/microsoft/MoGe",
+        "stars": 3167,
+        "pushed_at": "2026-11-14",
+        "description": "[CVPR'25 Oral] MoGe: Unlocking Accurate Monocular Geometry Estimation for Open-Domain Images with Optimal Training Supervision",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "krazyjakee/MoGen",
+        "url": "https://github.com/krazyjakee/MoGen",
+        "stars": 40,
+        "pushed_at": "2026-11-12",
+        "description": "AI Assisted 3D Modelling software for coders",
+        "license": "MIT"
+      }
+    ],
     "ArtCraft (Storytold Rust Suite)": [
       {
-        "full_name": "storytold/texturecraft",
-        "url": "https://github.com/storytold/texturecraft",
-        "stars": 689,
+        "full_name": "storytold/pdfcraft",
+        "url": "https://github.com/storytold/pdfcraft",
+        "stars": 21123,
         "pushed_at": "2026-11-18",
-        "description": "TextureCraft: An open-source, 3D texture painting workflow written from scratch in pure Rust",
+        "description": "PdfCraft: An open-source PDF reader and editor written from scratch in pure Rust",
         "license": "Apache-2.0"
-      },
-      {
-        "full_name": "storytold/photocraft",
-        "url": "https://github.com/storytold/photocraft",
-        "stars": 80277,
-        "pushed_at": "2026-11-18",
-        "description": "PhotoCraft: An open-source photo editor written from scratch in pure Rust",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "storytold/craft-libs",
-        "url": "https://github.com/storytold/craft-libs",
-        "stars": 455,
-        "pushed_at": "2026-11-18",
-        "description": "Rust libraries for the Craft Apps",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "storytold/craft-common-actions",
-        "url": "https://github.com/storytold/craft-common-actions",
-        "stars": 92,
-        "pushed_at": "2026-11-18",
-        "description": "",
-        "license": "Ver repo"
       },
       {
         "full_name": "storytold/craft-anything",
         "url": "https://github.com/storytold/craft-anything",
-        "stars": 36823,
+        "stars": 36863,
         "pushed_at": "2026-11-18",
         "description": "Craft Anything: understand how any software works, and craft your own.",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "storytold/effectcraft",
-        "url": "https://github.com/storytold/effectcraft",
-        "stars": 8949,
-        "pushed_at": "2026-11-18",
-        "description": "EffectCraft: An open-source motion graphics and compositing tool written from scratch in pure Rust",
         "license": "Apache-2.0"
       },
       {
@@ -528,11 +602,43 @@
         "license": "Apache-2.0"
       },
       {
+        "full_name": "storytold/craft-libs",
+        "url": "https://github.com/storytold/craft-libs",
+        "stars": 455,
+        "pushed_at": "2026-11-18",
+        "description": "Rust libraries for the Craft Apps",
+        "license": "Apache-2.0"
+      },
+      {
         "full_name": "storytold/vectorcraft",
         "url": "https://github.com/storytold/vectorcraft",
-        "stars": 11885,
+        "stars": 11887,
         "pushed_at": "2026-11-18",
         "description": "VectorCraft: An open-source vector art tool written from scratch in pure Rust",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "storytold/lightcraft",
+        "url": "https://github.com/storytold/lightcraft",
+        "stars": 16163,
+        "pushed_at": "2026-11-18",
+        "description": "LightCraft: An open-source non-destructive photo editor written from scratch in pure Rust",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "storytold/texturecraft",
+        "url": "https://github.com/storytold/texturecraft",
+        "stars": 689,
+        "pushed_at": "2026-11-18",
+        "description": "TextureCraft: An open-source, 3D texture painting workflow written from scratch in pure Rust",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "storytold/photocraft",
+        "url": "https://github.com/storytold/photocraft",
+        "stars": 80280,
+        "pushed_at": "2026-11-18",
+        "description": "PhotoCraft: An open-source photo editor written from scratch in pure Rust",
         "license": "Apache-2.0"
       }
     ],
@@ -720,7 +826,7 @@
       {
         "full_name": "samuelgursky/davinci-resolve-mcp",
         "url": "https://github.com/samuelgursky/davinci-resolve-mcp",
-        "stars": 4196,
+        "stars": 4198,
         "pushed_at": "2026-11-18",
         "description": "MCP server integration for DaVinci Resolve Studio",
         "license": "MIT"
@@ -741,7 +847,7 @@
         "id": "apple/FastFrames-L",
         "url": "https://huggingface.co/apple/FastFrames-L",
         "downloads": 0,
-        "likes": 200
+        "likes": 201
       },
       {
         "id": "Comfy-Org/PAN2",
@@ -779,7 +885,7 @@
         "id": "Lightricks/LTX-2.5",
         "url": "https://huggingface.co/Lightricks/LTX-2.5",
         "downloads": 2871190,
-        "likes": 12537
+        "likes": 12538
       },
       {
         "id": "Comfy-Org/Wan-2.2",
@@ -788,16 +894,16 @@
         "likes": 1039
       },
       {
-        "id": "WarmBloodAban/Minimax-h3_Singularity",
-        "url": "https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity",
-        "downloads": 1251687,
-        "likes": 999
-      },
-      {
         "id": "lucidml/gta",
         "url": "https://huggingface.co/lucidml/gta",
         "downloads": 170,
         "likes": 20
+      },
+      {
+        "id": "WarmBloodAban/Minimax-h3_Singularity",
+        "url": "https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity",
+        "downloads": 1251687,
+        "likes": 999
       },
       {
         "id": "Pika-Labs/Pika-H3-Flex",

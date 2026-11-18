@@ -19,7 +19,7 @@ Este pilar conecta el mundo **3D / Compositing / Etalonaje** con la automatizaci
 ## 2. Bridges ComfyUI ↔ Blender, Spout2, Generación 3D & 3DGS
 
 ### A. Texturas, Spout2, Renders e IA 3D en 12 GB VRAM
-- **[`maybites/TextureSharing`](https://github.com/maybites/TextureSharing)** (★188 · `v9.1.1+`) & **[`fonotipooo/blender-video-input`](https://github.com/fonotipooo/blender-video-input)**: puente **Spout2 / NDI / OMT** en Blender 4.5 / 5.x. Enviar cámara/Z-Depth desde Blender hacia TouchDesigner va a GPU 0 ms (`Spout Sender`), mientras que recibir video dentro de Blender copia vía CPU (`Image.pixels`).
+- **[`maybites/TextureSharing`](https://github.com/maybites/TextureSharing)** (★188 · `v9.1.1+`) & **[`fonotipooo/blender-video-input`](https://github.com/fonotipooo/blender-video-input)**: puente **Spout2 / NDI / OMT** en Blender 4.5 / 5.x. Enviar cámara/Z-Depth/**Normal Pass** ([`scripts/blender_normal_pass_setup.py`](../scripts/blender_normal_pass_setup.py)) desde Blender hacia TouchDesigner va a GPU 0 ms (`Spout Sender`), mientras que recibir video dentro de Blender copia vía CPU (`Image.pixels`). Ver capítulo completo [`docs/08-normal-passes-realtime-post.md`](08-normal-passes-realtime-post.md).
 - **[`AIGODLIKE/ComfyUI-BlenderAI-node`](https://github.com/AIGODLIKE/ComfyUI-BlenderAI-node)** (★1,594 · GPL-3.0): Ejecuta ComfyUI desde dentro de Blender para proyectar texturas generadas por IA, upscaling de renders Cycles y estilos por viewport.
 - **[`microsoft/TRELLIS.2`](https://github.com/microsoft/TRELLIS.2)** (★12,993 · MIT) + **[`visualbruno/ComfyUI-Trellis2`](https://github.com/visualbruno/ComfyUI-Trellis2)** (★890 · MIT): Conversión *Image-to-3D* con latentes estructurados compactos y exportación `.glb` limpia hacia Blender.
 - **[`Tencent-Hunyuan/Hunyuan3D-2.1`](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1)** (★4,484): Mallas 3D de alta fidelidad con mapas PBR (albedo/roughness/metallic). En **3060 12 GB**, usa las opciones de low-VRAM/cuantización o el nodo integrado de **Wan2GP (`mmgp`)**.
@@ -50,6 +50,7 @@ Este pilar conecta el mundo **3D / Compositing / Etalonaje** con la automatizaci
 - **[`samuelgursky/davinci-resolve-mcp`](https://github.com/samuelgursky/davinci-resolve-mcp)** (★4,196 · MIT · v5.3.4):
   - **Cobertura completa (37 a 390 tools)** del API de DaVinci Resolve Studio (Media Pool, Edición, Fusion, Color, Fairlight, Render Queue) + panel de control web local.
   - **Seguridad incorporada:** Bloquea operaciones destructivas irreversibles (como `copy_grades` sin confirmar) a menos que se pase `acknowledge_trap: true`.
+  - **Tip VFX Relighting (`ReLight`):** En Color usa el esquema 2 nodos (`Output Surface Map` cacheado ➔ `Use Input 2`); en Fusion conecta tu Normal Pass externo (EXR 16F de Blender, `NormalCrafter` o `Lotus-2`) directo al **puerto verde `Normals`** de `Relight [RLT]` ([ver Pilar 08](08-normal-passes-realtime-post.md)).
   - *Requisito:* DaVinci Resolve **Studio** (la versión gratuita bloquea el API scripting externo en IPC).
 
 ### B. Natron (Compositor Nodal Open-Source & OpenFX)

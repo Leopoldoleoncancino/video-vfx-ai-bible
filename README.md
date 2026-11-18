@@ -15,7 +15,7 @@
 
 ---
 
-## Mapa Maestro de la Biblia (7 Capítulos + Recursos Operativos)
+## Mapa Maestro de la Biblia (8 Capítulos + Recursos Operativos)
 
 | Pilar | Documento | Qué cubre |
 |---|---|---|
@@ -23,13 +23,14 @@
 | **02 · Roto, Matting & Depth** | [`docs/02-rotoscoping-matting-chroma-depth.md`](docs/02-rotoscoping-matting-chroma-depth.md) | MatAnyone 2 (CVPR '26), SAM 3, VideoMaMa (CVPR '26), ComfyUI-RMBG/BiRefNet/RVM, EffectErase (CVPR '26 objeto+sombra+reflejo), ProPainter, DiffuEraser, Video Depth Anything, DepthCrafter, Relit-LiVE (SIGGRAPH '26). |
 | **03 · Enfoque Especial: ArtCraft** | [`docs/03-artcraft-deep-dive.md`](docs/03-artcraft-deep-dive.md) | **ArtCraft Studio** (`storytold/artcraft`) + **17 Crafting Apps en Rust puro** (FilmCraft, EffectCraft, AniCraft, PhotoCraft, LightCraft, TextureCraft, MaterialCraft, SoundCraft, etc.), Lottie/JSON, `.mcp.json` nativo y matriz honesta de paridad alpha vs Adobe. |
 | **04 · Enfoque Especial: Adobe** | [`docs/04-adobe-video-deep-dive.md`](docs/04-adobe-video-deep-dive.md) | Premiere Object Mask & Media Intelligence, MCPs (`premiere-pro-mcp`, `Adobe_Premiere_Pro_MCP`, `opencutagent`, `@kumoproductions/mcp-aftereffects`, `Dakkshin/after-effects-mcp`), `Bolt UXP` / `Bolt CEP`, puentes ProRes 4444 ↔ IA Local ↔ EffectCraft. |
-| **05 · TouchDesigner Real-Time** | [`docs/05-touchdesigner-realtime.md`](docs/05-touchdesigner-realtime.md) | TouchDesigner 2025+ **POPs/POPX**, oficial **`TouchDesigner/TDMCP`** + `TDMCPSkills` (con soporte nativo Antigravity!), **`Embody / Envoy`** (TDXN YAML Git), `touchdesigner-mcp`, `td-mcp-rs`, StreamDiffusionTD, ComfyUI-TD, MediaPipe-TD, Spout2/NDI. |
+| **05 · TouchDesigner Real-Time** | [`docs/05-touchdesigner-realtime.md`](docs/05-touchdesigner-realtime.md) | TouchDesigner 2025+ **POPs/POPX**, oficial **`TouchDesigner/TDMCP`** + `TDMCPSkills` (con soporte nativo Antigravity!), **`Embody / Envoy`** (TDXN YAML Git), `touchdesigner-mcp`, `td-mcp-rs`, StreamDiffusionTD, ComfyUI-TD, `td-native-inference` (`DAViD`), Spout2/NDI. |
 | **06 · Blender, 3D VFX & Resolve** | [`docs/06-blender-3d-vfx-compositing.md`](docs/06-blender-3d-vfx-compositing.md) | Blender Official MCP (5.1/5.2+), `mcp-for-blender`, `vfx-agent-toolkit`, ComfyUI-BlenderAI-node, TRELLIS.2, Hunyuan3D 2.1, 3DGS (`Kiri-Innovation`, `gsplat`, `spark`), MoCap (`GVHMR`, `FreeMoCap`), `davinci-resolve-mcp`, Natron/OpenFX, OpenTimelineIO. |
 | **07 · NLEs Open-Source, CLI & VSR** | [`docs/07-opensource-nles-cli-upscaling.md`](docs/07-opensource-nles-cli-upscaling.md) | `OpenCut`, `LosslessCut`, `Shotcut`, `Kdenlive` (aviso Olive pausado), `auto-editor`, `PySceneDetect`, `MoviePy`, `VapourSynth + vs-mlrt`, `Remotion`, `Motion Canvas`, **SeedVR2**, **FlashVSR/FlashVSR+**, **Practical-RIFE**. |
+| **08 · Normales (Tiempo Real + Post)** | [`docs/08-normal-passes-realtime-post.md`](docs/08-normal-passes-realtime-post.md) | **`DAViDNormals.tox`** (~10 ms GPU en TD), MRT GLSL MAT (`Render Select TOP`), Blender AOV + Spout2, **`NormalCrafter`** (`--max-res 512`), **`Lotus` / `Lotus-2`**, **`StableNormal-turbo`**, **`MoGe-2/3`**, **`DSINE`**, EXR lineal, OpenGL `+Y` vs DX `-Y`, Resolve `ReLight` & AE `Normality`. |
 | **Workflows End-to-End** | [`workflows/END_TO_END_PIPELINES.md`](workflows/END_TO_END_PIPELINES.md) | Blueprints paso a paso para VFX híbrido, Sweet-Spot 480p→SeedVR2→RIFE y automatización IA/Live. |
-| **Plantillas MCP (Win 11)** | [`mcps/README.md`](mcps/README.md) | [`win11_unified_mcp_config.json`](mcps/win11_unified_mcp_config.json) & [`artcraft_adobe_mcp.json`](mcps/artcraft_adobe_mcp.json). |
+| **Plantillas MCP (Win 11)** | [`mcps/README.md`](mcps/README.md) | [`win11_unified_mcp_config.json`](mcps/win11_unified_mcp_config.json), [`artcraft_adobe_mcp.json`](mcps/artcraft_adobe_mcp.json) & [`antigravity_td_blender_mcp.json`](mcps/antigravity_td_blender_mcp.json). |
 | **Skills de Agente IA** | [`skills/`](skills/) | 3 skills listas: `video-vfx-3060-12gb-local`, `artcraft-adobe-vfx-bridge`, `daily-vfx-radar`. |
-| **Scripts Windows 11 & VFX** | [`scripts/`](scripts/) | `check_3060_env.ps1`, `comfyui_3060_12gb_launch.bat`, `ffmpeg_nvenc_prores_helpers.ps1`, `batch_matting_pipeline.py`, `daily_radar.py`. |
+| **Scripts Windows 11 & Shaders** | [`scripts/`](scripts/) | `check_3060_env.ps1`, `comfyui_3060_12gb_launch.bat`, `batch_matting_pipeline.py`, `blender_td_osc_bridge.py`, `blender_normal_pass_setup.py`, `td_mrt_normal_pass.frag`, `td_depth_to_normal.frag`, `daily_radar.py`. |
 | **Automatización Diaria (`/automation`)** | [`automation/ANTIGRAVITY_DAILY_AUTOMATION.md`](automation/ANTIGRAVITY_DAILY_AUTOMATION.md) | Guía `/automation` Antigravity + GitHub Action diario ([`.github/workflows/daily-radar.yml`](.github/workflows/daily-radar.yml)) + [`RADAR_DAILY.md`](RADAR_DAILY.md). |
 
 ---
@@ -43,8 +44,9 @@
 | **Video largo (>15s) desde una imagen** | **FramePack** (6–8 GB VRAM) | Wan Animate + `ComfyUI-WanAnimatePlus` | CLI / Gradio / ComfyUI |
 | **Rotoscopia de cabello/ropa sin green screen** | **SAM 2/3 ➔ MatAnyone 2** | **VideoMaMa** (conserva *motion blur*) / Premiere Object Mask | Subproceso Python / ComfyUI |
 | **Borrar persona/objeto + su sombra y reflejo** | **EffectErase** (`Wan2.1-1.3B-InP`) | **ProPainter** (cables/marcas rígidas rápido) | CLI Python |
-| **Z-Depth consistente para compositing** | **Video Depth Anything** (Small/Base) | **DepthCrafter** (transparencias/reflejos) | ComfyUI / CLI |
-| **Re-iluminar un video grabado** | **Relit-LiVE** (SIGGRAPH 2026) | IC-Light / GenLit (por stills) | CLI Python |
+| **Z-Depth consistente para compositing** | **Video Depth Anything** (Small/Base) | **DepthCrafter** (transparencias/reflejos) / `MoGe-2` | ComfyUI / CLI |
+| **Capa de Normales (Tiempo Real / Post VFX)** | **Tiempo real:** `DAViDNormals.tox` (~10 ms) o TD MRT / Blender Spout2<br>**Post video:** `NormalCrafter --max-res 512` (~6 GB) | **Post stills/detalle:** `Lotus-2` (FLUX GGUF) / `StableNormal-turbo` / `MoGe-2` | ComfyUI / TDMCP / `blender_normal_pass_setup.py` |
+| **Re-iluminar un video grabado** | **Relit-LiVE** (SIGGRAPH 2026) | Fusion **`Relight` (puerto Normals)** / AE **`Normality`** (EXR 32F) | CLI / NLE |
 | **Motion Graphics por código / Git / Lottie** | **EffectCraft** (`storytold`) | **Remotion** / **Motion Canvas** | **`effectcraft-cli mcp`** (nativo) |
 | **Motion Graphics / VFX comerciales clientes** | **Adobe After Effects** + **Premiere Pro** | **DaVinci Resolve Studio** (Fusion/Color) | `@kumoproductions/mcp-aftereffects` + `premiere-pro-mcp` |
 | **Limpiar silencios y retakes al instante** | **Open Cut Agent** (Premiere) o **`auto-editor`** | `LosslessCut` (recorte manual sin re-encode) | Puerto `3001` / CLI XML |

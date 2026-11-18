@@ -18,12 +18,13 @@ Ideal para reemplazar croma verde, borrar equipos de rodaje y componer un person
    ├──▶ 3. (Para extraer sujeto sin Green Screen)
    │       SAM 3 (texto/clic) ──▶ MatAnyone 2 (alpha pelo/tela) ──▶ Export ProRes 4444 Straight Alpha
    │
-   ├──▶ 4. (Pase de profundidad e iluminación)
-   │       Video Depth Anything (Z-Depth) + Relit-LiVE (si cambia la luz del fondo)
+   ├──▶ 4. (Pases de profundidad, NORMALES e iluminación)
+   │       Video Depth Anything (Z-Depth) + NormalCrafter --max-res 512 / Lotus-2 (Normal EXR 16F OpenGL +Y)
+   │       + Relit-LiVE (video completo) o Fusion Relight [puerto Normals] / AE Normality (32-bpc)
    │
    └──▶ 5. Compositing Final (elige ruta según proyecto):
-           ├── Ruta A (Comercial/Plugins): After Effects + Premiere Pro (Dynamic Link)
-           ├── Ruta B (3D/CG): Blender 5.x (cámara + 3DGS + render)
+           ├── Ruta A (Comercial/Plugins): After Effects (Normality 32-bpc) + Premiere Pro (Dynamic Link)
+           ├── Ruta B (3D/CG): Blender 5.x (cámara + 3DGS + Normal AOV)
            └── Ruta C (Ágil/Lottie/Código): EffectCraft / DaVinci Resolve + MCP
 ```
 
@@ -33,7 +34,7 @@ Ideal para reemplazar croma verde, borrar equipos de rodaje y componer un person
 
 Evita renders eternos de 45 minutos por un clip fallido siguiendo la regla **Draft Low-Res ➔ Upscale 1-Step ➔ Interpolar FPS**:
 
-1. **Previs y Staging (0 VRAM pesada):** Diseña la composición 3D/pose del plano en **ArtCraft Studio** o **Blender (`mcp-for-blender`)** y exporta el *keyframe inicial* (o mapa de profundidad/canny).
+1. **Previs y Staging (0 VRAM pesada):** Diseña la composición 3D/pose del plano en **ArtCraft Studio** o **Blender (`mcp-for-blender`)** y exporta el *keyframe inicial* (o mapa de profundidad/normal/canny).
 2. **Generación Base (Cierra Premiere/Blender):**
    - **Opción A (Con audio sincronizado y multi-shot):** **LTX-2.3 / LTX-2.5 GGUF Q3/Q4** o **Wan2GP (`mmgp`)**.
    - **Opción B (Máxima física/calidad sin audio):** **Wan 2.2 MoE GGUF `Q4_K_M`** (o `5B FP8` para pruebas rápidas) a **`832x480` · 81 frames (~5s @ 16fps)** con **SageAttention + TeaCache**.
@@ -56,5 +57,5 @@ Evita renders eternos de 45 minutos por un clip fallido siguiendo la regla **Dra
 
 ### Para Visuales Generativos / Escenario / Instalaciones en Vivo
 1. **Esqueleto de nodos IA:** **`TouchDesigner/TDMCP`** (oficial, soporte directo Antigravity en `http://127.0.0.1:13316/mcp`) o **`Embody / Envoy`** (con TDXN YAML versionado en Git).
-2. **Tracking & Física GPU:** **MediaPipe TouchDesigner** alimentando **POPs** en GPU.
-3. **Difusión en vivo / puente:** **StreamDiffusionTD** (Turbo/LCM en 3060) + **Spout2** hacia Blender o grabación master ProRes.
+2. **Tracking, Normales en Vivo & Física GPU:** **MediaPipe TD** + **`DAViDNormals.tox`** (~10 ms GPU en `td-native-inference` ➔ `Relight.tox`) o **`Render TOP` MRT + `td_mrt_normal_pass.frag`** alimentando **POPs** en GPU.
+3. **Difusión en vivo / puente:** **StreamDiffusionTD** (Turbo/LCM en 3060 guiado por Z-Depth o `BlenderNormals` vía **Spout2**) y grabación master ProRes / EXR 16F ([ver Pilar 08](../docs/08-normal-passes-realtime-post.md)).

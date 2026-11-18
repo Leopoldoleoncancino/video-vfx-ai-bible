@@ -1,6 +1,6 @@
 # Radar Diario Automatizado — Video IA, VFX, ArtCraft & Adobe
 
-> Última actualización automática: **2026-11-18 20:52:54 UTC** | Ventana de búsqueda: desde **2026-11-11** (`LOOKBACK_DAYS=7`)
+> Última actualización automática: **2026-11-18 21:24:23 UTC** | Ventana de búsqueda: desde **2026-11-11** (`LOOKBACK_DAYS=7`)
 
 Este archivo se regenera automáticamente cada día mediante [`.github/workflows/daily-radar.yml`](.github/workflows/daily-radar.yml) ejecutando [`scripts/daily_radar.py`](scripts/daily_radar.py), y también sirve como base de contexto para la automatización diaria `/automation` de Antigravity.
 
@@ -10,34 +10,39 @@ Este archivo se regenera automáticamente cada día mediante [`.github/workflows
 
 | Repositorio | Stars | Último Push | Último Release | Fecha Release | Licencia |
 |---|---:|---|---|---|---|
-| [OpenCut-app/OpenCut](https://github.com/OpenCut-app/OpenCut) | 98,843 | 2026-09-24 | `v0.3.0` | 2026-04-15 | MIT |
-| [storytold/photocraft](https://github.com/storytold/photocraft) | 80,277 | 2026-11-18 | `v0.23.1` | 2026-11-12 | Apache-2.0 |
+| [OpenCut-app/OpenCut](https://github.com/OpenCut-app/OpenCut) | 98,844 | 2026-09-24 | `v0.3.0` | 2026-04-15 | MIT |
+| [storytold/photocraft](https://github.com/storytold/photocraft) | 80,280 | 2026-11-18 | `v0.23.1` | 2026-11-12 | Apache-2.0 |
 | [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | 46,167 | 2026-11-14 | `v3.70.2` | 2026-10-28 | GPL-2.0 |
-| [storytold/artcraft](https://github.com/storytold/artcraft) | 41,523 | 2026-11-18 | `artcraft-v0.41.1` | 2026-11-07 | Apache-2.0 |
-| [ahujasid/mcp-for-blender](https://github.com/ahujasid/mcp-for-blender) | 34,937 | 2026-11-18 | `-` | - | MIT |
+| [storytold/artcraft](https://github.com/storytold/artcraft) | 41,527 | 2026-11-18 | `artcraft-v0.41.1` | 2026-11-07 | Apache-2.0 |
+| [ahujasid/mcp-for-blender](https://github.com/ahujasid/mcp-for-blender) | 34,938 | 2026-11-18 | `-` | - | MIT |
 | [Wan-Video/Wan2.2](https://github.com/Wan-Video/Wan2.2) | 18,759 | 2026-09-21 | `-` | - | Apache-2.0 |
-| [storytold/filmcraft](https://github.com/storytold/filmcraft) | 18,548 | 2026-11-18 | `v0.20.1` | 2026-11-12 | Apache-2.0 |
-| [storytold/lightcraft](https://github.com/storytold/lightcraft) | 16,160 | 2026-11-18 | `v0.21.1` | 2026-11-12 | Apache-2.0 |
+| [storytold/filmcraft](https://github.com/storytold/filmcraft) | 18,549 | 2026-11-18 | `v0.20.1` | 2026-11-12 | Apache-2.0 |
+| [storytold/lightcraft](https://github.com/storytold/lightcraft) | 16,163 | 2026-11-18 | `v0.21.1` | 2026-11-12 | Apache-2.0 |
 | [facebookresearch/sam3](https://github.com/facebookresearch/sam3) | 12,334 | 2026-11-17 | `-` | - | NOASSERTION |
-| [deepbeepmeep/WanGP](https://github.com/deepbeepmeep/WanGP) | 12,010 | 2026-11-17 | `manager-v0.1.18` | 2026-11-17 | NOASSERTION |
+| [deepbeepmeep/WanGP](https://github.com/deepbeepmeep/WanGP) | 12,011 | 2026-11-17 | `manager-v0.1.18` | 2026-11-17 | NOASSERTION |
 | [Lightricks/LTX-2](https://github.com/Lightricks/LTX-2) | 10,296 | 2026-11-12 | `v1.6.2` | 2026-11-12 | Apache-2.0 |
 | [storytold/effectcraft](https://github.com/storytold/effectcraft) | 8,949 | 2026-11-18 | `v0.24.1` | 2026-11-12 | Apache-2.0 |
-| [WyattBlue/auto-editor](https://github.com/WyattBlue/auto-editor) | 5,986 | 2026-11-18 | `31.9.0` | 2026-11-13 | Unlicense |
+| [WyattBlue/auto-editor](https://github.com/WyattBlue/auto-editor) | 5,988 | 2026-11-18 | `31.9.0` | 2026-11-13 | Unlicense |
 | [Tencent-Hunyuan/HunyuanVideo-1.5](https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5) | 4,609 | 2026-04-10 | `-` | - | NOASSERTION |
 | [storytold/soundcraft](https://github.com/storytold/soundcraft) | 4,449 | 2026-11-18 | `v0.20.1` | 2026-11-12 | Apache-2.0 |
-| [samuelgursky/davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) | 4,196 | 2026-11-18 | `v5.3.4` | 2026-11-18 | MIT |
+| [samuelgursky/davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) | 4,198 | 2026-11-18 | `v5.3.4` | 2026-11-18 | MIT |
+| [microsoft/MoGe](https://github.com/microsoft/MoGe) | 3,167 | 2026-11-14 | `-` | - | NOASSERTION |
 | [Lightricks/LTX-Desktop](https://github.com/Lightricks/LTX-Desktop) | 2,294 | 2026-11-11 | `v1.3.2` | 2026-11-11 | Apache-2.0 |
 | [pq-yang/MatAnyone2](https://github.com/pq-yang/MatAnyone2) | 945 | 2026-07-28 | `v1.0.0` | 2026-03-06 | NOASSERTION |
 | [IceClear/SeedVR2](https://github.com/IceClear/SeedVR2) | 937 | 2026-01-27 | `-` | - | Apache-2.0 |
 | [Dakkshin/after-effects-mcp](https://github.com/Dakkshin/after-effects-mcp) | 898 | 2026-04-01 | `-` | - | MIT |
 | [hetpatel-11/Adobe_Premiere_Pro_MCP](https://github.com/hetpatel-11/Adobe_Premiere_Pro_MCP) | 896 | 2026-11-02 | `v1.2.11` | 2026-10-24 | MIT |
+| [EnVision-Research/Lotus](https://github.com/EnVision-Research/Lotus) | 838 | 2025-11-28 | `v1.0.0` | 2025-04-03 | Apache-2.0 |
+| [Stable-X/StableNormal](https://github.com/Stable-X/StableNormal) | 791 | 2025-08-02 | `-` | - | Apache-2.0 |
 | [storytold/texturecraft](https://github.com/storytold/texturecraft) | 689 | 2026-11-18 | `v0.6.1` | 2026-11-12 | Apache-2.0 |
 | [8beeeaaat/touchdesigner-mcp](https://github.com/8beeeaaat/touchdesigner-mcp) | 638 | 2026-10-31 | `v2.2.0` | 2026-10-30 | MIT |
 | [cvlab-kaist/VideoMaMa](https://github.com/cvlab-kaist/VideoMaMa) | 554 | 2026-10-21 | `-` | - | NOASSERTION |
 | [leancoderkavy/premiere-pro-mcp](https://github.com/leancoderkavy/premiere-pro-mcp) | 550 | 2026-11-18 | `v1.30.0` | 2026-11-08 | MIT |
 | [storytold/anicraft](https://github.com/storytold/anicraft) | 468 | 2026-11-18 | `v0.2.1` | 2026-11-12 | Apache-2.0 |
+| [microsoft/DAViD](https://github.com/microsoft/DAViD) | 418 | 2026-07-10 | `-` | - | MIT |
 | [storytold/materialcraft](https://github.com/storytold/materialcraft) | 411 | 2026-11-18 | `v0.4.1` | 2026-11-12 | Apache-2.0 |
 | [Comfy-Org/comfy-mcp](https://github.com/Comfy-Org/comfy-mcp) | 357 | 2026-11-18 | `v0.11.0` | 2026-11-16 | NOASSERTION |
+| [Binyr/NormalCrafter](https://github.com/Binyr/NormalCrafter) | 267 | 2025-07-10 | `-` | - | MIT |
 | [OpenImagingLab/FlashVSR_Plus](https://github.com/OpenImagingLab/FlashVSR_Plus) | 250 | 2026-11-17 | `-` | - | Apache-2.0 |
 | [dylanroscover/Embody](https://github.com/dylanroscover/Embody) | 222 | 2026-11-18 | `v6.3.6` | 2026-11-17 | MIT |
 | [kumoproductions/mcp-aftereffects](https://github.com/kumoproductions/mcp-aftereffects) | 186 | 2026-10-23 | `v0.3.2` | 2026-10-16 | MIT |
@@ -47,6 +52,9 @@ Este archivo se regenera automáticamente cada día mediante [`.github/workflows
 | [sideshowroberto/vfx-agent-toolkit](https://github.com/sideshowroberto/vfx-agent-toolkit) | 19 | 2026-11-09 | `-` | - | MIT |
 | [leonardogrig/opencutagent](https://github.com/leonardogrig/opencutagent) | 11 | 2026-09-29 | `-` | - | NOASSERTION |
 | [Verbalize-public/td-mcp-rs](https://github.com/Verbalize-public/td-mcp-rs) | 6 | 2026-10-29 | `v0.3.0` | 2026-10-28 | MIT |
+| [cacheflowe/td-native-inference](https://github.com/cacheflowe/td-native-inference) | 6 | 2026-11-18 | `v0.6.0` | 2026-11-14 | Apache-2.0 |
+| [1038lab/ComfyUI-Lotus-2](https://github.com/1038lab/ComfyUI-Lotus-2) | 5 | 2026-10-02 | `-` | - | GPL-3.0 |
+| [zuanfilm/ComfyUI-VizClick-NormalCrafter](https://github.com/zuanfilm/ComfyUI-VizClick-NormalCrafter) | 3 | 2026-10-14 | `-` | - | Apache-2.0 |
 
 ---
 
@@ -57,13 +65,13 @@ Este archivo se regenera automáticamente cada día mediante [`.github/workflows
 | Proyecto | Stars | Último Push | Licencia | Descripción |
 |---|---:|---|---|---|
 | [liangci-ai/MOSS-YXBOX](https://github.com/liangci-ai/MOSS-YXBOX) | 13 | 2026-11-18 | MIT | 把 ComfyUI 官方 Create Bounding Boxes 与 MOSS-Image Layout Prompt 融合成单节点的中文画布排版工作台 |
+| [orex2121/comfyui-OreX](https://github.com/orex2121/comfyui-OreX) | 66 | 2026-11-18 | Ver repo | Nodes for ComfyUI to work with LLM |
+| [kristopolous/dyva](https://github.com/kristopolous/dyva) | 33 | 2026-11-18 | MIT | Dyva is an AI router for the untame wild web |
+| [dughogan/comfy_workflow_audit](https://github.com/dughogan/comfy_workflow_audit) | 24 | 2026-11-18 | MIT | A tool to evaluate whether a ComfyUI workflow can be used in production. |
+| [Comfy-Org/ComfyUI](https://github.com/Comfy-Org/ComfyUI) | 147,508 | 2026-11-18 | GPL-3.0 | The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the w |
+| [LuqP2/Image-MetaHub](https://github.com/LuqP2/Image-MetaHub) | 337 | 2026-11-18 | MPL-2.0 | Local-first AI image organizer and generative media library manager for ComfyUI, A1111, InvokeAI & more. Search huge output folders by promp |
 | [mrbizarro/Phosphene](https://github.com/mrbizarro/Phosphene) | 429 | 2026-11-18 | MIT | Phosphene is a free, open-source Mac app for making AI videos, pictures, speech and songs offline. Run LTX-2.5 and MiniMax H3 (Hailuo) local |
 | [AnniCodex/ComfyUI-H3-FaceRefine-Plus](https://github.com/AnniCodex/ComfyUI-H3-FaceRefine-Plus) | 18 | 2026-11-18 | MIT | Add-on nodes for ComfyUI-H3-FaceRefine (MiniMax H3): anti-wobble Flow Lock, Stitch Plus, Tone Match, strength presets and method B workflows |
-| [Code2Collapse/ComfyUI-CustomNodePacks](https://github.com/Code2Collapse/ComfyUI-CustomNodePacks) | 59 | 2026-11-18 | Apache-2.0 | Experimental nodes! This is a production suite for ComfyUI — SAM2.1/SAM3 segmentation, alpha matting, inpaint crop/stitch, VFX tools (EXR I/ |
-| [r34vtraining/Longshot_Studio](https://github.com/r34vtraining/Longshot_Studio) | 61 | 2026-11-18 | Ver repo | User friendly Interface for ComfyUI MInimax H3 |
-| [AbrahamPaulJ/nightmare-mobile](https://github.com/AbrahamPaulJ/nightmare-mobile) | 263 | 2026-11-18 | NOASSERTION | On-device, ComfyUI-style node graph for image/video diffusion on Android. Run MiniMax H3 and WAN 2.2 14B on the Qualcomm Hexagon NPU. SD1.5, |
-| [Comfy-Org/ComfyUI_frontend](https://github.com/Comfy-Org/ComfyUI_frontend) | 2,133 | 2026-11-18 | GPL-3.0 | Official front-end implementation of ComfyUI |
-| [ComfyAssets/ComfyUI-KikoTools](https://github.com/ComfyAssets/ComfyUI-KikoTools) | 22 | 2026-11-18 | MIT | Simple tools for ComfyUI |
 
 ### Rotoscopia, Matting, Depth & Inpainting
 
@@ -78,18 +86,27 @@ Este archivo se regenera automáticamente cada día mediante [`.github/workflows
 | [grblHAL/SAM3X8E](https://github.com/grblHAL/SAM3X8E) | 21 | 2026-11-17 | NOASSERTION | grblHAL driver for Atmel SAM3X8E (Arduino Due) |
 | [1038lab/ComfyUI-RMBG](https://github.com/1038lab/ComfyUI-RMBG) | 2,238 | 2026-11-17 | GPL-3.0 | A ComfyUI custom node designed for advanced image background removal and object, face, clothes, and fashion segmentation, utilizing multiple |
 
+### Capa de Normales, 3D Geometry & Relighting
+
+| Proyecto | Stars | Último Push | Licencia | Descripción |
+|---|---:|---|---|---|
+| [cacheflowe/td-native-inference](https://github.com/cacheflowe/td-native-inference) | 6 | 2026-11-18 | Apache-2.0 | Custom TouchDesigner c++ nodes for running ONNX & MediaPipe models... fast! |
+| [mogenius/mogenius-operator](https://github.com/mogenius/mogenius-operator) | 11 | 2026-11-18 | MIT | mogenius-operator is a Go (>=1.25) service that coordinates cluster resources, patterns, metrics collection, and auxiliary runtime capabilit |
+| [microsoft/MoGe](https://github.com/microsoft/MoGe) | 3,167 | 2026-11-14 | NOASSERTION | [CVPR'25 Oral] MoGe: Unlocking Accurate Monocular Geometry Estimation for Open-Domain Images with Optimal Training Supervision |
+| [krazyjakee/MoGen](https://github.com/krazyjakee/MoGen) | 40 | 2026-11-12 | MIT | AI Assisted 3D Modelling software for coders |
+
 ### ArtCraft (Storytold Rust Suite)
 
 | Proyecto | Stars | Último Push | Licencia | Descripción |
 |---|---:|---|---|---|
-| [storytold/texturecraft](https://github.com/storytold/texturecraft) | 689 | 2026-11-18 | Apache-2.0 | TextureCraft: An open-source, 3D texture painting workflow written from scratch in pure Rust |
-| [storytold/photocraft](https://github.com/storytold/photocraft) | 80,277 | 2026-11-18 | Apache-2.0 | PhotoCraft: An open-source photo editor written from scratch in pure Rust |
-| [storytold/craft-libs](https://github.com/storytold/craft-libs) | 455 | 2026-11-18 | Apache-2.0 | Rust libraries for the Craft Apps |
-| [storytold/craft-common-actions](https://github.com/storytold/craft-common-actions) | 92 | 2026-11-18 | Ver repo | - |
-| [storytold/craft-anything](https://github.com/storytold/craft-anything) | 36,823 | 2026-11-18 | Apache-2.0 | Craft Anything: understand how any software works, and craft your own. |
-| [storytold/effectcraft](https://github.com/storytold/effectcraft) | 8,949 | 2026-11-18 | Apache-2.0 | EffectCraft: An open-source motion graphics and compositing tool written from scratch in pure Rust |
+| [storytold/pdfcraft](https://github.com/storytold/pdfcraft) | 21,123 | 2026-11-18 | Apache-2.0 | PdfCraft: An open-source PDF reader and editor written from scratch in pure Rust |
+| [storytold/craft-anything](https://github.com/storytold/craft-anything) | 36,863 | 2026-11-18 | Apache-2.0 | Craft Anything: understand how any software works, and craft your own. |
 | [storytold/figcraft](https://github.com/storytold/figcraft) | 5,142 | 2026-11-18 | Apache-2.0 | FigCraft: interface design and prototyping; an open-source, clean-room reimplementation of collaborative design workflows in pure Rust |
-| [storytold/vectorcraft](https://github.com/storytold/vectorcraft) | 11,885 | 2026-11-18 | Apache-2.0 | VectorCraft: An open-source vector art tool written from scratch in pure Rust |
+| [storytold/craft-libs](https://github.com/storytold/craft-libs) | 455 | 2026-11-18 | Apache-2.0 | Rust libraries for the Craft Apps |
+| [storytold/vectorcraft](https://github.com/storytold/vectorcraft) | 11,887 | 2026-11-18 | Apache-2.0 | VectorCraft: An open-source vector art tool written from scratch in pure Rust |
+| [storytold/lightcraft](https://github.com/storytold/lightcraft) | 16,163 | 2026-11-18 | Apache-2.0 | LightCraft: An open-source non-destructive photo editor written from scratch in pure Rust |
+| [storytold/texturecraft](https://github.com/storytold/texturecraft) | 689 | 2026-11-18 | Apache-2.0 | TextureCraft: An open-source, 3D texture painting workflow written from scratch in pure Rust |
+| [storytold/photocraft](https://github.com/storytold/photocraft) | 80,280 | 2026-11-18 | Apache-2.0 | PhotoCraft: An open-source photo editor written from scratch in pure Rust |
 
 ### Adobe Premiere / After Effects MCP & UXP
 
@@ -127,7 +144,7 @@ Este archivo se regenera automáticamente cada día mediante [`.github/workflows
 | [ReSerendipity/SeedVR2-Lite](https://github.com/ReSerendipity/SeedVR2-Lite) | 18 | 2026-11-18 | Apache-2.0 | 基于 SeedVR2 的本地视频与图像超分工具，提供 Web 界面和桌面交互，无需 ComfyUI。 \| A local video and image super-resolution tool based on SeedVR2, with a web UI and deskt |
 | [Draise14/bfa_coworker](https://github.com/Draise14/bfa_coworker) | 9 | 2026-11-18 | GPL-3.0 | Blender MCP fork with a self-contained local setup |
 | [mflux-community/mflux](https://github.com/mflux-community/mflux) | 2,626 | 2026-11-18 | MIT | Apple MLX native implementations of state-of-the-art generative image & video models |
-| [samuelgursky/davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) | 4,196 | 2026-11-18 | MIT | MCP server integration for DaVinci Resolve Studio |
+| [samuelgursky/davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) | 4,198 | 2026-11-18 | MIT | MCP server integration for DaVinci Resolve Studio |
 | [pwillia7/sorant](https://github.com/pwillia7/sorant) | 21 | 2026-11-17 | MIT | Web front end for making video and music on your own ComfyUI — MiniMax H3, Music 3, SeedVR2 upscaling and FLUX Kontext edits. Deploys to Ver |
 
 ---
@@ -138,7 +155,7 @@ Este archivo se regenera automáticamente cada día mediante [`.github/workflows
 
 | Modelo HF | Likes | Descargas |
 |---|---:|---:|
-| [apple/FastFrames-L](https://huggingface.co/apple/FastFrames-L) | 200 | 0 |
+| [apple/FastFrames-L](https://huggingface.co/apple/FastFrames-L) | 201 | 0 |
 | [Comfy-Org/PAN2](https://huggingface.co/Comfy-Org/PAN2) | 38 | 7,160 |
 | [apple/FastFrames-S](https://huggingface.co/apple/FastFrames-S) | 35 | 0 |
 | [Wan-AI/Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B) | 1,019 | 21,054 |
@@ -149,10 +166,10 @@ Este archivo se regenera automáticamente cada día mediante [`.github/workflows
 
 | Modelo HF | Likes | Descargas |
 |---|---:|---:|
-| [Lightricks/LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5) | 12,537 | 2,871,190 |
+| [Lightricks/LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5) | 12,538 | 2,871,190 |
 | [Comfy-Org/Wan-2.2](https://huggingface.co/Comfy-Org/Wan-2.2) | 1,039 | 9,837,533 |
-| [WarmBloodAban/Minimax-h3_Singularity](https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity) | 999 | 1,251,687 |
 | [lucidml/gta](https://huggingface.co/lucidml/gta) | 20 | 170 |
+| [WarmBloodAban/Minimax-h3_Singularity](https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity) | 999 | 1,251,687 |
 | [Pika-Labs/Pika-H3-Flex](https://huggingface.co/Pika-Labs/Pika-H3-Flex) | 749 | 166,236 |
 | [Pika-Labs/Pika-H3-Flex-Turbo-LoRA](https://huggingface.co/Pika-Labs/Pika-H3-Flex-Turbo-LoRA) | 199 | 168,607 |
 

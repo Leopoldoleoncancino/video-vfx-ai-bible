@@ -41,6 +41,8 @@ En VFX moderno ya no dependes únicamente de máscaras Bezier a mano ni de *crom
 | **[`zhuxing0/Relit-LiVE`](https://github.com/zhuxing0/Relit-LiVE)** (★128 · **SIGGRAPH 2026** · Apache-2.0) | **Re-iluminación de video consistente** + mapa de entorno por frame | Cambia la iluminación completa de un plano grabado en estudio para integrarlo en otra escena o plate 3D sin depender de pose de cámara previa. |
 | **[`sbharadwajj/genlit`](https://github.com/sbharadwajj/genlit)** & **IC-Light** | Re-iluminación desde referencia / HDRI | Ideal para re-iluminar *stills* clave o tarjetas 2.5D antes de animarlas con I2V. |
 
+> 👉 **¿Buscas Capa de Normales (Surface Normal Pass) en tiempo real GPU y postproducción?** Consulta el capítulo dedicado **[`docs/08-normal-passes-realtime-post.md`](08-normal-passes-realtime-post.md)** con **NormalCrafter (`--max-res 512`), `Lotus / Lotus-2`, `StableNormal`, `MoGe-2/3`, `DAViDNormals.tox` (~10 ms en TouchDesigner)**, Blender Camera-Space AOV + convenciones OpenGL `+Y` vs DirectX `-Y`.
+
 ---
 
 ## 4. Pipeline Batch Recomendado para Tu PC (Sin Colapsar VRAM)
