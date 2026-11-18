@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "touchdesigner": {
+      "serverUrl": "http://127.0.0.1:13316/mcp"
+    },
+    "blender": {
+      "command": "uvx",
+      "args": ["mcp-for-blender"]
+    }
+  },
+  "_alternativas_opcionales_no_activar_simultaneamente": {
+    "touchdesigner_embody_envoy_project_scope": {
+      "nota": "Embody autogenera esto en .agents/mcp_config.json dentro de tu carpeta de proyecto TD",
+      "command": "python",
+      "args": ["-u", ".embody/envoy-bridge.py", "--port", "9870", "--config", ".embody/envoy.json"]
+    },
+    "blender_mcp_ultra_248_tools": {
+      "nota": "No correr a la vez que mcp-for-blender sobre el puerto 9876",
+      "command": "blender-mcp-server",
+      "args": []
+    },
+    "blender_lab_oficial_5_1_plus": {
+      "nota": "Instalar via .mcpb desde https://www.blender.org/lab/mcp-server/ en Agent Manager -> Manage MCP Servers"
+    }
+  }
+}

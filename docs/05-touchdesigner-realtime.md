@@ -29,16 +29,19 @@
 
 | Herramienta | Tipo / URL | VRAM (en 3060 12GB) | Uso práctico en tiempo real |
 |---|---|---|---|
-| **StreamDiffusionTD v0.4.2** (DotSimulate) | `.tox` (`https://dotsimulate.com/tools/streamdiffusiontd`, sobre [`cumulo-autumn/StreamDiffusion`](https://github.com/cumulo-autumn/StreamDiffusion) ★10,837) | ~5–8 GB (SD 1.5 / SDXL Turbo / TensorRT) | Difusión interactiva en tiempo real (~15–25 FPS @ 512x512 en 3060) + modo remoto RunPod cuando necesites más FPS en un evento en vivo. |
+| **StreamDiffusionTD v0.4.2** (DotSimulate) | `.tox` (`https://dotsimulate.com/tools/streamdiffusiontd`, sobre [`cumulo-autumn/StreamDiffusion`](https://github.com/cumulo-autumn/StreamDiffusion) ★10,837) | ~5–8 GB (`sd-turbo` + TRT `512x512`) | Difusión interactiva en tiempo real (~15–25 FPS @ `512x512` en 3060 con `cuda-link` + `depth_tensorrt`) + modo remoto **RunPod** (*nota:* el antiguo servicio Daydream cerró el 13 nov 2026). |
 | **ComfyUI-TD** | [`JiSenHua/ComfyUI-TD`](https://github.com/JiSenHua/ComfyUI-TD) (★167 · AGPL-3.0) | Según flujo ComfyUI | Streaming bidireccional de imágenes, video, modelos 3D, audio y texto entre ComfyUI y TouchDesigner. |
 | **MediaPipe TouchDesigner** | [`torinmb/mediapipe-touchdesigner`](https://github.com/torinmb/mediapipe-touchdesigner) (★2,904 · MIT) | ~1–2 GB (GPU) | Tracking de manos, rostro y pose sin hardware externo (webcam) para controlar parámetros TOP/POP en tiempo real. |
+| **TD Native Inference** | [`cacheflowe/td-native-inference`](https://github.com/cacheflowe/td-native-inference) | ~1–3 GB (GPU) | Nodos C++ personalizados en TouchDesigner para correr modelos **ONNX y MediaPipe** nativamente a baja latencia. |
 | **TouchDiffusion** | [`olegchomp/TouchDiffusion`](https://github.com/olegchomp/TouchDiffusion) (★306) | ~5–7 GB | Referencia open-source de StreamDiffusion en TD (sin mantenimiento activo reciente desde 2024; preferir StreamDiffusionTD o ComfyUI-TD para proyectos nuevos). |
-| **Spout2 + NDI** | Integrados de serie en TD Windows (TOP `Spout In/Out`, `NDI In/Out`) | ~0 overhead | **Spout2** comparte texturas GPU en memoria directa a 0 ms entre **TouchDesigner ↔ Blender ↔ OBS ↔ Resolume ↔ Python**. **NDI** envía video alfa sobre LAN a Premiere/OBS. |
+| **Spout2 + NDI** | Integrados de serie en TD Windows (TOP `Spout In/Out`, `NDI In/Out`) | ~0 overhead | **Spout2** comparte texturas GPU en memoria directa a 0 ms entre **TouchDesigner ↔ Blender (`maybites/TextureSharing`) ↔ OBS ↔ Resolume**. **NDI** envía video alfa sobre LAN a Premiere/OBS. |
 
 ---
 
 ## 4. Pipeline Recomendado: TouchDesigner + IA Generativa en tu PC
 
-1. **Pre-proceso en vivo (0 difusión pesada):** Usa **MediaPipe TD** + **POPs** para generar animaciones limpias en alfa o mapas de profundidad/Canny a 60 FPS.
-2. **Estilización interactiva:** Pasa la textura por **StreamDiffusionTD** (modelo Turbo/LCM en 1–4 steps con TensorRT compilado para tu Ampere 3060) o envía frames clave vía **ComfyUI-TD**.
+1. **Pre-proceso en vivo (0 difusión pesada):** Usa **MediaPipe TD**, **Z-Depth por Spout desde Blender**, y **POPs** (`Point File In POP` para `.ply` 3DGS) a 60 FPS en GPU.
+2. **Estilización interactiva:** Pasa la textura por **StreamDiffusionTD** (`stabilityai/sd-turbo` en 1–2 steps con **TensorRT 10.16** + `depth_tensorrt`) o envía frames clave vía **ComfyUI-TD**.
 3. **Grabación Maestra para Post:** Captura mediante `Movie File Out TOP` en **ProRes 4444** o **HAP Q Alpha** para llevarlo limpio a **FilmCraft / Premiere / After Effects / EffectCraft**.
+
+> 👉 **Guía práctica completa (Fase 2):** Sigue el paso a paso completo de TDMCP, Embody, StreamDiffusionTD y el puente Spout/OSC con Blender en [`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](modules/MODULE_C_TD_BLENDER_VFX.md).

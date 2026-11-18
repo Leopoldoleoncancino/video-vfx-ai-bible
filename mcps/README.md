@@ -9,8 +9,9 @@ Todos los bloques de esta carpeta han sido verificados contra los repositorios o
 
 ## Inventario de Configs Incluidas
 
-1. [`win11_unified_mcp_config.json`](win11_unified_mcp_config.json) — Plantilla maestra combinada (Blender, ComfyUI, TouchDesigner TDMCP, DaVinci Resolve, Premiere Pro, After Effects, EffectCraft, FilmCraft).
-2. [`artcraft_adobe_mcp.json`](artcraft_adobe_mcp.json) — Perfil enfocado específicamente en **ArtCraft (EffectCraft/FilmCraft) + Adobe (Premiere/After Effects)**.
+1. [`win11_unified_mcp_config.json`](win11_unified_mcp_config.json) — Plantilla maestra combinada (para Claude Code / Cursor usando `"url"` HTTP estándar).
+2. [`antigravity_td_blender_mcp.json`](antigravity_td_blender_mcp.json) — Plantilla dedicada para **Google Antigravity** (`~/.gemini/config/mcp_config.json`) en el **Módulo C** (usa `"serverUrl"` para `TDMCP`, más `uvx mcp-for-blender` y variantes).
+3. [`artcraft_adobe_mcp.json`](artcraft_adobe_mcp.json) — Perfil enfocado específicamente en **ArtCraft (EffectCraft/FilmCraft) + Adobe (Premiere/After Effects)**.
 
 ---
 
@@ -19,8 +20,9 @@ Todos los bloques de esta carpeta han sido verificados contra los repositorios o
 ### 1. TouchDesigner Oficial (`TouchDesigner/TDMCP`)
 - Requiere TouchDesigner **2025.33230+** con `TDMCP.tox` arrastrado a `/project1` y `Active = On`.
 - Sirve **Streamable-HTTP** en `http://127.0.0.1:13316/mcp` (usa siempre `127.0.0.1`, nunca `localhost`).
-- En GUI del componente, cambia `Install For` a **Antigravity** (o Claude Code / Codex) y pulsa **Install Skills** para poblar `.agents/skills/td-*`.
-- Alternativa comunitaria avanzada con YAML Git diffs: [`dylanroscover/Embody`](https://github.com/dylanroscover/Embody) (Envoy autogenera su `.mcp.json` en tu carpeta de proyecto).
+- **Ojo en Antigravity:** en `~/.gemini/config/mcp_config.json` debes usar la clave **`"serverUrl"`** (no `"url"`), o ejecutar directamente `agy mcp add touchdesigner http://127.0.0.1:13316/mcp`.
+- En GUI del componente, cambia `Install For` a **Antigravity** y pulsa **Install Skills** para poblar `.agents/skills/td-*` (o `~/.gemini/config/skills/` si usas scripts headless `agy --print`).
+- Alternativa comunitaria avanzada con YAML Git diffs: [`dylanroscover/Embody`](https://github.com/dylanroscover/Embody) (Envoy autogenera `.agents/mcp_config.json` con puente STDIO `.embody/envoy-bridge.py`).
 
 ### 2. ArtCraft (`storytold/effectcraft` & `storytold/filmcraft`)
 - Puedes correr en modo headless (`--demo`) para prototipar JSON/renders sin abrir ventana, o en modo conectado (`--bridge 9877` en EffectCraft / `--bridge 127.0.0.1:9876` en FilmCraft) para ver los cambios en tiempo real.

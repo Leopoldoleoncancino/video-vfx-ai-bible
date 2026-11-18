@@ -9,15 +9,17 @@ Este pilar conecta el mundo **3D / Compositing / Etalonaje** con la automatizaci
 | Proyecto | Repo / Fuente | Stars | Enfoque |
 |---|---|---|---|
 | **Official Blender MCP** | [`blender.org/lab/mcp-server/`](https://www.blender.org/lab/mcp-server/) (Blender Lab) | Oficial | Extensión oficial integrada para Blender 5.1 / 5.2 LTS (y 4.5 LTS); usa `uv` y expone Python API con interfaz oficial para Claude, Codex y Antigravity. |
-| **MCP for Blender** *(antes `blender-mcp`)* | [`ahujasid/mcp-for-blender`](https://github.com/ahujasid/mcp-for-blender) (MIT · PyPI `mcp-for-blender`) | **34,935** | El estándar comunitario: socket puerto `9876`, descarga automática de assets PolyHaven/Sketchfab/Hyper3D, inspección de escena y ejecución de scripts `bpy`. |
+| **MCP for Blender** *(antes `blender-mcp`)* | [`ahujasid/mcp-for-blender`](https://github.com/ahujasid/mcp-for-blender) (MIT · PyPI `mcp-for-blender`) | **34,936** | El estándar comunitario: socket puerto `9876`, asistente `uvx mcp-for-blender setup` (detecta **Antigravity**), PolyHaven/Sketchfab/Hyper3D y scripts `bpy`. |
+| **Blender MCP Ultra** | [`carlosh7/blender-mcp`](https://github.com/carlosh7/blender-mcp) (MIT · `blender-mcp-ultra`) | 21 | **248 herramientas tipadas**, loop visual EEVEE, blocklist AST de seguridad y pruebas E2E headless Windows/Linux/macOS. |
 | **Blender MCP Pro** | [`youichi-uda/blender-mcp-pro`](https://github.com/youichi-uda/blender-mcp-pro) | 34 | Más de **100 herramientas granulares** para Geometry Nodes, Shader Nodes, luces, modificadores y animación. |
 | **VFX Agent Toolkit** | [`sideshowroberto/vfx-agent-toolkit`](https://github.com/sideshowroberto/vfx-agent-toolkit) (MIT) | 19 | Marketplace de **+70 skills y conectores MCP para estudios VFX**: **Blender, Nuke, Houdini, Unreal Engine 5.8, Maya, ComfyUI, Magnific y Seedance**. |
 
 ---
 
-## 2. Bridges ComfyUI ↔ Blender, Generación 3D & 3D Gaussian Splatting (3DGS)
+## 2. Bridges ComfyUI ↔ Blender, Spout2, Generación 3D & 3DGS
 
-### A. Texturas, Renders e IA 3D en 12 GB VRAM
+### A. Texturas, Spout2, Renders e IA 3D en 12 GB VRAM
+- **[`maybites/TextureSharing`](https://github.com/maybites/TextureSharing)** (★188 · `v9.1.1+`) & **[`fonotipooo/blender-video-input`](https://github.com/fonotipooo/blender-video-input)**: puente **Spout2 / NDI / OMT** en Blender 4.5 / 5.x. Enviar cámara/Z-Depth desde Blender hacia TouchDesigner va a GPU 0 ms (`Spout Sender`), mientras que recibir video dentro de Blender copia vía CPU (`Image.pixels`).
 - **[`AIGODLIKE/ComfyUI-BlenderAI-node`](https://github.com/AIGODLIKE/ComfyUI-BlenderAI-node)** (★1,594 · GPL-3.0): Ejecuta ComfyUI desde dentro de Blender para proyectar texturas generadas por IA, upscaling de renders Cycles y estilos por viewport.
 - **[`microsoft/TRELLIS.2`](https://github.com/microsoft/TRELLIS.2)** (★12,993 · MIT) + **[`visualbruno/ComfyUI-Trellis2`](https://github.com/visualbruno/ComfyUI-Trellis2)** (★890 · MIT): Conversión *Image-to-3D* con latentes estructurados compactos y exportación `.glb` limpia hacia Blender.
 - **[`Tencent-Hunyuan/Hunyuan3D-2.1`](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1)** (★4,484): Mallas 3D de alta fidelidad con mapas PBR (albedo/roughness/metallic). En **3060 12 GB**, usa las opciones de low-VRAM/cuantización o el nodo integrado de **Wan2GP (`mmgp`)**.
@@ -34,8 +36,11 @@ Este pilar conecta el mundo **3D / Compositing / Etalonaje** con la automatizaci
 
 | Herramienta | Repo | Stars | Licencia | Qué resuelve en local |
 |---|---|---|---|---|
-| **GVHMR** *(SIGGRAPH Asia / TPAMI 2026)* | [`zju3dv/GVHMR`](https://github.com/zju3dv/GVHMR) | 2,306 | Ver repo | **MoCap monocular en coordenadas de mundo**: recupera movimiento 3D humano completo desde un simple video de celular **sin drifting aunque la cámara se mueva** (`Gravity-View Coordinates`). Corre cómodo en 12 GB VRAM. |
+| **RGBMoCap Suite (GVHMR + FlowHMR + ExMR + PEAR)** | [`toyxyz/toyxyz_RGBMocap`](https://github.com/toyxyz/toyxyz_RGBMocap) | Activo Nov '26 | MIT / Ver repo | GUI todo-en-uno para Windows 11 (`install.cmd`) que unifica **GVHMR** (~**4.20 GiB VRAM** / 6.87 GiB RAM), **FlowHMR** (`flowhmr/flowhmr`), corrección de pisadas, retarget Mixamo/VRM/PMX y exportación directa **FBX / BVH / `.blend`**. |
+| **GVHMR** *(SIGGRAPH Asia / TPAMI 2026)* | [`zju3dv/GVHMR`](https://github.com/zju3dv/GVHMR) | 2,306 | Ver repo | **MoCap monocular en coordenadas de mundo**: recupera movimiento 3D humano completo desde un video de celular **sin drifting aunque la cámara se mueva** (`Gravity-View Coordinates`). |
 | **FreeMoCap + Blender Addon** | [`freemocap/freemocap`](https://github.com/freemocap/freemocap) + [`freemocap_blender_addon`](https://github.com/freemocap/freemocap_blender_addon) | 10,840 | AGPL-3.0 | Sistema multi-webcam sincronizado gratuito (usa tus puertos USB del Ryzen 9 5900X) que exporta esqueletos 3D y datos de dedos/rostro directo a Blender. |
+
+> 👉 **Guía práctica completa (Fase 2):** Configs paso a paso de Blender + Antigravity + TouchDesigner + Spout2 + OSC + GVHMR en [`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](modules/MODULE_C_TD_BLENDER_VFX.md).
 
 ---
 

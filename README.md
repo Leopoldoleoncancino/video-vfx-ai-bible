@@ -57,7 +57,7 @@
 ## Hoja de Ruta Progresiva (Fase 1 → Fase 2)
 
 - **Fase 1 (Completada en este repo):** Mapa integral de los 6 pilares, calibración estricta 3060 12GB / 32GB RAM / Windows 11, enfoque profundo en ArtCraft y Adobe, configs MCP verificadas, 3 Skills, scripts operativos y Radar Diario automatizado.
-- **Fase 2 (Módulos Profundos bajo demanda):** Cuando decidas atacar un módulo específico, podemos profundizar con guías paso a paso y JSON exportables en:
-  1. **Módulo A — Tuning & Workflows JSON ComfyUI 3060:** Workflows `.json` importables listos para Wan 2.2 GGUF + MatAnyone 2 + SeedVR2.
-  2. **Módulo B — Taller Práctico ArtCraft + Adobe Bridge:** Compilar `effectcraft-cli.exe` / `filmcraft-cli.exe` en Windows 11, crear un plugin propio UXP/CEP con `bolt-uxp` conectado a ComfyUI.
-  3. **Módulo C — TouchDesigner + Blender MCP en Vivo:** Setup de `TDMCP` + `Embody` + `StreamDiffusionTD` + `GVHMR` → rig Blender.
+- **Fase 2 (Módulos Profundos):**
+  1. **Módulo A — Tuning & Workflows JSON ComfyUI 3060:** *(Pendiente)* Workflows `.json` importables listos para Wan 2.2 GGUF + MatAnyone 2 + SeedVR2.
+  2. **Módulo B — Taller Práctico ArtCraft + Adobe Bridge:** *(Pendiente)* Compilar `effectcraft-cli.exe` / `filmcraft-cli.exe` en Windows 11 y crear un plugin propio UXP/CEP con `bolt-uxp`.
+  3. **✅ Módulo C — TouchDesigner + Blender VFX en Vivo:** **Completado** en [`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](docs/modules/MODULE_C_TD_BLENDER_VFX.md) con [`antigravity_td_blender_mcp.json`](mcps/antigravity_td_blender_mcp.json), [`blender_td_osc_bridge.py`](scripts/blender_td_osc_bridge.py) y [`setup_module_c_win11.ps1`](scripts/setup_module_c_win11.ps1).
