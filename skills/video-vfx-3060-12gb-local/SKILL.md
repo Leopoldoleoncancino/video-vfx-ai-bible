@@ -2,15 +2,15 @@
 name: video-vfx-3060-12gb-local
 description: >
   Selecciona, optimiza y depura pipelines locales de generación de video IA, rotoscopia, matting,
-  capa de normales, TouchDesigner/Blender en vivo, VSR y offload JS ajustados estrictamente al hardware
-  RTX 3060 12 GB VRAM + Ryzen 9 5900X + 32 GB RAM en Windows 11.
+  capa de normales, camera tracking 3D, color OCIO/ACES 2.0, audio/Foley IA, OBS Spout2, TouchDesigner/Blender en vivo,
+  VSR y offload JS ajustados estrictamente al hardware RTX 3060 12 GB VRAM + Ryzen 9 5900X + 32 GB RAM en Windows 11.
 ---
 
 # Video & VFX Local Optimization Skill (RTX 3060 12 GB / 32 GB RAM / Win 11)
 
 ## Cuándo aplicar este skill
 Actívalo siempre que el usuario pida instalar, elegir modelos, construir flujos de ComfyUI/Wan2GP,
-rotoscopiar, sacar capa de normales, conectar TouchDesigner + Blender o hacer upscaling/motion local en Windows 11.
+rotoscopiar, sacar capa de normales, hacer camera tracking 3D, configurar color OCIO, generar Foley/subtítulos/TTS, conectar TouchDesigner + Blender + OBS o hacer upscaling/motion local en Windows 11.
 
 ## Reglas Duras de Hardware (NO romper)
 1. **Límite de VRAM (12 GB GDDR6 Ampere):**
@@ -23,8 +23,9 @@ rotoscopiar, sacar capa de normales, conectar TouchDesigner + Blender o hacer up
    - Genera en `640x360` o `832x480` a `16 fps` (81 frames ≈ 5s).
    - Escala a 1080p/2K en 1 paso con **SeedVR2 (3B o 7B con block_swap)** o **FlashVSR** (con tiling).
    - Duplica FPS al final con **Practical-RIFE v4.25/4.26** (`16fps -> 32fps` o `24fps -> 48fps`).
-4. **Regla Offload JS/CPU:**
+4. **Regla Offload JS/CPU & Pases Lineales:**
    - Si una pieza es HUD, texto cinético, gráfico de datos o 3D ligero WebGL, renderízala con **JavaScript (`Remotion` ProRes 4444 Alpha, `Motion Canvas`, `GSAP`, `Three.js` + Playwright)** en los 24 hilos del Ryzen 9 5900X o en vivo vía **`Web Render TOP`** (TD `2025.31550+`) en lugar de gastar VRAM de difusión.
+   - Mantén pases técnicos (`Normal`, `Depth`, `Roughness`) siempre como **`Non-Color / Raw` EXR 16F/32F lineal** fuera de curvas gamma sRGB.
 
 ## Selección Rápida por Caso de Uso
 - **Facilidad / Multi-modelo "GPU Poor":** `Wan2GP` (`deepbeepmeep/WanGP`) con motor `mmgp` + `INT8`.
@@ -32,7 +33,11 @@ rotoscopiar, sacar capa de normales, conectar TouchDesigner + Blender o hacer up
 - **Planos I2V largos (>10s anti-drift):** `FramePack` (`lllyasviel/FramePack`).
 - **Rotoscopia de cabello/tela sin croma verde:** `SAM 2 / SAM 3` ➔ `MatAnyone 2` o `VideoMaMa` ➔ **ProRes 4444 Straight Alpha**.
 - **Borrado de objetos + sombras + reflejos:** `EffectErase` (`FudanCVL/EffectErase`) o `ProPainter` (para cables/marcas rígidas).
+- **Camera Tracking 3D / Matchmoving / Point Tracking:** Video largo IA ➔ `Depth-Anything-3` (`DA3-Streaming`) o `Pi3X` (`disable_multimodal()`) o `VGGT-1B` (export `COLMAP`); oclusiones ➔ `CoTracker3`; matchmoving sub-píxel ➔ Blender Tracker / `COLMAP` (GLOMAP integrado; `colmap/glomap` es deprecated); 1 foto ➔ `perarnia/fSpy`.
 - **Capa de Normales (Tiempo Real <25 ms):** `DAViDNormals.tox` (~10 ms en `td-native-inference` ➔ `Relight.tox`), TouchDesigner MRT GLSL (`scripts/td_mrt_normal_pass.frag`), Blender View/World Normal AOV (`scripts/blender_normal_pass_setup.py`) vía **Spout2** o Depth-to-Normal (`scripts/td_depth_to_normal.frag`).
-- **Capa de Normales (Postproducción VFX):** `NormalCrafter --max-res 512` (~6 GB, coherencia temporal de video), `Lotus` SD2.1 (~4–8 GB batch rápido), `Lotus-2` FLUX GGUF (~8–11 GB micro-detalle en stills), `StableNormal-turbo` (~6–9 GB baja varianza), `MoGe-2/3` (normales + depth métrico + FOV). Usar siempre **Camera Space, OpenGL `+Y` arriba, EXR 16F/32F lineal** (nunca H.264 8-bit para relighting en Resolve `ReLight` o AE `Normality`).
+- **Capa de Normales (Postproducción VFX):** `NormalCrafter --max-res 512` (~6 GB, coherencia temporal de video), `Lotus` SD2.1 (~4–8 GB batch rápido), `Lotus-2` FLUX GGUF (~8–11 GB micro-detalle en stills), `StableNormal-turbo` + `StableDelight` (~6–9 GB), `MoGe-2/3`, `DeepBump`. Usar siempre **Camera Space, OpenGL `+Y` arriba, EXR 16F/32F lineal** (Resolve `ReLight` / AE `Normality`).
+- **Color OCIO (`ACES 2.0` / `AgX`):** Blender 5 (`ACES 2.0`/`AgX`) · TouchDesigner (`OpenColorIO TOP`: `sRGB - Texture ➔ Linear`) · DaVinci Resolve (`ACEScct` / `ACES 2.0`).
+- **Audio IA, Foley & Subtítulos:** Foley frame-synced ➔ `hkchengrex/MMAudio` (~6 GB fp16); subtítulos word-sync ➔ `WhisperX` (`<8 GB`); limpieza CPU gratis ➔ `DeepFilterNet`; stems ➔ `python-audio-separator` / `Demucs`; TTS ➔ `Chatterbox` / `F5-TTS` / `Kokoro` (82M).
+- **Face VFX & OBS Live:** Retoque/mirada natural ➔ `KlingAIResearch/LivePortrait` (~4–8 GB); swap ➔ `ReActor` + `CodeFormer` (`0.7–0.8`, advertencia 128px); captura GPU 60 FPS ➔ `obs-spout2-plugin` + `royshil/obs-mcp` (`4455`).
 - **TouchDesigner + Blender en Vivo (Módulo C):** `TouchDesigner/TDMCP` (`http://127.0.0.1:13316/mcp`, `"serverUrl"` en Antigravity) + `TDMCPSkills` (19 `td-*` skills) o `Embody/Envoy` (TDXN YAML); separa Modos VRAM 1 (`Spout2` + `StreamDiffusionTD`), 2 (`GVHMR` ~4.2 GB ➔ Blender `mcp-for-blender`) y 3 (POPs + 3DGS).
 - **Aceleración Windows:** `woct0rdho/triton-windows` + `woct0rdho/SageAttention` + `TeaCache`.

@@ -22,10 +22,11 @@ Toda recomendación, workflow, comando o código generado a partir de esta Bibli
    - `[TIGHT-12GB]` Viable con GGUF / BlockSwap / Tiling / 480p y cerrando apps pesadas.
    - `[CLOUD / >24GB]` Solo referencia o nube; **no** recomendar para flujo diario local sin advertencia explícita.
 3. **ArtCraft vs Adobe:** `FilmCraft` / `EffectCraft` **NO** abren archivos `.prproj` / `.aep` ni plugins `.aex` / OFX propietarios; el intercambio entre suites se hace vía **ProRes 4444 (`yuva444p10le` Straight Alpha)**, **EXR 16F/32F lineal**, **Lottie JSON/`.lottie`** o **OTIO/XML**.
+4. **Reglas OCIO y Repos Deprecados:** Mantén pases técnicos (`Normal`, `Depth`) en `Non-Color/Raw` (OpenEXR lineal) fuera de curvas gamma sRGB; el antiguo `colmap/glomap` está **`[DEPRECATED]`** (ya integrado dentro de `colmap/colmap`).
 
 ---
 
-## 2. Mapa de Contenidos del Repositorio (Índice Actualizado)
+## 2. Mapa de Contenidos del Repositorio (Índice Actualizado — 10 Pilares)
 
 ### Pilares Principales (`docs/`)
 - **[`README.md`](README.md)** — Mapa maestro y matriz comparativa rápida *"¿Qué herramienta uso hoy en mi PC?"*.
@@ -37,6 +38,8 @@ Toda recomendación, workflow, comando o código generado a partir de esta Bibli
 - **[`docs/06-blender-3d-vfx-compositing.md`](docs/06-blender-3d-vfx-compositing.md)** — Blender 4.5/5.x MCP oficial & comunitarios (`mcp-for-blender`, `vfx-agent-toolkit`), TRELLIS.2, Hunyuan3D 2.1, 3DGS (`Kiri-Innovation`, `gsplat`, `spark`), MoCap sin traje (`GVHMR`, `FreeMoCap`), `davinci-resolve-mcp`, Natron y OpenTimelineIO.
 - **[`docs/07-opensource-nles-cli-upscaling.md`](docs/07-opensource-nles-cli-upscaling.md)** — NLEs open-source (`OpenCut`, `LosslessCut`, `Shotcut`, `Kdenlive`), CLI (`auto-editor`, `PySceneDetect`, `MoviePy`, `VapourSynth + vs-mlrt`), **Video-as-Code & Animaciones JavaScript** (**`Remotion` ProRes 4444 Alpha, `Motion Canvas`, `Three.js/R3F`, `GSAP`, `Anime.js`, `Theatre.js`, `p5.js`, `Rive`, `Lottie`, Playwright + `Web Render TOP`**), VSR (**`SeedVR2`**, **`FlashVSR`**) y **`Practical-RIFE`**.
 - **[`docs/08-normal-passes-realtime-post.md`](docs/08-normal-passes-realtime-post.md)** — Capa de Normales: convención OpenGL `+Y` vs DX `-Y`, EXR 16F/32F lineal, tiempo real (`DAViDNormals.tox` ~10 ms, TD MRT GLSL, Blender Spout2, Depth-to-Normal) y postproducción (`NormalCrafter --max-res 512`, `Lotus / Lotus-2`, `StableNormal-turbo`, `MoGe-2/3`, `DSINE`, Resolve `ReLight`, AE `Normality`).
+- **[`docs/09-camera-tracking-matchmoving-3d.md`](docs/09-camera-tracking-matchmoving-3d.md)** — Camera Tracking 3D, Matchmoving & Fotogrametría: `Depth-Anything-3` (`DA3-Streaming`), `VGGT-1B` (export COLMAP), `Pi3X` (`disable_multimodal()`), `MapAnything` (`minibatch_size=1`), `CoTracker3`, `COLMAP` (con GLOMAP fusionado), `Meshroom`, `perarnia/fSpy` + `fSpy-Blender`, Blender `.abc`/`.fbx`/`.usd` y `DeepBump` + `StableDelight`.
+- **[`docs/10-color-ocio-audio-face-obs.md`](docs/10-color-ocio-audio-face-obs.md)** — Color `OpenColorIO` (`ACES 2.0` / `AgX` en Blender 5, TD `OpenColorIO TOP`, Resolve), Audio IA (`MMAudio` ~6 GB Foley, `WhisperX`/`faster-whisper` word-sync, `audio-separator`/`Demucs`, `ClearerVoice-Studio`/`DeepFilterNet`, `Chatterbox`/`F5-TTS`/`Kokoro`), Face VFX (`LivePortrait`, `ReActor` + `CodeFormer`) y OBS (`obs-spout2-plugin` + `royshil/obs-mcp` / `xDarkzx/OBS_MCP`).
 
 ### Módulo Profundo (`docs/modules/`) & Workflows (`workflows/`)
 - **[`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](docs/modules/MODULE_C_TD_BLENDER_VFX.md)** — Manual completo Fase 2 de TouchDesigner (`TDMCP` + 19 `td-*` skills / `Embody`) + Blender Spout2/OSC + StreamDiffusionTD + 3DGS + MoCap (`GVHMR`), con los 3 modos de presupuesto VRAM.
@@ -48,7 +51,7 @@ Toda recomendación, workflow, comando o código generado a partir de esta Bibli
   - [`skills/artcraft-adobe-vfx-bridge/SKILL.md`](skills/artcraft-adobe-vfx-bridge/SKILL.md)
   - [`skills/daily-vfx-radar/SKILL.md`](skills/daily-vfx-radar/SKILL.md)
 - **`mcps/`** ([`mcps/README.md`](mcps/README.md)):
-  - [`mcps/win11_unified_mcp_config.json`](mcps/win11_unified_mcp_config.json) (Claude Code / Cursor)
+  - [`mcps/win11_unified_mcp_config.json`](mcps/win11_unified_mcp_config.json) (Claude Code / Cursor — incl. OBS Studio)
   - [`mcps/antigravity_td_blender_mcp.json`](mcps/antigravity_td_blender_mcp.json) (Google Antigravity con `"serverUrl"` para `TDMCP`)
   - [`mcps/artcraft_adobe_mcp.json`](mcps/artcraft_adobe_mcp.json) (ArtCraft + Adobe)
 - **`scripts/`**:
@@ -66,6 +69,8 @@ Toda recomendación, workflow, comando o código generado a partir de esta Bibli
 | **Generar video IA local (T2V/I2V/Lip-sync/VSR)** | [`docs/01`](docs/01-local-ai-video-12gb-32gb.md) + [`docs/07`](docs/07-opensource-nles-cli-upscaling.md) | `video-vfx-3060-12gb-local` + `comfyui_3060_12gb_launch.bat` |
 | **Rotoscopia, croma, borrado de sombras o Z-Depth** | [`docs/02`](docs/02-rotoscoping-matting-chroma-depth.md) | `video-vfx-3060-12gb-local` + `batch_matting_pipeline.py` |
 | **Capa de Normales o relighting (vivo o post)** | [`docs/08`](docs/08-normal-passes-realtime-post.md) | `blender_normal_pass_setup.py`, `td_mrt_normal_pass.frag`, `td_depth_to_normal.frag` |
+| **Camera Tracking 3D, Matchmoving, Point Track o 3DGS** | [`docs/09`](docs/09-camera-tracking-matchmoving-3d.md) | `DA3-Streaming`, `VGGT-1B`, `Pi3X`, `CoTracker3`, `COLMAP`, `fSpy` |
+| **Color ACES 2.0/AgX, Foley/STT/TTS, Face VFX o OBS** | [`docs/10`](docs/10-color-ocio-audio-face-obs.md) | `OpenColorIO`, `MMAudio`, `WhisperX`, `LivePortrait`, `obs-spout2-plugin`, `obs-mcp` |
 | **TouchDesigner + Blender + StreamDiffusionTD + MCP** | [`docs/05`](docs/05-touchdesigner-realtime.md) + [`docs/06`](docs/06-blender-3d-vfx-compositing.md) + [`MODULE_C`](docs/modules/MODULE_C_TD_BLENDER_VFX.md) | `antigravity_td_blender_mcp.json` + `blender_td_osc_bridge.py` |
 | **ArtCraft, EffectCraft, FilmCraft, Premiere o After Effects** | [`docs/03`](docs/03-artcraft-deep-dive.md) + [`docs/04`](docs/04-adobe-video-deep-dive.md) | `artcraft-adobe-vfx-bridge` + `artcraft_adobe_mcp.json` |
 | **Animaciones JS, HUDs, 3D WebGL, Remotion o Motion Canvas** | [`docs/07 §3`](docs/07-opensource-nles-cli-upscaling.md#3-video-como-c%C3%B3digo--animaciones-javascript-offline-prores-4444-y-tiempo-real-60-fps) + [`docs/05`](docs/05-touchdesigner-realtime.md) | `Remotion` ProRes 4444 Alpha, `Web Render TOP`, `ffmpeg_nvenc_prores_helpers.ps1` |

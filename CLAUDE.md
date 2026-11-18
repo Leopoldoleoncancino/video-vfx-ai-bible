@@ -13,5 +13,7 @@ Cuando leas o trabajes sobre `Leopoldoleoncancino/video-vfx-ai-bible`:
    - Blender, 3DGS, MoCap & Resolve: [`docs/06-blender-3d-vfx-compositing.md`](docs/06-blender-3d-vfx-compositing.md)
    - NLEs Open-Source, CLI, **Animaciones JS**, VSR & RIFE: [`docs/07-opensource-nles-cli-upscaling.md`](docs/07-opensource-nles-cli-upscaling.md)
    - **Capa de Normales (Tiempo Real + Post)**: [`docs/08-normal-passes-realtime-post.md`](docs/08-normal-passes-realtime-post.md)
-4. **Plantillas MCP para Claude:** usa `"url"` HTTP estándar o STDIO en [`mcps/win11_unified_mcp_config.json`](mcps/win11_unified_mcp_config.json) y [`mcps/artcraft_adobe_mcp.json`](mcps/artcraft_adobe_mcp.json) (y para `TouchDesigner/TDMCP` recuerda IPv4 `127.0.0.1:13316` + *Inline Images base64*).
+   - **Camera Tracking 3D, Matchmoving & 3DGS**: [`docs/09-camera-tracking-matchmoving-3d.md`](docs/09-camera-tracking-matchmoving-3d.md)
+   - **Color OCIO/ACES 2.0, Audio IA, Face VFX & OBS**: [`docs/10-color-ocio-audio-face-obs.md`](docs/10-color-ocio-audio-face-obs.md)
+4. **Plantillas MCP para Claude:** usa `"url"` HTTP estándar o STDIO en [`mcps/win11_unified_mcp_config.json`](mcps/win11_unified_mcp_config.json) (incluye OBS WebSocket `4455`) y [`mcps/artcraft_adobe_mcp.json`](mcps/artcraft_adobe_mcp.json) (y para `TouchDesigner/TDMCP` recuerda IPv4 `127.0.0.1:13316` + *Inline Images base64*).
 5. **Estado actualizado:** consulta [`RADAR_DAILY.md`](RADAR_DAILY.md) y [`changelog/DAILY_LOG.md`](changelog/DAILY_LOG.md) antes de asumir versiones de modelos o releases.

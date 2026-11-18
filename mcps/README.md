@@ -48,3 +48,9 @@ Todos los bloques de esta carpeta han sido verificados contra los repositorios o
 ### 7. DaVinci Resolve (`samuelgursky/davinci-resolve-mcp`)
 - Requiere **DaVinci Resolve Studio** (el scripting IPC externo está restringido en la versión gratuita).
 - Configura `RESOLVE_SCRIPT_API` y `RESOLVE_SCRIPT_LIB` apuntando a `C:\\ProgramData\\Blackmagic Design\\DaVinci Resolve\\Support\\Developer\\Scripting`.
+
+### 8. OBS Studio (`royshil/obs-mcp` / `xDarkzx/OBS_MCP` + Spout2)
+- En OBS Studio, ve a **Herramientas → Ajustes del servidor WebSocket**, marca **Habilitar servidor WebSocket** (puerto `4455`) y pega tu contraseña en `OBS_WEBSOCKET_PASSWORD`.
+- `npx -y obs-mcp@latest` cubre control ágil de escenas/grabación/stream; si requieres `148` herramientas (filtros, mixer, transiciones), usa el servidor Python [`xDarkzx/OBS_MCP`](https://github.com/xDarkzx/OBS_MCP).
+- Instala [`Off-World-Live/obs-spout2-plugin`](https://github.com/Off-World-Live/obs-spout2-plugin) para enviar/recibir texturas GPU zero-copy con TouchDesigner y Blender.
+

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Daily Radar para la Biblia de Video IA, VFX, Normales, Animaciones JS, ArtCraft, Adobe, TouchDesigner y Blender.
+"""Daily Radar para la Biblia de Video IA, VFX, Normales, Tracking 3D, OCIO/Audio/OBS, Animaciones JS, ArtCraft, Adobe, TouchDesigner y Blender.
 
 Consulta las APIs públicas de GitHub y Hugging Face para detectar:
-1. Nuevos repositorios / MCP servers / custom nodes / plugins en los 8 pilares.
-2. Releases recientes y actividad en el watchlist estratégico (ArtCraft, Adobe MCPs, TD, Blender, Wan/LTX, MatAnyone, Normales, JS Video).
+1. Nuevos repositorios / MCP servers / custom nodes / plugins en los 10 pilares.
+2. Releases recientes y actividad en el watchlist estratégico (ArtCraft, Adobe MCPs, TD, Blender, Wan/LTX, MatAnyone, Normales, Tracking 3D, Audio IA, OBS, JS Video).
 3. Modelos trending relevantes en Hugging Face (Video Gen, Matting, Depth, VSR, Audio/Lip-sync).
 
 Uso local (Windows 11 / Linux):
@@ -38,7 +38,8 @@ HAS_GH = shutil.which("gh") is not None
 SEARCH_TOPICS: list[tuple[str, str, int]] = [
     ("IA Video Local & ComfyUI", "ComfyUI OR Wan2.2 OR LTX-2 OR HunyuanVideo OR Wan2GP OR comfy-mcp in:name,description,topics", 10),
     ("Rotoscopia, Matting, Depth & Inpainting", "matting OR rotoscoping OR MatAnyone OR SAM3 OR VideoMaMa OR DepthAnything in:name,description,topics", 5),
-    ("Capa de Normales, 3D Geometry & Relighting", "NormalCrafter OR StableNormal OR MoGe OR Relit-LiVE OR td-native-inference in:name,description,topics", 5),
+    ("Capa de Normales, Camera Tracking 3D & Geometría", "NormalCrafter OR StableNormal OR MoGe OR Relit-LiVE OR td-native-inference OR vggt OR co-tracker in:name,description,topics", 5),
+    ("Color OCIO/ACES, Audio IA, Face VFX & OBS", "MMAudio OR whisperX OR LivePortrait OR obs-mcp OR OpenColorIO OR F5-TTS in:name,description,topics", 5),
     ("ArtCraft (Storytold Rust Suite)", "org:storytold", 0),
     ("Adobe Premiere / After Effects MCP & UXP", '"premiere pro mcp" OR "after effects mcp" OR premiere-pro-mcp OR after-effects-mcp OR "adobe uxp" in:name,description,topics', 3),
     ("TouchDesigner MCP, POPs & Real-Time", "touchdesigner OR StreamDiffusionTD OR TDMCP in:name,description,topics", 3),
@@ -87,6 +88,18 @@ WATCHLIST_REPOS: list[str] = [
     "1038lab/ComfyUI-Lotus-2",
     "microsoft/MoGe",
     "microsoft/DAViD",
+    "ByteDance-Seed/Depth-Anything-3",
+    "facebookresearch/vggt",
+    "yyfz/Pi3",
+    "facebookresearch/co-tracker",
+    "colmap/colmap",
+    "AcademySoftwareFoundation/OpenColorIO",
+    "hkchengrex/MMAudio",
+    "m-bain/whisperX",
+    "resemble-ai/chatterbox",
+    "KlingAIResearch/LivePortrait",
+    "Off-World-Live/obs-spout2-plugin",
+    "royshil/obs-mcp",
     "OpenImagingLab/FlashVSR_Plus",
     "IceClear/SeedVR2",
     "OpenCut-app/OpenCut",

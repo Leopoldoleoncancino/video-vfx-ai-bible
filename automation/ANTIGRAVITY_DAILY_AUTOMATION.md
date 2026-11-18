@@ -26,15 +26,15 @@ Ejecuta la actualización diaria de nuestra "Biblia de Herramientas de Video IA 
 Contexto fijo de hardware y entorno:
 - GPU: NVIDIA RTX 3060 12 GB VRAM
 - CPU: AMD Ryzen 9 5900X | RAM: 32 GB | OS: Windows 11
-- **Prioridades especiales:** ArtCraft (`storytold/*`, FilmCraft, EffectCraft, AniCraft, etc.), Adobe (Premiere Pro & After Effects MCP/UXP/CEP), TouchDesigner (`TDMCP`/`Embody`/POPs/`Web Render TOP`), Blender VFX/MCP, IA Video local cuantizada (GGUF/INT8/`mmgp`), Rotoscopia/Matting (`MatAnyone 2`, `SAM 3`, `VideoMaMa`), Capa de Normales (`NormalCrafter`, `Lotus`, `StableNormal`, `MoGe`, `DAViD`), Animaciones JS (`Remotion`, `Motion Canvas`, `GSAP`, `Three.js`, `Rive`), y Open Source CLI/VSR.
+- **Prioridades especiales:** ArtCraft (`storytold/*`, FilmCraft, EffectCraft, AniCraft, etc.), Adobe (Premiere Pro & After Effects MCP/UXP/CEP), TouchDesigner (`TDMCP`/`Embody`/POPs/`Web Render TOP`), Blender VFX/MCP, IA Video local cuantizada (GGUF/INT8/`mmgp`), Rotoscopia/Matting (`MatAnyone 2`, `SAM 3`, `VideoMaMa`), Capa de Normales (`NormalCrafter`, `Lotus`, `StableNormal`, `MoGe`, `DAViD`), Camera Tracking 3D (`Depth-Anything-3`, `VGGT`, `Pi3`, `CoTracker3`, `COLMAP`), Color `ACES 2.0`/`AgX` (`OpenColorIO`), Audio IA (`MMAudio`, `WhisperX`, `Chatterbox`), Face VFX (`LivePortrait`), OBS (`obs-spout2-plugin`/`obs-mcp`), Animaciones JS (`Remotion`, `Motion Canvas`, `GSAP`, `Three.js`, `Rive`), y Open Source CLI/VSR.
 
 Pasos obligatorios:
 1. Lee `AGENTS.md`, `RADAR_DAILY.md` y `data/radar_latest.json` (o ejecuta `python3 scripts/daily_radar.py` si tienen más de 24h de antigüedad).
 2. Busca en la web/GitHub novedades de las últimas 24-48 horas sobre:
-   - Nuevos modelos/pesos cuantizados aptos para <=12GB VRAM y <=32GB RAM (Wan, LTX, Hunyuan, FramePack, FlashVSR, SeedVR2, MatAnyone, SAM, NormalCrafter, Lotus, MoGe).
+   - Nuevos modelos/pesos cuantizados aptos para <=12GB VRAM y <=32GB RAM (Wan, LTX, Hunyuan, FramePack, FlashVSR, SeedVR2, MatAnyone, SAM, NormalCrafter, Lotus, MoGe, Depth-Anything-3, VGGT, Pi3, MMAudio, Chatterbox).
    - Releases y avances de paridad en storytold/artcraft, effectcraft y filmcraft.
-   - Nuevos MCP servers, plugins UXP/CEP o skills para Adobe Premiere Pro, After Effects, TouchDesigner, Blender y DaVinci Resolve.
-   - Nuevas versiones de Kdenlive, Shotcut, OpenCut, LosslessCut, auto-editor, Natron, frameworks Video-as-Code/JS (`Remotion`, `Motion Canvas`, `Three.js`, `GSAP`, `Rive`) y ComfyUI nodes críticos.
+   - Nuevos MCP servers, plugins UXP/CEP o skills para Adobe Premiere Pro, After Effects, TouchDesigner, Blender, DaVinci Resolve y OBS Studio.
+   - Nuevas versiones de Kdenlive, Shotcut, OpenCut, LosslessCut, auto-editor, Natron, OpenColorIO/ACES, WhisperX/Audio Separator, frameworks Video-as-Code/JS (`Remotion`, `Motion Canvas`, `Three.js`, `GSAP`, `Rive`) y ComfyUI nodes críticos.
 3. Filtra cualquier herramienta que NO corra localmente en 12GB VRAM / 32GB RAM (`[OK-12GB]`, `[TIGHT-12GB]`, `[CLOUD / >24GB]`).
 4. Actualiza la sección correspondiente en `docs/`, añade la ficha del día en `changelog/DAILY_LOG.md` (con enlace verificado, licencia, requisito VRAM/RAM y si tiene MCP/CLI) y mantén alineados `AGENTS.md` y `skills/*/SKILL.md` si cambian flujos clave.
 5. Si detectas una nueva config `.mcp.json` o script útil, añádelo a `mcps/` o `scripts/` y valida sintaxis JSON/Python/Markdown.

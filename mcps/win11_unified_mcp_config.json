@@ -39,6 +39,14 @@
     "filmcraft-app": {
       "command": "C:\\Tools\\storytold\\filmcraft\\target\\release\\filmcraft-cli.exe",
       "args": ["mcp", "--bridge", "127.0.0.1:9876"]
+    },
+    "obs-studio": {
+      "command": "npx",
+      "args": ["-y", "obs-mcp@latest"],
+      "env": {
+        "OBS_WEBSOCKET_URL": "ws://127.0.0.1:4455",
+        "OBS_WEBSOCKET_PASSWORD": "CAMBIA_ESTA_CLAVE_EN_OBS"
+      }
     }
   }
 }
