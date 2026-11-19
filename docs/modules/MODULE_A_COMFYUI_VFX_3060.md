@@ -1,6 +1,7 @@
 # Módulo A (Fase 2.5) · ComfyUI VFX Híbrido, Relighting PBR (`SSDO`), Fluido GPU Incompresible, Oclusión Z Continua & Workflow 4 (R&D `33f` ➔ `167f`)
 
 > **Hardware Calibrado:** NVIDIA **RTX 3060 · 12 GB VRAM** *(`sm_86` Ampere, SIN FP8 Tensor Core nativo)* · AMD **Ryzen 9 5900X** *(12C / 24T)* · **32 GB DDR4** *(~22–24 GB libres reales en Windows 11)*  
+> **Especificación Maestra `V6-C Cinema Suite` (Capítulos 1–4 + Benchmarks `73.1s / <2.5 GB`):** [`HAND_FIRE_PBR_V6C_SPEC.md`](HAND_FIRE_PBR_V6C_SPEC.md)  
 > **Plantillas ComfyUI API JSON:** [`workflows/comfyui/README.md`](../../workflows/comfyui/README.md) · **Scripts CLI/Blender/CUDA:** [`scripts/`](../../scripts/)  
 > **Caso Objetivo de Referencia (Workflow 4):** Plano vertical handheld POV (`478×850`, `167 frames`, `~30 fps`, recorte crítico `33f` en `f88..f120` con giro palma→dorso de `180°`) de una mano con manga negra deshilachada frente a un escritorio blanco/impresora con fuego hiperrealista.
 

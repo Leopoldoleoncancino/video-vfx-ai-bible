@@ -4,6 +4,16 @@ Este archivo registra hitos iniciales y cada hallazgo agregado por el pipeline d
 
 ---
 
+## 2026-11-19 (V6-C Cinema Suite) — Especificación Maestra Hand Fire PBR (`HAND_FIRE_PBR_V6C_SPEC.md`)
+
+- **Nuevo Documento Técnico de Referencia ([`docs/modules/HAND_FIRE_PBR_V6C_SPEC.md`](../docs/modules/HAND_FIRE_PBR_V6C_SPEC.md)):**
+  - **Capítulo 1 (Gates 0–3):** Dual-Matte `SAM 2.1 + MatAnyone 2`, normales unitarias (`1.0 ± 0.001`), `OpenEXR 16F Linear` + **Stephen Hill ACES RRT+ODT** (eliminando lavado pastel), `CIEDE2000 <= 1.5` en fondo, `cuff_gain <= 1.15×`, `HDR > 4.0×` con MTF `±12%` y Gate 3 inercial.
+  - **Capítulo 2 (Desacoplamiento & Incompresibilidad):** Diagnóstico de fallos Eulerianos sin frontera sólida, separación de *ego-motion* (`Lucas-Kanade + RANSAC`), penalización sólida de **Brinkman** y proyección de presión Poisson ($\nabla \cdot \mathbf{u} = 0$).
+  - **Capítulo 3 (Arquitectura Híbrida 3 Capas `V6-C`):** Núcleo continuo (**MacCormack conservativo con clamping** + viscosidad sub-píxel), ascuas Lagrangianas en *fingertips* ($\mathbf{v} = \boldsymbol{\omega} \times \mathbf{r}$ + drag) y relighting dinámico por centroide real de llama + SSDO + oclusión Z continua.
+  - **Capítulo 4 (Benchmarks RTX 3060 + Ryzen 9 5900X):** `33 frames` procesados en **`73.1 s`** (`~2.2 s/frame` en PyTorch CUDA) con **`< 2.5 GB VRAM`**.
+
+---
+
 ## 2026-11-19 (Fase 2.5) — Validación Empírica `33f` en RTX 3060, Fix Colorimétrico ACES/AgX, Fluido GPU Incompresible, MANO Estanco, Oclusión Z Continua & Gate 3
 
 - **Resultados Empíricos en Hardware Real Incorporados ([`docs/modules/MODULE_A_COMFYUI_VFX_3060.md`](../docs/modules/MODULE_A_COMFYUI_VFX_3060.md) & [`workflows/END_TO_END_PIPELINES.md`](../workflows/END_TO_END_PIPELINES.md)):**
