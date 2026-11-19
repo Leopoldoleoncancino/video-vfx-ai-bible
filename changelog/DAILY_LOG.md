@@ -4,6 +4,24 @@ Este archivo registra hitos iniciales y cada hallazgo agregado por el pipeline d
 
 ---
 
+## 2026-11-19 — Módulo A Completo & Profundización Workflow 4 (`SSDO` PBR, `EXR` Lineal, `WiLoR-mini` MANO, Gates R&D `33f ➔ 167f`)
+
+- **Fase 2 — Módulo A Completado ([`docs/modules/MODULE_A_COMFYUI_VFX_3060.md`](../docs/modules/MODULE_A_COMFYUI_VFX_3060.md)):**
+  - Documentadas reglas verificadas directamente en código fuente para **RTX 3060 12 GB (`sm_86`) + 32 GB Win 11**: prohibición de `fp8_fast` / `torch.compile` sobre `e4m3fn` (`cuda < 8.9`), `Wan2.2-VACE-Fun-A14B` dual `HighNoise`/`LowNoise` en **`Q3_K_M` (`8.64 GB`) / `Q4_K_S` (`10.55 GB`)** (evitando `Q4_K_M` `11.64 GB`), descarga automática de T5 vía `WanVideoTextEncodeCached`, reemplazo global de `CleanVRAMUsed` por **`VRAM_Debug` (`unload_all_models=true`)**, ajuste `max_mem_frames: 5` en `comfy-matanyone2/config.py`, subcarpeta exacta de `fishfinger44/MatteDesk`, advertencia `[0, 1]` *clamping* en `FrequencyCombineMEC`, y aviso no-comercial para `RUDRA`, `MANO_RIGHT.pkl` y pesos `MMAudio`.
+  - Actualizada matriz de **7 Rutas (`Ruta A–G` + evaluación `4DGS` `[CLOUD / >24GB]`)**, recalibrando `Relit-LiVE` y `DiffusionRenderer`/`comfyui-materia`/`UniVidX` en video largo a `[CLOUD / >24GB]`, añadiendo la **7ª Vía recomendada (`Ruta G`)**, sinergias con **Pilar 09 (`DA3-Streaming`, `CoTracker3`/`AllTracker`)** y **Pilar 10 (`ACES 2.0`/`AgX`, `MMAudio`)**.
+- **Templates API ComfyUI Verificados ([`workflows/comfyui/`](../workflows/comfyui/README.md)):**
+  - [`mod_a_01_step0_dual_matte_normal_exr.json`](../workflows/comfyui/mod_a_01_step0_dual_matte_normal_exr.json) (`SegmentC2C` dual ➔ `MatAnyone2Run` ➔ `ForegroundDecontaminate`/`EdgeCleanup` ➔ `VRAM_Debug` ➔ `VizClickNormalCrafter` `512px` + `Stabilizer` ➔ `RadianceEXRMultiPart` `16F`).
+  - [`mod_a_02_unilumos_freqsep_ciede_qc.json`](../workflows/comfyui/mod_a_02_unilumos_freqsep_ciede_qc.json) (`Wan2_1_UniLumos_1_3B_bf16.safetensors` `2.84 GB` ➔ `FrequencySeparateMEC linear=true` + `VideoComparerC2C` `CIEDE2000`/`SSIM`).
+  - [`mod_a_03_vace_fun_seedvr2_rudra_hdr.json`](../workflows/comfyui/mod_a_03_vace_fun_seedvr2_rudra_hdr.json) (`Wan2.2-VACE-Fun-A14B` `HighNoise`➔`LowNoise` `Q3_K_M` + `WanVideoBlockSwap` ➔ `VRAM_Debug` ➔ `SeedVR2 3B` ➔ `RadianceSDRToHDRUniversal` ➔ `RadianceACES2OutputTransformFull`).
+- **4 Nuevos Motores CLI / Blender & Gates Cuantitativos ([`scripts/`](../scripts/)):**
+  - [`scripts/vfx_dual_matte_decontam.py`](../scripts/vfx_dual_matte_decontam.py): Matting dual piel vs tela negra + descontaminación lineal `pymatting` / multi-escala.
+  - [`scripts/vfx_ssdo_relight_16f.py`](../scripts/vfx_ssdo_relight_16f.py): Relighting analítico multi-luz `16F`/`32F` con **SSDO 16 pasos R2/Blue-Noise**, BRDF **Cook-Torrance GGX**, **SSS**, normalización vertical `depth_scale=0.35`, filtrado bilateral guiado de normales y export **EXR** / **AgX**.
+  - [`scripts/wilor_mano_to_blender_abc.py`](../scripts/wilor_mano_to_blender_abc.py): Pipeline Win 11 sobre `warmshao/WiLoR-mini` (reemplazando `Dyn-HaMR` incompatible en Win 11) con filtro **One-Euro**, conversión de ejes OpenCV→Blender, proxy manga negra, plano *Desk Bounce Catcher* (`DA3`) y View Layers Multi-Layer EXR `.abc`.
+  - [`scripts/vfx_rd_metrics_eval.py`](../scripts/vfx_rd_metrics_eval.py): Evaluador estricto de **Gates 0 / 1 / 2** (`‖N‖`, `CIEDE2000 <= 1.5` en escritorio blanco, ganancia puño negro `<= 1.15×`, contraste SSDO `>= 3.5:1`, pico HDR `>= 4.0`, ruido/MTF `±12%`) para validar los **33 frames críticos** antes de escalar a 167 frames.
+- **Radar & Preflight Win 11 Sincronizados:** Ampliados [`scripts/daily_radar.py`](../scripts/daily_radar.py) (+12 repos verificados), [`scripts/check_3060_env.ps1`](../scripts/check_3060_env.ps1) (sondeo PyTorch `sm_86` + `max_mem_frames` en `MatAnyone2`), `README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, Pilares `01/02/06/08/10`, `Workflow 1/4` y `skills/*/SKILL.md`.
+
+---
+
 ## 2026-11-18 — Edición Fundacional (Fase 1 Completa)
 
 - **Perfil Fijado:** NVIDIA RTX 3060 12 GB VRAM · AMD Ryzen 9 5900X · 32 GB RAM · Windows 11.

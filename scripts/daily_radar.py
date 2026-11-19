@@ -111,6 +111,18 @@ WATCHLIST_REPOS: list[str] = [
     "juliangarnier/anime",
     "motion-canvas/motion-canvas",
     "rive-app/rive-wasm",
+    "kijai/ComfyUI-WanVideoWrapper",
+    "alibaba-damo-academy/Lumos-Custom",
+    "FXTD-Studios/radiance",
+    "BISAM20/ComfyUI-ACES-IO",
+    "oumad/ComfyUI_Gear",
+    "Code2Collapse/ComfyUI-CustomNodePacks",
+    "fishfinger44/MatteDesk",
+    "warmshao/WiLoR-mini",
+    "numz/ComfyUI-SeedVR2_VideoUpscaler",
+    "aharley/alltracker",
+    "FuouM/ComfyUI-MatAnyone",
+    "spiritform/comfy-matanyone2",
 ]
 
 HF_PIPELINES: list[tuple[str, str]] = [

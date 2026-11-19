@@ -1,0 +1,228 @@
+{
+  "1": {
+    "class_type": "VHS_LoadVideoPath",
+    "inputs": {
+      "video": "C:\\VFX_Shots\\hand_fire\\raw_167f.mp4",
+      "force_rate": 0,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 33,
+      "skip_first_frames": 45,
+      "select_every_nth": 1
+    },
+    "_meta": {
+      "title": "[CAMBIAR_AQUI] Plate Real (33f para A/B o 0=167f en ventanas)"
+    }
+  },
+  "2": {
+    "class_type": "ImageResizeKJv2",
+    "inputs": {
+      "image": ["1", 0],
+      "width": 480,
+      "height": 848,
+      "upscale_method": "lanczos",
+      "keep_proportion": "crop",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 16
+    },
+    "_meta": {
+      "title": "Alinear 478x850 -> 480x848 (Multiplo de 16 para Wan VAE)"
+    }
+  },
+  "3": {
+    "class_type": "VHS_LoadVideoPath",
+    "inputs": {
+      "video": "C:\\VFX_Shots\\hand_fire\\fg_hand_decontam.mov",
+      "force_rate": 0,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 33,
+      "skip_first_frames": 0,
+      "select_every_nth": 1
+    },
+    "_meta": {
+      "title": "[CAMBIAR_AQUI] Foreground Mano/Manga Descontaminado (del Paso 0)"
+    }
+  },
+  "4": {
+    "class_type": "ImageResizeKJv2",
+    "inputs": {
+      "image": ["3", 0],
+      "width": 480,
+      "height": 848,
+      "upscale_method": "lanczos",
+      "keep_proportion": "crop",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 16
+    },
+    "_meta": {
+      "title": "Alinear Foreground 480x848"
+    }
+  },
+  "5": {
+    "class_type": "WanVideoVAELoader",
+    "inputs": {
+      "model_name": "Wan2_1_VAE_bf16.safetensors",
+      "precision": "bf16"
+    },
+    "_meta": {
+      "title": "Wan 2.1 VAE (BF16)"
+    }
+  },
+  "6": {
+    "class_type": "WanVideoEncode",
+    "inputs": {
+      "vae": ["5", 0],
+      "image": ["4", 0],
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128
+    },
+    "_meta": {
+      "title": "Codificar Latentes Foreground"
+    }
+  },
+  "7": {
+    "class_type": "WanVideoEncode",
+    "inputs": {
+      "vae": ["5", 0],
+      "image": ["2", 0],
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128
+    },
+    "_meta": {
+      "title": "Codificar Latentes Background / Plate"
+    }
+  },
+  "8": {
+    "class_type": "WanVideoUniLumosEmbeds",
+    "inputs": {
+      "width": 480,
+      "height": 848,
+      "num_frames": 33,
+      "foreground_latents": ["6", 0],
+      "background_latents": ["7", 0]
+    },
+    "_meta": {
+      "title": "UniLumos Relight Embeds (480x848 · 33f)"
+    }
+  },
+  "9": {
+    "class_type": "WanVideoTextEncodeCached",
+    "inputs": {
+      "model_name": "umt5-xxl-enc-bf16.safetensors",
+      "precision": "bf16",
+      "positive_prompt": "Handheld POV of human hand rotating palm to dorsum in front of neutral white desk and printer. Direction of Light: Local firelight from fingertips and palm, Light Source Type: Warm orange-amber flame glow with bright incandescent highlight speculars on skin oils and finger ridges, black frayed jacket sleeve stays deeply dark matte in shadow, Color Temperature: Warm 2200K key on hand with neutral white desk unchanged, Light Changes in Time: Flickering flame illumination.",
+      "negative_prompt": "neon orange bleed on black sleeve, plastic skin, blurred fingerprint pores, warm orange tint on background white desk, overexposed pastel yellow clipping, flicker, temporal jitter",
+      "quantization": "disabled",
+      "use_disk_cache": true,
+      "device": "gpu"
+    },
+    "_meta": {
+      "title": "UMT5-XXL Cached (Descarga Automatica tras Codificar)"
+    }
+  },
+  "10": {
+    "class_type": "WanVideoModelLoader",
+    "inputs": {
+      "model": "WanVideo\\UniLumos\\Wan2_1_UniLumos_1_3B_bf16.safetensors",
+      "base_precision": "bf16",
+      "quantization": "disabled",
+      "load_device": "offload_device",
+      "attention_mode": "sageattn"
+    },
+    "_meta": {
+      "title": "UniLumos 1.3B (2.84 GB · Sin torch.compile en sm_86)"
+    }
+  },
+  "11": {
+    "class_type": "WanVideoSampler",
+    "inputs": {
+      "model": ["10", 0],
+      "image_embeds": ["8", 0],
+      "text_embeds": ["9", 0],
+      "steps": 14,
+      "cfg": 5.5,
+      "shift": 5.0,
+      "seed": 74,
+      "force_offload": true,
+      "scheduler": "unipc",
+      "riflex_freq_index": 0
+    },
+    "_meta": {
+      "title": "UniLumos Sampler (force_offload=true)"
+    }
+  },
+  "12": {
+    "class_type": "WanVideoDecode",
+    "inputs": {
+      "vae": ["5", 0],
+      "samples": ["11", 0],
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128
+    },
+    "_meta": {
+      "title": "Decodificar Relight Raw"
+    }
+  },
+  "13": {
+    "class_type": "FrequencySeparateMEC",
+    "inputs": {
+      "image": ["12", 0],
+      "method": "Guided",
+      "radius": 18,
+      "edge_threshold": 0.1,
+      "mode": "Divide",
+      "detail": "Luminance",
+      "linear": true
+    },
+    "_meta": {
+      "title": "Separacion de Frecuencias Lineal (Extraer Solo LF Lumínica para Light Ratio)"
+    }
+  },
+  "14": {
+    "class_type": "VideoComparerC2C",
+    "inputs": {
+      "mode": "synced_player",
+      "bit_depth": "32",
+      "wipe_position": 0.5,
+      "onion_alpha": 0.5,
+      "diff_gain": 16.0,
+      "diff_gamma": 1.0,
+      "diff_threshold": 0.01,
+      "diff_mode": "absolute",
+      "false_color_lut": "turbo",
+      "scope_intensity": 0.35,
+      "frame_index": 0,
+      "label_a": "Plate_Original",
+      "label_b": "UniLumos_Relit_Raw",
+      "image_a": ["2", 0],
+      "image_b": ["12", 0],
+      "preview_fps": 30.0
+    },
+    "_meta": {
+      "title": "Comparador A/B Sincronizado + Metricas CIEDE2000/SSIM"
+    }
+  },
+  "15": {
+    "class_type": "RadianceACES2OutputTransformFull",
+    "inputs": {
+      "image": ["13", 1],
+      "input_colorspace": "Linear_sRGB",
+      "output_transform": "ACES 2.0 SDR (sRGB/Rec.709)"
+    },
+    "_meta": {
+      "title": "Preview ACES 2.0 de Baja Frecuencia (Para Light Ratio usar slot [13,1] lineal en Blender/Python)"
+    }
+  }
+}

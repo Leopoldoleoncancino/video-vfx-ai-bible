@@ -18,9 +18,9 @@ description: >
    - Releases en `storytold/*` (`artcraft`, `filmcraft`, `effectcraft`, `anicraft`, `photocraft`, `lightcraft`, `texturecraft`, `materialcraft`, `soundcraft`).
    - Servidores MCP / UXP / CEP de Adobe (`premiere-pro-mcp`, `mcp-aftereffects`, `opencutagent`, `bolt-uxp`) y OBS (`obs-mcp`, `obs-spout2-plugin`).
    - Ecosistema TouchDesigner (`TDMCP`, `Embody`, `POPs`, `StreamDiffusionTD`, `td-native-inference`).
-   - Ecosistema Blender / VFX / Normales / Tracking 3D (`mcp-for-blender`, `vfx-agent-toolkit`, `MatAnyone2`, `sam3`, `EffectErase`, `NormalCrafter`, `StableNormal`, `Lotus`, `MoGe`, `DAViD`, `Depth-Anything-3`, `vggt`, `Pi3`, `co-tracker`, `SeedVR2`, `FlashVSR`).
+   - Ecosistema Blender / VFX / Normales / Tracking 3D / ComfyUI EXR (`WanVideoWrapper`, `Lumos-Custom`, `radiance`, `ComfyUI-ACES-IO`, `MatteDesk`, `WiLoR-mini`, `mcp-for-blender`, `vfx-agent-toolkit`, `MatAnyone2`, `sam3`, `EffectErase`, `NormalCrafter`, `StableNormal`, `Lotus`, `MoGe`, `DAViD`, `Depth-Anything-3`, `vggt`, `Pi3`, `co-tracker`, `alltracker`, `SeedVR2`, `FlashVSR`).
    - Color & Audio IA (`OpenColorIO`, `MMAudio`, `whisperX`, `chatterbox`, `F5-TTS`, `kokoro`, `LivePortrait`, `DeepFilterNet`).
    - Video-as-Code & Animaciones JS (`remotion`, `motion-canvas`, `GSAP`, `three.js`, `rive-wasm`).
 4. **Regla de Calidad y Mantenimiento del Repo:**
    - Nunca agregues enlaces sin verificar que existen ni inventes tasas de FPS o requisitos de VRAM.
-   - Mantén alineados `AGENTS.md`, `README.md`, `changelog/DAILY_LOG.md` y valida sintaxis JSON (`mcps/*.json`), Python (`scripts/*.py`) y enlaces/tablas Markdown antes de hacer commit.
+   - Mantén alineados `AGENTS.md`, `README.md`, `changelog/DAILY_LOG.md` y valida sintaxis JSON (`mcps/*.json`, `data/*.json`, `workflows/comfyui/*.json`), Python (`scripts/*.py`) y enlaces/tablas Markdown antes de hacer commit.

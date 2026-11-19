@@ -1,0 +1,313 @@
+{
+  "1": {
+    "class_type": "VHS_LoadVideoPath",
+    "inputs": {
+      "video": "C:\\VFX_Shots\\hand_fire\\raw_167f.mp4",
+      "force_rate": 0,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 33,
+      "skip_first_frames": 45,
+      "select_every_nth": 1
+    },
+    "_meta": {
+      "title": "[CAMBIAR_AQUI] Ventana Plate 33f (Escalar a 480x848)"
+    }
+  },
+  "2": {
+    "class_type": "ImageResizeKJv2",
+    "inputs": {
+      "image": ["1", 0],
+      "width": 480,
+      "height": 848,
+      "upscale_method": "lanczos",
+      "keep_proportion": "crop",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 16
+    },
+    "_meta": {
+      "title": "Plate 480x848"
+    }
+  },
+  "3": {
+    "class_type": "VHS_LoadVideoPath",
+    "inputs": {
+      "video": "C:\\VFX_Shots\\hand_fire\\step0_normal_pass_16f.mp4",
+      "force_rate": 0,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 33,
+      "skip_first_frames": 0,
+      "select_every_nth": 1
+    },
+    "_meta": {
+      "title": "[CAMBIAR_AQUI] Control Video Normales / Depth / Lineart (del Paso 0)"
+    }
+  },
+  "4": {
+    "class_type": "ImageResizeKJv2",
+    "inputs": {
+      "image": ["3", 0],
+      "width": 480,
+      "height": 848,
+      "upscale_method": "lanczos",
+      "keep_proportion": "crop",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 16
+    },
+    "_meta": {
+      "title": "Control Frames 480x848"
+    }
+  },
+  "5": {
+    "class_type": "WanVideoVAELoader",
+    "inputs": {
+      "model_name": "Wan2_1_VAE_bf16.safetensors",
+      "precision": "bf16"
+    },
+    "_meta": {
+      "title": "Wan 2.1 VAE"
+    }
+  },
+  "6": {
+    "class_type": "WanVideoVACEEncode",
+    "inputs": {
+      "vae": ["5", 0],
+      "width": 480,
+      "height": 848,
+      "num_frames": 33,
+      "strength": 0.9,
+      "vace_start_percent": 0.0,
+      "vace_end_percent": 1.0,
+      "input_frames": ["4", 0],
+      "ref_images": ["2", 0],
+      "tiled_vae": true
+    },
+    "_meta": {
+      "title": "VACE Conditioning (Strength 0.90 · Tiled VAE)"
+    }
+  },
+  "7": {
+    "class_type": "WanVideoTextEncodeCached",
+    "inputs": {
+      "model_name": "umt5-xxl-enc-bf16.safetensors",
+      "precision": "bf16",
+      "positive_prompt": "Photorealistic vertical handheld POV VFX shot, crisp real human hand rotating palm to back in front of white desk and printer, hyper-detailed turbulent Navier-Stokes fire flames erupting naturally from palm and fingers, intense white-yellow incandescent core with sharp orange-amber turbulent wisps, realistic finger-to-finger shadows, specular highlights on skin oils, dark frayed black jacket sleeve unaffected and crisp in shadow, sensor film grain matching smartphone camera",
+      "negative_prompt": "orange bleed on black sleeve, melted fingers, blurry skin texture, pastel yellow clipping, soft airbrushed flames, warm tint on background white desk, plastic look, lowres",
+      "quantization": "disabled",
+      "use_disk_cache": true,
+      "device": "gpu"
+    },
+    "_meta": {
+      "title": "UMT5-XXL Cached (No T5 residuo en RAM)"
+    }
+  },
+  "8": {
+    "class_type": "WanVideoBlockSwap",
+    "inputs": {
+      "blocks_to_swap": 24,
+      "offload_img_emb": true,
+      "offload_txt_emb": true,
+      "use_non_blocking": false,
+      "vace_blocks_to_swap": 10,
+      "prefetch_blocks": 1
+    },
+    "_meta": {
+      "title": "BlockSwap A14B para RTX 3060 12GB (24 DiT + 10 VACE blocks)"
+    }
+  },
+  "9": {
+    "class_type": "WanVideoModelLoader",
+    "inputs": {
+      "model": "HighNoise\\Wan2.2-VACE-Fun-A14B-high-noise-Q3_K_M.gguf",
+      "base_precision": "bf16",
+      "quantization": "disabled",
+      "load_device": "offload_device",
+      "attention_mode": "sageattn",
+      "block_swap_args": ["8", 0]
+    },
+    "_meta": {
+      "title": "Experto High-Noise GGUF Q3_K_M (8.64 GB · o Q4_K_S 10.55 GB; NO Q4_K_M 11.64 GB en 12GB)"
+    }
+  },
+  "10": {
+    "class_type": "WanVideoSampler",
+    "inputs": {
+      "model": ["9", 0],
+      "image_embeds": ["6", 0],
+      "text_embeds": ["7", 0],
+      "steps": 20,
+      "cfg": 5.5,
+      "shift": 6.0,
+      "seed": 42,
+      "force_offload": true,
+      "scheduler": "euler",
+      "riflex_freq_index": 0,
+      "start_step": 0,
+      "end_step": 10
+    },
+    "_meta": {
+      "title": "Etapa 1/2 High-Noise (Steps 0->10 · sin LoRA CausVid para turbulencia fina)"
+    }
+  },
+  "11": {
+    "class_type": "WanVideoModelLoader",
+    "inputs": {
+      "model": "LowNoise\\Wan2.2-VACE-Fun-A14B-low-noise-Q3_K_M.gguf",
+      "base_precision": "bf16",
+      "quantization": "disabled",
+      "load_device": "offload_device",
+      "attention_mode": "sageattn",
+      "block_swap_args": ["8", 0]
+    },
+    "_meta": {
+      "title": "Experto Low-Noise GGUF Q3_K_M (8.64 GB · o Q4_K_S 10.55 GB)"
+    }
+  },
+  "12": {
+    "class_type": "WanVideoSampler",
+    "inputs": {
+      "model": ["11", 0],
+      "image_embeds": ["6", 0],
+      "text_embeds": ["7", 0],
+      "samples": ["10", 0],
+      "steps": 20,
+      "cfg": 5.5,
+      "shift": 6.0,
+      "seed": 42,
+      "force_offload": true,
+      "scheduler": "euler",
+      "riflex_freq_index": 0,
+      "start_step": 10,
+      "end_step": -1,
+      "add_noise_to_samples": false
+    },
+    "_meta": {
+      "title": "Etapa 2/2 Low-Noise Refinement (Steps 10->20)"
+    }
+  },
+  "13": {
+    "class_type": "WanVideoDecode",
+    "inputs": {
+      "vae": ["5", 0],
+      "samples": ["12", 0],
+      "enable_vae_tiling": true,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128
+    },
+    "_meta": {
+      "title": "Decodificar Clip Base (Para Difference-Keyed Residual Blending sobre Plate Original)"
+    }
+  },
+  "14": {
+    "class_type": "VRAM_Debug",
+    "inputs": {
+      "empty_cache": true,
+      "gc_collect": true,
+      "unload_all_models": true,
+      "image_pass": ["13", 0]
+    },
+    "_meta": {
+      "title": "Purgar A14B + VAE antes de SeedVR2 3B (si RAM < 18 GB libres, dividir aqui en 2 ejecuciones)"
+    }
+  },
+  "15": {
+    "class_type": "SeedVR2LoadDiTModel",
+    "inputs": {
+      "model": "seedvr2_ema_3b_fp8_e4m3fn.safetensors",
+      "device": "cuda:0",
+      "blocks_to_swap": 16,
+      "swap_io_components": true,
+      "offload_device": "cpu",
+      "cache_model": false,
+      "attention_mode": "sdpa"
+    },
+    "_meta": {
+      "title": "SeedVR2 3B DiT (BlockSwap=16)"
+    }
+  },
+  "16": {
+    "class_type": "SeedVR2LoadVAEModel",
+    "inputs": {
+      "model": "ema_vae_fp16.safetensors",
+      "device": "cuda:0",
+      "encode_tiled": true,
+      "encode_tile_size": 512,
+      "encode_tile_overlap": 128,
+      "decode_tiled": true,
+      "decode_tile_size": 512,
+      "decode_tile_overlap": 128,
+      "offload_device": "cpu",
+      "cache_model": false
+    },
+    "_meta": {
+      "title": "SeedVR2 VAE Tiled (512px)"
+    }
+  },
+  "17": {
+    "class_type": "SeedVR2VideoUpscaler",
+    "inputs": {
+      "image": ["14", 1],
+      "dit": ["15", 0],
+      "vae": ["16", 0],
+      "seed": 42,
+      "resolution": 850,
+      "max_resolution": 1080,
+      "batch_size": 5,
+      "uniform_batch_size": true,
+      "temporal_overlap": 2,
+      "prepend_frames": 1,
+      "color_correction": "lab",
+      "input_noise_scale": 0.0,
+      "latent_noise_scale": 0.0,
+      "offload_device": "cpu"
+    },
+    "_meta": {
+      "title": "SeedVR2 VSR (4n+1 batch=5, color_correction=lab)"
+    }
+  },
+  "18": {
+    "class_type": "RadianceSDRToHDRUniversal",
+    "inputs": {
+      "image": ["17", 0],
+      "inverse_oetf": "sRGB",
+      "peak_nits": 1000.0,
+      "reference_white_nits": 203.0,
+      "knee_mode": "adaptive",
+      "knee": 0.75,
+      "shoulder_gamma": 2.0,
+      "temporal_smoothing": 0.85,
+      "output_encoding": "Linear"
+    },
+    "_meta": {
+      "title": "Uplift HDR Lineal (Usa Expand determinista salvo checkpoint RUDRA no-comercial)"
+    }
+  },
+  "19": {
+    "class_type": "RadianceEXRMultiPart",
+    "inputs": {
+      "filename_prefix": "vace_seedvr2_hdr_linear",
+      "beauty": ["18", 0],
+      "bit_depth": "16-bit Half Float",
+      "compression": "ZIP"
+    },
+    "_meta": {
+      "title": "Exportar Master EXR Lineal (Antes de Tone Map)"
+    }
+  },
+  "20": {
+    "class_type": "RadianceACES2OutputTransformFull",
+    "inputs": {
+      "image": ["18", 0],
+      "input_colorspace": "Linear_sRGB",
+      "output_transform": "ACES 2.0 SDR (sRGB/Rec.709)"
+    },
+    "_meta": {
+      "title": "Output Transform ACES 2.0 SDR (Sin Clipping Amarillo Pastel)"
+    }
+  }
+}

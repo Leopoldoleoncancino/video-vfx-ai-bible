@@ -1,0 +1,209 @@
+{
+  "1": {
+    "class_type": "VHS_LoadVideoPath",
+    "inputs": {
+      "video": "C:\\VFX_Shots\\hand_fire\\raw_167f.mp4",
+      "force_rate": 0,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 33,
+      "skip_first_frames": 45,
+      "select_every_nth": 1
+    },
+    "_meta": {
+      "title": "[CAMBIAR_AQUI] Cargar Segmento Critico 33f (o 0=167f completo)"
+    }
+  },
+  "2": {
+    "class_type": "SegmentC2C",
+    "inputs": {
+      "image": ["1", 0],
+      "model": "sam3.pt",
+      "target": "objects",
+      "prompt": "human hand, palm, back of hand, fingers, wrist",
+      "picks": "",
+      "max_objects": 1,
+      "video": "track whole clip"
+    },
+    "_meta": {
+      "title": "SAM 3 Prompt A: Piel / Mano / Dedos"
+    }
+  },
+  "3": {
+    "class_type": "SegmentC2C",
+    "inputs": {
+      "image": ["1", 0],
+      "model": "sam3.pt",
+      "target": "objects",
+      "prompt": "black frayed jacket sleeve cuff, dark cloth",
+      "picks": "",
+      "max_objects": 1,
+      "video": "track whole clip"
+    },
+    "_meta": {
+      "title": "SAM 3 Prompt B: Manga Negra Deshilachada"
+    }
+  },
+  "4": {
+    "class_type": "LoadMatAnyone2Model",
+    "inputs": {
+      "checkpoint": "matanyone2.pth (auto-download)"
+    },
+    "_meta": {
+      "title": "Cargar MatAnyone 2 (ajustar max_mem_frames=5 en config.py)"
+    }
+  },
+  "5": {
+    "class_type": "MatAnyone2Run",
+    "inputs": {
+      "model_pipe": ["4", 0],
+      "images": ["1", 0],
+      "mask": ["2", 0],
+      "warmup_frames": 6,
+      "erode_kernel": 4,
+      "dilate_kernel": 6,
+      "max_size": 850
+    },
+    "_meta": {
+      "title": "Matte Piel Temporal (MatAnyone 2)"
+    }
+  },
+  "6": {
+    "class_type": "MatAnyone2Run",
+    "inputs": {
+      "model_pipe": ["4", 0],
+      "images": ["1", 0],
+      "mask": ["3", 0],
+      "warmup_frames": 6,
+      "erode_kernel": 3,
+      "dilate_kernel": 6,
+      "max_size": 850
+    },
+    "_meta": {
+      "title": "Matte Manga Negra Temporal (MatAnyone 2)"
+    }
+  },
+  "7": {
+    "class_type": "ForegroundDecontaminate",
+    "inputs": {
+      "images": ["1", 0],
+      "alpha": ["6", 0],
+      "regularization": 1e-05
+    },
+    "_meta": {
+      "title": "Descontaminar Halo Blanco en Hilos de Manga (pymatting)"
+    }
+  },
+  "8": {
+    "class_type": "EdgeCleanup",
+    "inputs": {
+      "images": ["7", 0],
+      "alpha": ["6", 0],
+      "action": "recolor",
+      "bright_strength": 1.0,
+      "bright_threshold": 0.06,
+      "dark_strength": 0.0,
+      "dark_threshold": 0.1,
+      "despill": "off",
+      "despill_strength": 1.0,
+      "edge_zone_px": 24,
+      "ref_radius": 12,
+      "protect_large_px": 0,
+      "region_grow_px": 4
+    },
+    "_meta": {
+      "title": "Edge Cleanup Hilos Deshilachados de Manga"
+    }
+  },
+  "9": {
+    "class_type": "VRAM_Debug",
+    "inputs": {
+      "empty_cache": true,
+      "gc_collect": true,
+      "unload_all_models": true,
+      "image_pass": ["1", 0]
+    },
+    "_meta": {
+      "title": "Purgar SAM3 / MatAnyone2 antes de NormalCrafter (12GB Guard)"
+    }
+  },
+  "10": {
+    "class_type": "VizClickNormalCrafter",
+    "inputs": {
+      "images": ["9", 1],
+      "seed": 42,
+      "max_res_dimension": 512,
+      "window_size": 14,
+      "time_step_size": 10,
+      "decode_chunk_size": 4,
+      "offload_after": true
+    },
+    "_meta": {
+      "title": "NormalCrafter (--max-res 512 ~6GB VRAM)"
+    }
+  },
+  "11": {
+    "class_type": "VizClickNormalTemporalStabilizer",
+    "inputs": {
+      "source_images": ["9", 1],
+      "normal_video": ["10", 0],
+      "temporal_strength": 0.65,
+      "motion_strength": 1.0,
+      "consistency_threshold": 0.12
+    },
+    "_meta": {
+      "title": "Estabilizador Temporal Optico de Normales"
+    }
+  },
+  "12": {
+    "class_type": "ImageResizeKJv2",
+    "inputs": {
+      "image": ["11", 0],
+      "width": 478,
+      "height": 850,
+      "upscale_method": "bicubic_antialias",
+      "keep_proportion": "stretch",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 2
+    },
+    "_meta": {
+      "title": "Re-escalar Normales a Resolucion Nativa 478x850 (renormalizar antes de SSDO)"
+    }
+  },
+  "13": {
+    "class_type": "MaskToImage",
+    "inputs": {
+      "mask": ["5", 0]
+    },
+    "_meta": {
+      "title": "Skin Matte -> Image"
+    }
+  },
+  "14": {
+    "class_type": "MaskToImage",
+    "inputs": {
+      "mask": ["8", 1]
+    },
+    "_meta": {
+      "title": "Fabric Matte Limpio -> Image"
+    }
+  },
+  "15": {
+    "class_type": "RadianceEXRMultiPart",
+    "inputs": {
+      "filename_prefix": "hand_fire_step0_bus",
+      "beauty": ["8", 0],
+      "bit_depth": "16-bit Half Float",
+      "compression": "ZIP",
+      "normal": ["12", 0],
+      "custom_1": ["13", 0],
+      "custom_1_name": "matte_skin",
+      "custom_2": ["14", 0],
+      "custom_2_name": "matte_fabric"
+    },
+    "_meta": {
+      "title": "Exportar Bus Multi-Part OpenEXR 16F (Beauty+Normals+Skin+Fabric)"
+    }
+  }
+}

@@ -3,9 +3,12 @@
 Al trabajar sobre `Leopoldoleoncancino/video-vfx-ai-bible`:
 
 1. **Lee obligatoriamente [`AGENTS.md`](AGENTS.md) y [`README.md`](README.md)** antes de proponer modelos, nodos, shaders, animaciones o comandos MCP.
-2. **Carga el skill adecuado según el dominio** desde [`skills/`](skills/) (o desde tu directorio global `~/.gemini/skills/`):
-   - [`video-vfx-3060-12gb-local`](skills/video-vfx-3060-12gb-local/SKILL.md) — hardware RTX 3060 12 GB / 32 GB RAM / Win 11, 10 pilares: modelos locales, roto/matting, Módulo C TD/Blender, Pilar 08 normales, Pilar 09 Camera Tracking 3D, Pilar 10 OCIO/Audio/Face/OBS y offload JS en CPU.
+2. **Puntos de entrada rápidos de Producción VFX (Fase 2):**
+   - **Módulo A (ComfyUI `sm_86` + PBR `SSDO` + HDR Lineal + `33f ➔ 167f`):** [`docs/modules/MODULE_A_COMFYUI_VFX_3060.md`](docs/modules/MODULE_A_COMFYUI_VFX_3060.md) · [`workflows/comfyui/README.md`](workflows/comfyui/README.md) · [`Workflow 4 · Ruta G`](workflows/END_TO_END_PIPELINES.md#workflow-4--fuego--energía-hiperrealista-adherido-a-anatomía-con-capa-de-normales-7-rutas-comparadas--rd-33f--167f).
+   - **Módulo C (TouchDesigner + Blender Live):** [`docs/modules/MODULE_C_TD_BLENDER_VFX.md`](docs/modules/MODULE_C_TD_BLENDER_VFX.md).
+3. **Carga el skill adecuado según el dominio** desde [`skills/`](skills/) (o desde tu directorio global `~/.gemini/skills/`):
+   - [`video-vfx-3060-12gb-local`](skills/video-vfx-3060-12gb-local/SKILL.md) — hardware RTX 3060 12 GB `sm_86` / 32 GB RAM / Win 11, 10 pilares, **Módulo A** (`VRAM_Debug`, `SSDO`, `WiLoR-mini`, `vfx_rd_metrics_eval.py`) & **Módulo C**, y offload JS en CPU.
    - [`artcraft-adobe-vfx-bridge`](skills/artcraft-adobe-vfx-bridge/SKILL.md) — ArtCraft (FilmCraft/EffectCraft), Adobe (Premiere/After Effects MCP/UXP/CEP), Lottie, ProRes 4444 Alpha, EXR lineal y animaciones JS.
    - [`daily-vfx-radar`](skills/daily-vfx-radar/SKILL.md) — auditoría diaria con [`RADAR_DAILY.md`](RADAR_DAILY.md) y [`scripts/daily_radar.py`](scripts/daily_radar.py).
-3. **Configuración MCP específica de Antigravity:** para `TouchDesigner/TDMCP` usa **siempre `"serverUrl": "http://127.0.0.1:13316/mcp"`** (nunca `"url"` ni `localhost`). Usa la plantilla [`mcps/antigravity_td_blender_mcp.json`](mcps/antigravity_td_blender_mcp.json).
-4. **Regla de verificación:** antes de recomendar novedades posteriores a la fecha del repositorio, revisa primero [`RADAR_DAILY.md`](RADAR_DAILY.md) y valida enlaces reales antes de escribir docs o configuraciones.
+4. **Configuración MCP específica de Antigravity:** para `TouchDesigner/TDMCP` usa **siempre `"serverUrl": "http://127.0.0.1:13316/mcp"`** (nunca `"url"` ni `localhost`). Usa la plantilla [`mcps/antigravity_td_blender_mcp.json`](mcps/antigravity_td_blender_mcp.json).
+5. **Regla de verificación:** antes de recomendar novedades posteriores a la fecha del repositorio, revisa primero [`RADAR_DAILY.md`](RADAR_DAILY.md) y valida enlaces/kernels reales en `docs/` antes de escribir código o configs.
