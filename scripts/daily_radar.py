@@ -123,6 +123,8 @@ WATCHLIST_REPOS: list[str] = [
     "aharley/alltracker",
     "FuouM/ComfyUI-MatAnyone",
     "spiritform/comfy-matanyone2",
+    "taichi-dev/taichi",
+    "tum-pbs/PhiFlow",
 ]
 
 HF_PIPELINES: list[tuple[str, str]] = [

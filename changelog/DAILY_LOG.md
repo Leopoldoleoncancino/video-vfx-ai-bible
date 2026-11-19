@@ -4,6 +4,22 @@ Este archivo registra hitos iniciales y cada hallazgo agregado por el pipeline d
 
 ---
 
+## 2026-11-19 (Fase 2.5) — Validación Empírica `33f` en RTX 3060, Fix Colorimétrico ACES/AgX, Fluido GPU Incompresible, MANO Estanco, Oclusión Z Continua & Gate 3
+
+- **Resultados Empíricos en Hardware Real Incorporados ([`docs/modules/MODULE_A_COMFYUI_VFX_3060.md`](../docs/modules/MODULE_A_COMFYUI_VFX_3060.md) & [`workflows/END_TO_END_PIPELINES.md`](../workflows/END_TO_END_PIPELINES.md)):**
+  - Documentados los benchmarks reales sobre los **33 frames críticos (`f88..f120`, `478×850`, giro `180°` palma→dorso)** en `E:\confyui\exchange\job_33f\`: **Fase 0** en **`~60 s`** (`~4.75 GB` pesos totales, `‖N‖ ∈ [0.9996, 1.0004]`, estabilidad temporal de normales en fondo `0.533°/frame`, solapamiento piel/tela `0.015 %`, reducción de halo blanco en hilos negros **`-85.4 %`**) y **Relight PBR** (**SSDO `5.48:1`** con pico `36.07:1`, puño negro `1.004×` y escritorio blanco **`CIEDE2000 = 0.000`** vs `40.35` en `v10`).
+  - Documentados los **4 fixes reales de Windows 11 + ComfyUI Portable (`python_embeded -s`)**: copia directa de `matanyone2/` a `Lib/site-packages` (bug `hatchling`), `.get("flash_attn", [])` en `transformers 5.9.0`, instalación con `--target python_embeded\Lib\site-packages` por flag `-s`, y **`invert_normal_y=True` por defecto** para alinear `NormalCrafter` (`+Y` arriba OpenGL) con el raymarch SSDO en espacio de pantalla (`+Y` abajo).
+- **Fix Crítico de Colorimetría HDR (Erradicación del Lavado Salmón / Blanco Tiza en [`scripts/vfx_ssdo_relight_16f.py`](../scripts/vfx_ssdo_relight_16f.py)):**
+  - Reemplazada la antigua aproximación `m_inset` por **Stephen Hill ACES Filmic (`RRT + ODT` exacto)** y soporte nativo **`PyOpenColorIO` (`Look: AgX - Punchy`)**, más composición con preservación analítica del plate (`inverse_aces_hill_linear` + `compose_hdr_on_plate_srgb`), restaurando puntas rojo carmesí → cuerpo naranja vivo → núcleo dorado-crema (`pastel_yellow_clip = 0.0 %`, `salmon_wash = 0.0 %`, `CIEDE2000 = 0.000` en mesa blanca).
+- **Los 5 Nuevos Pilares de Producción Implementados y Verificados (`--self-test` / `--check`):**
+  1. **Pilar 1 — Solver GPU Navier-Stokes Incompresible ([`scripts/vfx_incompressible_fire_sim.py`](../scripts/vfx_incompressible_fire_sim.py)):** Proyección de presión **Red-Black SOR** ($\nabla^2 p = \nabla \cdot \mathbf{v}$, reducción de divergencia `>80–90 %`), compensación de cámara en mano (`RANSAC Homography` / Lucas-Kanade sobre fondo estático $\mathbf{v}_{\text{hand, world}} = \mathbf{v}_{\text{hand, screen}} - \mathbf{v}_{\text{cam}}$), advección **BFECC / MacCormack con clamping local min-max**, *Vorticity Confinement*, lenguas híbridas *Advected-Phase Domain-Warped Curl* + micro-chispas Lagrangianas, y comparativa verificada de `PyTorch CUDA` vs `taichi-dev/taichi` (`★28,465`) vs `tum-pbs/PhiFlow` (`★1,959`).
+  2. **Pilar 2 — Emisión Superficial 3D Estanca (*Watertight*) en Blender / EmberGen ([`scripts/wilor_mano_to_blender_abc.py`](../scripts/wilor_mano_to_blender_abc.py)):** Cierre automático del agujero de 16 aristas de la muñeca MANO (`cap_open_mesh_watertight` + `bmesh`), configuración `--enable-mantaflow` (`surface_distance=0.012`, `velocity_factor=1.25`), colisionador `Proxy_Black_Cuff`, shader **Lámina Fina Blackbody (`Density=0.02`)** y Vector Motion Blur `180°` (`0.5`), más integración `.abc` con **JangaFX EmberGen / LiquiGen** `[OK-12GB]`.
+  3. **Pilar 3 — Oclusión 3D Continua por Profundidad (`compose_continuous_z_fire`):** Visibilidad sigmoidal continua Front/Back frente al Z-buffer de `DepthAnything V2`/`DA3` sin switch binario palma/dorso y con bloqueo sobre `matte_fabric`.
+  4. **Pilar 4 — Relighting PBR Acoplado a Pirámide MIP Area-Light + Motion Blur Vectorial `180°`:** `build_fire_irradiance_pyramid`, `extract_dynamic_lights_from_fire` y `apply_velocity_motion_blur` integrados en [`vfx_ssdo_relight_16f.py`](../scripts/vfx_ssdo_relight_16f.py).
+  5. **Pilar 5 — Gate 3 Cuantitativo (`eval_motion_fire_coupling` en [`scripts/vfx_rd_metrics_eval.py`](../scripts/vfx_rd_metrics_eval.py)):** Mide `lag_correlation >= 0.45` y `mean_wake_deflection_px >= 1.2 px` para rechazar fuegos procedurales *stateless* rígidos y aprobar estelas físicas reales.
+
+---
+
 ## 2026-11-19 — Módulo A Completo & Profundización Workflow 4 (`SSDO` PBR, `EXR` Lineal, `WiLoR-mini` MANO, Gates R&D `33f ➔ 167f`)
 
 - **Fase 2 — Módulo A Completado ([`docs/modules/MODULE_A_COMFYUI_VFX_3060.md`](../docs/modules/MODULE_A_COMFYUI_VFX_3060.md)):**

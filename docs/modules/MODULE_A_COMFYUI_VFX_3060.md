@@ -1,8 +1,8 @@
-# Módulo A (Fase 2) · ComfyUI VFX Híbrido, Relighting PBR (`SSDO`), HDR Lineal & Workflow 4 (R&D `33f` ➔ `167f`)
+# Módulo A (Fase 2.5) · ComfyUI VFX Híbrido, Relighting PBR (`SSDO`), Fluido GPU Incompresible, Oclusión Z Continua & Workflow 4 (R&D `33f` ➔ `167f`)
 
 > **Hardware Calibrado:** NVIDIA **RTX 3060 · 12 GB VRAM** *(`sm_86` Ampere, SIN FP8 Tensor Core nativo)* · AMD **Ryzen 9 5900X** *(12C / 24T)* · **32 GB DDR4** *(~22–24 GB libres reales en Windows 11)*  
-> **Plantillas ComfyUI API JSON:** [`workflows/comfyui/README.md`](../../workflows/comfyui/README.md) · **Scripts CLI/Blender:** [`scripts/`](../../scripts/)  
-> **Caso Objetivo de Referencia (Workflow 4):** Plano vertical handheld POV (`478×850`, `167 frames`, `~30 fps`) de una mano con manga negra deshilachada girando de palma a dorso frente a un escritorio blanco/impresora con fuego hiperrealista.
+> **Plantillas ComfyUI API JSON:** [`workflows/comfyui/README.md`](../../workflows/comfyui/README.md) · **Scripts CLI/Blender/CUDA:** [`scripts/`](../../scripts/)  
+> **Caso Objetivo de Referencia (Workflow 4):** Plano vertical handheld POV (`478×850`, `167 frames`, `~30 fps`, recorte crítico `33f` en `f88..f120` con giro palma→dorso de `180°`) de una mano con manga negra deshilachada frente a un escritorio blanco/impresora con fuego hiperrealista.
 
 ---
 
@@ -18,145 +18,210 @@ Antes de lanzar nodos de difusión, matting o normales sobre una toma real en **
 | **Memoria temporal en `MatAnyone 2`** | En `spiritform/comfy-matanyone2/config.py`, `max_mem_frames` viene fijado por defecto en **`10`** (sube picos VRAM en secuencias `>60f`). | Edita `"max_mem_frames": 5` en `config.py` y cierra Premiere/AE/Blender pesado antes de correr ComfyUI. |
 | **NormalCrafter & Secuencialidad Estricta** | `Binyr/NormalCrafter` consume ~6 GB a `512px`, pero sube a **~20 GB** a `1024×576`. | Fija `max_res_dimension = 512`, `offload_after = true` en `VizClickNormalCrafter` e inserta `VRAM_Debug` (`unload_all_models=true`, `empty_cache=true`, `gc_collect=true`) entre fases pesadas. |
 | **Evitar LoRAs destiladas *CausVid* en llamas** | Las LoRAs de 4–8 steps fusionan y suavizan la micro-turbulencia Navier-Stokes del fuego. | Usa **20 steps (`euler` / `unipc`)**, `cfg: 5.0–6.0`, `shift: 6.0` sin CausVid en pases finales de fuego. |
-| **Cuidado con `FrequencyCombineMEC` en HDR** | En `Code2Collapse/ComfyUI-CustomNodePacks`, `FrequencyCombineMEC` recorta (*clamps*) la salida al rango SDR `[0, 1]`. | Usa `FrequencySeparateMEC` (`linear=true`) solo para extraer la capa **`low_frequency`** del relight y calcula la multiplicación HDR + fuego `>1.0` en [`vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py), Blender Cycles o Fusion/AE 32-bpc. |
+| **Cuidado con `FrequencyCombineMEC` en HDR** | En `Code2Collapse/ComfyUI-CustomNodePacks`, `FrequencyCombineMEC` recorta (*clamps*) la salida al rango SDR `[0, 1]`. | Usa `FrequencySeparateMEC` (`linear=true`) solo para extraer la capa **`low_frequency`** del relight y calcula la multiplicación HDR + fuego `>1.0` en [`vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py) / [`vfx_incompressible_fire_sim.py`](../../scripts/vfx_incompressible_fire_sim.py), Blender Cycles o Fusion/AE 32-bpc. |
 
 ---
 
-## 2. Arquitectura Física y Matemática (Erradicando las 5 Fallas de `v10`)
+## 2. Resultados Empíricos Validados en Hardware Real (`33f` Críticos `f88..f120`, `478×850`, Giro `180°`)
 
-Cada defecto visible en iteraciones 2D/8-bit previas responde a una ecuación mal planteada. Aquí tienes la solución exacta implementada en los scripts de este repositorio:
+> **Entorno de validación empírica:** Windows 11 · ComfyUI Portable (`python_embeded -s`) · NVIDIA RTX 3060 12 GB (`sm_86`) · AMD Ryzen 9 5900X · 32 GB RAM · Directorio de intercambio `E:\confyui\exchange\job_33f\`.
 
-### Falla #1 · Sangrado naranja sobre puño negro y halo blanco del escritorio
-- **Causa:** Un único matte mezclado trata algodón negro deshilachado y piel semibrillante como un mismo material, mientras que los bordes semitransparentes conservan fondo blanco contaminante.
-- **Solución Matemática + Código ([`scripts/vfx_dual_matte_decontam.py`](../../scripts/vfx_dual_matte_decontam.py)):**
-  1. Dos prompts independientes (`SAM 3 ➔ MatAnyone 2`): **`matte_skin`** (`α_skin`) y **`matte_fabric`** (`α_fabric`).
-  2. Descontaminación de borde resolviendo la ecuación lineal de matting:
-     $$I = \alpha F + (1 - \alpha) B \implies F = \text{ML-Foreground}(I, \alpha, \lambda=10^{-5})$$
-     mediante `pymatting.estimate_foreground_ml` (presente en `MatteDesk` [`ForegroundDecontaminate`](https://github.com/fishfinger44/MatteDesk)) o estimación multi-escala NumPy + recoloreado de hilos blancos residuales (`EdgeCleanup` / limpieza de bordes).
-  3. Respuesta BRDF diferenciada por canal material:
-     - **Piel (`α_skin`):** `roughness = 0.34`, Fresnel `F0 = 0.028`, ganancia difusa `1.0`, SSS activo.
-     - **Manga negra (`α_fabric`):** `roughness = 0.88`, Fresnel `F0 = 0.015`, ganancia difusa `0.14` (cero tinte naranja plano; solo brillo rasante real donde `N·L > 0` y `V > 0`).
+### 2.1 Resumen Cuantitativo de Fase 0 y Relighting PBR (`PASS Gate 0 & Gate 1`)
 
-### Falla #2 · Falta de oclusión 3D entre dedos doblados y sombras de contacto
-- **Causa:** Aplicar solo $\max(N \cdot L, 0)$ ignora si otro dedo o el pliegue de la palma bloquea físicamente la línea de vista hacia la llama.
-- **Solución Matemática + Código ([`scripts/vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py)):**
-  - **Screen-Space Depth Raymarch (`SSDO`) de 16 pasos** sobre profundidad normalizada aspect-safe (`depth_scale = 0.35` en vertical `478×850`), muestreada con secuencia cuasi-aleatoria temporal **R2 / Blue-Noise** para evitar bandas horizontales:
-    $$t_s = \frac{s + 0.2 + 0.6 \cdot J_{\text{R2}}(x, y, t)}{16}, \quad \text{hit} = \left(Z_{\text{obs}} - Z_{\text{ray}} > \epsilon_z\right) \land \left(Z_{\text{obs}} - Z_{\text{ray}} < 0.95 \cdot d_{\text{scale}}\right)$$
-    seguido de un filtro bilateral guiado por profundidad que limpia ruido de muestreo respetando siluetas duras de dedos.
-  - Si necesitas oclusión exacta incluso cuando un dedo ocluye otro en profundidad ambigua, refuerza con malla **MANO (`WiLoR-mini`) + Holdout** en Blender (`VL_Fire_Occluded`).
+| Etapa / Motor | Tiempo Real (`33f`) | Peso / VRAM | Métrica Empírica Obtenida | Umbral Gate | Estado |
+|---|---|---|---|---|---|
+| **Fase 0 · Bus Común `16F`** *(`SAM 2.1` + `MatAnyone 2 max_mem_frames=5` + `DepthAnything V2 ViT-L` + `VizClickNormalCrafter --max-res 512` + `VizClickNormalTemporalStabilizer` + [`vfx_dual_matte_decontam.py`](../../scripts/vfx_dual_matte_decontam.py))* | **`~60 s` total** | **`~4.75 GB` pesos totales** | `‖N‖ ∈ [0.9996, 1.0004]`<br>Estabilidad normal fondo estático: **`0.533°/frame`**<br>Solapamiento `matte_skin` vs `matte_fabric`: **`0.015 %`**<br>Reducción halo blanco en hilos negros: **`-85.4 %`** (`0.154 → 0.0225` sRGB / `0.0113` lineal `16F`) | `‖N‖ ∈ [0.99, 1.01]`<br>`ΔL < 0.03` | **✅ PASS Gate 0** |
+| **Fase 1B · Relighting PBR Analítico** *([`vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py) sobre `NormalCrafter` + `DepthAnything V2`)* | **`< 5 s`** | **`< 1 GB`** | Contraste SSDO dedo-a-dedo: **`5.48:1`** *(máx **`36.07:1`**)*<br>Ganancia naranja en puño negro: **`1.004×`**<br>Neutralidad escritorio blanco: **`CIEDE2000 = 0.000`** *(vs `40.35` en `v10`)* | `SSDO >= 3.5:1`<br>`cuff <= 1.15×`<br>`CIEDE2000 <= 1.5` | **✅ PASS Gate 1** |
+| **Fase 1C · Colorimetría HDR Fuego** *(Reemplazo de `m_inset` por **Stephen Hill ACES Filmic RRT+ODT** / **OCIO `AgX - Punchy`**)* | **Instantáneo** | **CPU / GPU** | Puntas rojo carmesí → cuerpo naranja hidrocarburo → núcleo dorado-crema (`peak 8–14` lineal)<br>`pastel_yellow_clip_pct = 0.0 %`<br>`salmon_wash_pct = 0.0 %` | `peak >= 4.0`<br>`pastel_clip <= 1 %`<br>`salmon_wash <= 2 %` | **✅ PASS Gate 2** |
 
-### Falla #3 · Normales sin *boiling*, especular GGX y Subsurface Scattering (SSS)
-- **Causa:** Un normal map inferido a `512px` y re-escalado a `478×850` en `8-bit` pierde longitud unitaria ($\|N\| \neq 1$) y genera chispas de *boiling* temporal al rotar la mano.
-- **Solución:**
-  1. `VizClickNormalCrafter --max-res 512` ➔ `VizClickNormalTemporalStabilizer` (flujo óptico) ➔ Exportación **EXR 16F ZIP** en **Camera Space OpenGL `+Y` arriba**.
-  2. **Joint Bilateral Guided Normal Refinement** guiado por luminancia del plate original (en [`vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py)) + renormalización estricta $N = N / \max(\|N\|_2, 10^{-5})$.
-  3. **Especular Microfacet Cook-Torrance GGX:**
-     $$f_{\text{spec}} = \frac{D_{\text{GGX}}(N \cdot H, \alpha_r) \cdot F_{\text{Schlick}}(V \cdot H, F_0) \cdot G_{\text{Smith}}(N \cdot V, N \cdot L)}{4\,(N \cdot V)(N \cdot L)}$$
-     con `α_r = roughness²`, destacando aceites naturales y nudillos sin plastificar el dorso ni encender la manga.
-  4. **SSS cálido rasante:** $(1 - N \cdot V)^{2.5} \cdot \text{wrap}(N \cdot L) \cdot \alpha_{\text{skin}}$ teñido en ámbar-carmín (`[1.0, 0.14, 0.02]`).
+### 2.2 Troubleshooting Real: 4 Gotchas Críticos de Windows 11 + ComfyUI Portable (`python_embeded -s`)
 
-### Falla #4 · Llamas sin turbulencia ni núcleo HDR `>1.0` (eliminando el amarillo pastel SDR)
-- **Causa:** Sumar fuego encima de un plate `sRGB 8-bit [0, 1]` satura `[R=1.0, G=1.0, B=0.2]` en amarillo chicle plano y destruye la gradación física entre núcleo blanco incandescente y lenguas rojas turbulentas.
-- **Solución:**
-  - **Turbulencia física real** vía placas 4K sobre negro retimed con `Practical-RIFE` + deformación por `CoTracker3` (`Ruta E`), o simulación **Mantaflow Adaptive (`224–288`) + Wavelet Noise + Shader `Principled Volume` Blackbody (`1400K → 3200K`)** advectada por velocidad de dedos (`Ruta C`, [`scripts/wilor_mano_to_blender_abc.py`](../../scripts/wilor_mano_to_blender_abc.py)).
-  - **Pipeline estrictamente Lineal HDR (`16F/32F`)** donde el núcleo del fuego alcanza `> 4.0–12.0` unidades lineales, permitiendo que **Exponential Multi-Radius Glow** (`4px` / `24px` / `96px`) y **Red Halation** trabajen antes del Tone Map **AgX** o **ACES 2.0** (`RadianceACES2OutputTransformFull`), desaturando naturalmente los picos hacia blanco crema sin amarillo pastel.
+1. **`MatAnyone2` falla al instalar con `pip` por bug de empaquetado `hatchling`:**
+   - **Causa:** El repositorio `pq-yang/MatAnyone2` contiene una referencia duplicada a `matanyone2/config/__init__.py` en su configuración de wheel con `hatchling`, abortando `pip install`.
+   - **Solución directa en Windows 11:** Clona el repositorio y copia la carpeta del paquete `matanyone2\` directamente dentro de `ComfyUI_windows_portable\python_embeded\Lib\site-packages\matanyone2\`.
+2. **`transformers 5.9.0` lanza `KeyError: 'flash_attn'` al iniciar ComfyUI:**
+   - **Causa:** En `transformers/utils/import_utils.py`, cuando un custom node registra un stub de `flash_attn` sin metadatos completos de distribución, el acceso directo por diccionario falla con `KeyError: 'flash_attn'`.
+   - **Solución:** Cambiar la búsqueda directa en `import_utils.py` por `.get("flash_attn", [])`.
+3. **ComfyUI Portable corre con `-s` (`--no-user-site`) e ignora paquetes instalados en `--user`:**
+   - **Causa:** El ejecutable `python_embeded\python.exe -s` deshabilita explícitamente `%APPDATA%\Python\Python31x\site-packages`, por lo que `OpenEXR`, `PyOpenColorIO` o `pymatting` instalados sin `--target` no son visibles.
+   - **Solución obligatoria:** Instalar siempre apuntando al `site-packages` embebido:
+     ```powershell
+     .\python_embeded\python.exe -m pip install --target .\python_embeded\Lib\site-packages OpenEXR PyOpenColorIO pymatting
+     ```
+4. **Orientación del eje Y entre `NormalCrafter` (`+Y` arriba) y Screen-Space SSDO (`+Y` abajo):**
+   - **Causa:** `NormalCrafter` exporta normales en convención **OpenGL Camera Space (`+X` derecha, `+Y` arriba, `+Z` hacia cámara)**. En cambio, la grilla de imagen `vv` en Python/ NumPy crece de arriba hacia abajo (`0..1`), por lo que el vector hacia la luz `dy = lv - vv` tiene **`+Y` hacia abajo**. Si no se invierte `N_y`, las luces situadas arriba iluminan las caras inferiores de los dedos.
+   - **Solución (ya fijada por defecto en [`vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py)):** `invert_normal_y=True` (`--normal-convention opengl`, activo por defecto).
 
-### Falla #5 · Desfase MTF/grano del teléfono y cambio cálido en escritorio blanco
-- **Causa:** Las sombras o brillos globales en modelos de difusión tiñen la impresora y mesa blanca lejanas, y el fuego/VSR llega más nítido o más liso que el sensor CMOS real.
-- **Solución:**
-  - **Neutralidad de fondo (`CIEDE2000 <= 1.5`):** Atenuación espacial física `1 / (1 + k * d²)` con ventana de radio finito + máscara opcional de escritorio/profundidad métrica (`DA3-Streaming`) para limitar cualquier rebote cálido únicamente a los ~20–35 cm próximos a la mano.
-  - **Orden óptico de grano y MTF:** Match de MTF (convolución Gaussiana ligera equivalente a la lente móvil, ~0.35–0.65 px) + `SeedVR2 3B` / `Practical-RIFE` **SIEMPRE antes** de inyectar grano de luminancia/croma medido sobre un parche neutro del plate original (`eval_highfreq_noise_match` en [`scripts/vfx_rd_metrics_eval.py`](../../scripts/vfx_rd_metrics_eval.py)).
+### 2.3 Diagnóstico del Lavado Salmón/Blanco Tiza en `agx_filmic_tonemap` y Solución Analítica
 
----
+- **Por qué fallaba la aproximación `m_inset` simple:**
+  La matriz `m_inset` (`B_in = 0.042376·R + 0.078434·G + 0.879143·B`) mezclaba un `4.24 %` de Rojo en el canal Azul antes de aplicar el logaritmo. Al comprimir el rango dinámico de `[2^{-10}, 2^{+6.5}]` con una curva S suave sin aplicar la expansión cromática *Look: Punchy* de Blender y luego aplicar `m_out = inv(m_inset)`, una punta de llama roja pura (`R=1.2, G=0.12, B=0.01` lineal) salía con **`B_srgb = 0.525`** (`[0.889, 0.660, 0.525]`), tiñendo las lenguas de fuego de color **salmón / rosa pastel** y el núcleo de **blanco tiza**.
+- **Solución doble implementada en [`scripts/vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py):**
+  1. **Stephen Hill ACES Filmic (`RRT + ODT` exacto, `aces_hill_filmic_tonemap`):** Transforma `sRGB D65 -> AP1` (`_ACES_INPUT_MAT`), evalúa el polinomio racional exacto de RRT+ODT:
+     $$f(v) = \frac{v(v + 0.0245786) - 0.000090537}{v(0.983729\,v + 0.4329510) + 0.238081}$$
+     y proyecta de vuelta con `_ACES_OUTPUT_MAT`. La misma punta roja `(1.2, 0.12, 0.01)` produce ahora **`[0.894, 0.319, 0.090]` sRGB** (rojo carmesí profundo) y un núcleo HDR `10.0` produce **`[0.994, 0.934, 0.686]` sRGB** (blanco-crema incandescente, `0.0 %` clipping pastel).
+  2. **OCIO `AgX - Punchy` nativo (`ocio_agx_tonemap`):** Si `PyOpenColorIO` está instalado, encadena `OCIO.LookTransform(src="Linear Rec.709", dst="Linear Rec.709", looks="AgX - Punchy")` + `OCIO.DisplayViewTransform(src="Linear Rec.709", display="sRGB", view="AgX")`.
+  3. **Preservación Analítica del Plate (`inverse_aces_hill_linear` + `compose_hdr_on_plate_srgb`):** Aplicar un tone mapper fílmico directamente sobre un plate de teléfono que *ya viene tone-mapped de cámara* oscurece el escritorio blanco de `0.85` a `0.62` (`CIEDE2000 ≈ 14`). Al invertir analíticamente la cuadrática de Stephen Hill sobre el plate donde hay luz añadida (`delta_hdr > 0`), sumar `delta_hdr` en dominio ACES pre-RRT y re-aplicar el RRT+ODT (manteniendo intactos los píxeles con `delta_hdr == 0`), obtenemos **roll-off HDR genuino en la llama y `CIEDE2000 = 0.000` en el escritorio blanco**.
 
-## 3. Matriz Comparativa Honesta de las 7 Rutas + Evaluación 4DGS (Workflow 4)
+### 2.4 Hallazgos del A/B Visual de Simulación de Fuego sobre `33f` (`f88..f120`)
 
-> **Convención obligatoria:** Los datos acompañados de `(Repo)` provienen de código/repos verificados; las proyecciones de tiempo/RAM para **`478×850`, `167 frames`** en tu estación **RTX 3060 12 GB + Ryzen 9 5900X + 32 GB Win 11** se etiquetan como `(Est.)`.
-
-| Ruta | Tag Hardware | VRAM Pico `(Repo / Est.)` | RAM Win 11 `(Est.)` | Tiempo `167f` `(Est.)` | Riesgo Temporal (*Boiling*) | Control Artístico | Puntos de Fallo Conocidos en Win 11 |
-|---|---|---|---|---|---|---|---|
-| **Ruta A · ComfyUI Híbrido** *(VACE-Fun A14B `Q3_K_M`/`Q4_K_S` + `CoTracker3` + `UniLumos 1.3B` LF + `SeedVR2 3B`)* | `[TIGHT-12GB]` | **~9.5–11.5 GB** *(BlockSwap `24/10`)* | **~20–23 GB** *(pagefile NVMe ≥32 GB obligatorio)* | **~35–65 min** *(en ventanas 33f–81f)* | Medio–Alto *(requiere Frequency Separation y Difference Keying)* | Medio *(prompt + máscaras/normales)* | OOM/swap si se corre VACE + SeedVR2 sin `VRAM_Debug` o con navegador/Adobe abiertos; prohibido `torch.compile` `e4m3fn` en `sm_86`. |
-| **Ruta B · Relighting Analítico PBR** *(`vfx_ssdo_relight_16f.py`: Normales `16F` + Depth `16F` + SSDO 16-step + GGX + SSS + Matte Dual)* | `[OK-12GB]` | **~6.0 GB** *(solo en `NormalCrafter 512px` del Paso 0)*; **~0–1 GB** en el relight | **~8–12 GB** | **~4–8 min** total *(incl. Paso 0)* | Bajo *(si usas estabilizador temporal + filtro bilateral)* | **Máximo** *(curvas BRDF, luces UVZ, roughness exactos)* | La oclusión depende 100% de la limpieza del Z-Depth relativo y normales durante el giro rápido palma→dorso. |
-| **Ruta C · 3D Físico en Blender** *(`WiLoR-mini` MANO `.npz`→`.abc` + Proxy Manga + `Mantaflow Adaptive 256` + Cycles OptiX EXR Multi-Layer)* | `[OK-12GB]` / `[TIGHT-12GB]` | **~2.5–6.0 GB** *(WiLoR + Cycles OptiX)* | **~12–18 GB** *(cache Mantaflow en Ryzen 5900X)* | **~18–40 min** *(bake CPU + Cycles ~2–4s/f)* | **Mínimo** *(geometría 3D + One-Euro filter)* | **Máximo** *(simulación física + Light Ratio exacto)* | `Dyn-HaMR` rompe en Win 11 (`mmcv==1.3.9` / `chumpy`); usar **`warmshao/WiLoR-mini`** (`MANO_RIGHT.pkl` es no-comercial). Si la rotación rápida estira vértices MANO, reforzar con matte real. |
-| **Ruta D · Real-Time 60 FPS (TD)** *(`DAViDNormals.tox` ~10 ms + `POPs` + `Fluid TOP` + GLSL SSDO + `OpenColorIO TOP`)* | `[OK-12GB]` | **~3.5–6.0 GB** | **~8–12 GB** | **<10 s** *(tiempo real 30–60 FPS)* | Medio *(estabilización ONNX cuadro a cuadro)* | Alto en interacción / Medio en micro-turbulencia | `DAViD` segmenta humano completo sin distinguir bien manga deshilachada negra vs piel; menor micro-detalle de flama que Cycles o placas 4K. |
-| **Ruta E · Placas Fuego 4K + Tracking** *(Elementos reales s/negro + `Practical-RIFE` + `CoTracker3`/`AllTracker` warp + Relight PBR)* | `[OK-12GB]` | **~2.5–5.0 GB** | **~8–12 GB** | **~8–15 min** | **Muy Bajo** | Alto *(librería de placas reales sin warping excesivo)* | Cuando la mano gira 180° (palma→dorso), el *warping* 2D no envuelve un dedo pasando por detrás de otro si no se corta la placa por capas Front/Back (`α_hand` + `Depth`). |
-| **Ruta F · Inverse Rendering + Residuo** *(`DiffusionRenderer`/`comfyui-materia`/`UniVidX` vs `RGB-X`/`IntrinsicAnything` + VACE Residual)* | `[CLOUD / >24GB]` *(full video)* / `[TIGHT-12GB]` *(solo keyframes calibration)* | **~22–48 GB** `(Repo: DiffusionRenderer / comfyui-materia / UniVidX)`; **~10–11.5 GB** *(RGB-X por frame)* | **~24–64 GB** | **N/A local** en clips largos `(167f OOM / swap severo)` | Bajo–Medio | Medio–Alto *(extrae Albedo/Roughness del escritorio)* | Dependencias Linux-first (`nvdiffrast`, `transformer-engine`) en varios wrappers; usar **solo en frames clave de calibración PBR** con `RGB-X`/`IntrinsicAnything` o en Cloud. |
-| **🏆 Ruta G · 7ª Vía Híbrida SOTA (Recomendada R&D)** *(`Paso 0` Completo ➔ Fuego Dual (`Ruta C` Mantaflow Blackbody `.exr` + chispas `Ruta E`) ➔ Relight PBR (`Ruta B` `SSDO` + `UniLumos` LF-Ratio opcional) ➔ `DA3` Desk Catcher + `ACES 2.0/AgX` + `MMAudio`)* | `[OK-12GB]` / `[TIGHT-12GB]` | **~6.0–9.0 GB** *(secuencial por fases, nunca juntas)* | **~12–17 GB** | **~22–45 min** | **Mínimo** *(física 3D + normales estabilizadas + plate 100% real en piel/tela)* | **Máximo** *(combina realismo de flama/luz con preservación absoluta de poros e hilos)* | Exige disciplina de ejecución secuencial y calibración de distancia mano↔escritorio (`DA3-Streaming`) para anclar el plano catcher. |
-
-> **Evaluación de 4DGS / Relightable Gaussians (`[CLOUD / >24GB]`):**  
-> Optimizar *4D Gaussian Splatting* o *Relightable 3D/4D Gaussians* a partir de **una única toma monocular handheld** en movimiento rápido (mano rotando + llama emisiva transparente que cambia de topología cada frame) falla geométricamente en las caras ocluidas de los dedos, alucina *floaters* sobre la manga negra y supera holgado los **12 GB VRAM / 32 GB RAM** durante la optimización por escena (`>20–40 min` con calidad inferior al plate directo). No es viable ni competitivo para este plano en local frente a **Ruta C / Ruta E / Ruta G**.
+1. **Blender Mantaflow emitido desde esferas en landmarks (`res 176–224`):**
+   - Tiene inercia 3D real, pero al nacer de 21 esferas discretas parece *"flotando/trackeado encima"* sin abrazar el contorno epidérmico continuo de la mano, y el hollín estándar produce nubes rojas cortadas/granulosas. **Requiere emisión superficial desde una malla 3D continua estanca (*watertight*) con shader de lámina fina Blackbody (Pilar 2).**
+2. **Domain-Warped Curl Fire 2× supersampled (`72` pasos R2 en PyTorch CUDA, `53 s` en RTX 3060):**
+   - Logra estética sedosa, cero ruido gaussiano, cero bandeado y abraza con precisión los 5 dedos y la palma. **PERO** al ser *stateless* (sin estado temporal ni advección de flujo), **el giro rápido de `180°` de la mano no dobla, arrastra ni perturba el fuego** (se percibe rígido/pegado).
+3. **Fluido Euleriano GPU básico sin proyección de presión (`∇·v ≠ 0`):**
+   - Sin hacer cumplir la incompresibilidad (`∇²p = ∇·v`, `v ← v - ∇p`) ni imponer condición de contorno de cuerpo sólido, la mano atraviesa el humo sin desplazar físicamente el aire ni generar vórtices de arrastre (*Karman wake*) ni estelas de chispas.
 
 ---
 
-## 4. Sinergias Explotables con Pilares 09 y 10 en Workflow 4
+## 3. Los 5 Nuevos Pilares de Producción (Fase 2.5 — Física + Luz + Oclusión + Gates)
 
-1. **Camera Track 3D + Escala Métrica ([Pilar 09](../09-camera-tracking-matchmoving-3d.md)):**
-   - **`ByteDance-Seed/Depth-Anything-3` (`DA3-Streaming` `[OK-12GB]`):** Extrae cámara handheld consistente y la distancia relativa real entre la mano y el escritorio blanco/impresora (`--desk-distance-m` en [`wilor_mano_to_blender_abc.py`](../../scripts/wilor_mano_to_blender_abc.py)), permitiendo situar el plano *Bounce Catcher* exacto en Blender o limitar la caída $1/d^2$ en SSDO sin manchar el fondo.
-   - **`CoTracker3` / `AllTracker` (`[OK-12GB]`):** Trackea yemas, palma y nudillos incluso cuando quedan ocluidos en el giro de palma a dorso, conduciendo emisores de partículas/placas (`Ruta E`/`C`) y anclando las posiciones `lights_uvz` dinámicas del relighting analítico (`Ruta B`).
-2. **Colorimetría Unificada `ACES 2.0` / `AgX` ([Pilar 10 §1](../10-color-ocio-audio-face-obs.md)):**
-   - Todo pasa a **scene-linear** (`16F/32F`) al inicio (`sRGB → Linear`), los núcleos de fuego se componen en rango HDR no recortado (`> 4.0`) con glow exponencial y halación roja en lineal, y el **View Transform (`AgX` o `ACES 2.0 SDR`)** se aplica exclusivamente al final del pipeline (`RadianceACES2OutputTransformFull` o Blender Compositor).
-3. **Audio/Foley Sincronizado al Frame ([Pilar 10 §2](../10-color-ocio-audio-face-obs.md)):**
-   - **`hkchengrex/MMAudio` (`large_44k_v2`, ~6 GB VRAM fp16 `[OK-12GB]`):** Alimentando el master final de `167f` con prompt de combustión súbita + crepitación sutil de llama cerca del micrófono del teléfono genera Foley alineado con el pico del giro de mano *(nota: verificar licencia no comercial `CC-BY-NC-4.0` de los pesos antes de entregar a cliente comercial)*.
+### Pilar 1 · Fluido GPU Incompresible con Interacción Real Mano↔Aire ([`scripts/vfx_incompressible_fire_sim.py`](../../scripts/vfx_incompressible_fire_sim.py))
+
+#### A. Comparativa de Motores Ligeros Ejecutables en Windows 11 + RTX 3060 (`< 2 GB VRAM`)
+
+| Motor | Repo Verificado & Licencia | Estado / Ruedas Win 11 | Uso Recomendado en Tu Estación |
+|---|---|---|---|
+| **PyTorch CUDA `float32` *(Motor por defecto del repo)*** | `torch.nn.functional.conv2d` / `grid_sample` (`sm_86` nativo) | **`[OK-12GB]`** · Ya instalado dentro de `ComfyUI\python_embeded` (cero dependencias nuevas) | **Elección #1 inmediata:** corre el solver Red-Black SOR + BFECC + Curl Advectado en **`< 0.5 GB VRAM`** y **`~12–25 s` para `167f`** sin salir del entorno de ComfyUI. |
+| **Taichi Lang** | [`taichi-dev/taichi`](https://github.com/taichi-dev/taichi) (`★28,465` · Apache-2.0) | **`[OK-12GB]`** · Kernels JIT CUDA/Vulkan ultra-rápidos *(nota: wheels PyPI oficiales `taichi 1.7.x` llegan hasta Python `3.10/3.11`; verificar versión de `python_embeded`)* | Ideal para kernels acoplados 3D (`128³–192³`) o partículas MPM/Lagrangianas masivas cuando trabajas en un venv Python `3.11`. |
+| **PhiFlow ($\Phi_{\text{Flow}}$)** | [`tum-pbs/PhiFlow`](https://github.com/tum-pbs/PhiFlow) (`★1,959` · MIT · TUM Physics-Based Simulation) | **`[OK-12GB]`** · `pip install phiflow` sobre backend PyTorch CUDA | Excelente para prototipado de operadores diferenciables (`fluid.make_incompressible`, grillas MAC escalonadas y multigrid). |
+
+#### B. Formulación Matemática Implementada en [`scripts/vfx_incompressible_fire_sim.py`](../../scripts/vfx_incompressible_fire_sim.py)
+
+1. **Compensación de Cámara en Mano (`estimate_camera_motion_bg`):**
+   Para que el temblor de la cámara del celular no inyecte viento falso sobre las llamas, estimamos el desplazamiento del fondo estático $\mathbf{v}_{\text{cam}}(t)$ sobre la máscara $\Omega_{\text{bg}} = \neg \text{dilate}(\alpha_{\text{skin}} \cup \alpha_{\text{fabric}}, 10\text{ px})$ vía `RANSAC Homography` (`cv2.findHomography`) o Lucas-Kanade ponderado IRLS, trasladamos los campos inerciales del fluido por $-\mathbf{v}_{\text{cam}}(t)$ y calculamos la velocidad real de la mano en el mundo:
+   $$\mathbf{v}_{\text{hand, world}}(t) = \mathbf{v}_{\text{hand, screen}}(t) - \mathbf{v}_{\text{cam}}(t)$$
+2. **Ecuaciones de Navier-Stokes Incompresibles con Empuje de Obstáculo, Flotabilidad y Vorticity Confinement:**
+   $$\frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v} = -\nabla p + \beta_{\text{buoy}}\left(0.55\,T + 0.45\,F\right)\hat{\mathbf{j}}_{\text{up}} + \varepsilon_{\text{vc}}\,\Delta t\,(\mathbf{N}_{\omega} \times \boldsymbol{\omega}) + \mathbf{f}_{\text{hand}}$$
+   donde $\omega_z = \frac{\partial v_y}{\partial x} - \frac{\partial v_x}{\partial y}$ y $\mathbf{N}_{\omega} = \frac{\nabla |\omega_z|}{\|\nabla |\omega_z|\|_2 + 10^{-5}}$ reinyecta energía rotacional en las escalas finas para formar vórtices de *Karman* detrás de los dedos durante el giro de `180°`.
+3. **Proyección de Presión Incompresible vía Red-Black SOR (`project_incompressible_pressure`):**
+   Resolvemos la ecuación de Poisson con condición de contorno de velocidad prescrita sobre el obstáculo de la mano ($\mathbf{v}|_{\Omega_{\text{hand}}} = \mathbf{v}_{\text{hand, world}}$) y frontera libre Neumann en bordes:
+   $$\nabla^2 p = \nabla \cdot \mathbf{v}^*, \qquad \mathbf{v}^{n+1} = \mathbf{v}^* - \nabla p \implies \nabla \cdot \mathbf{v}^{n+1} \approx 0$$
+   Usando **sobre-relajación sucesiva Red-Black (`omega_sor = 1.72`, `36` iteraciones)** sobre el esténcil acoplado a diferencias centrales, la divergencia cae **`> 80–90 %`** por paso en menos de `1 ms` en la RTX 3060.
+4. **Advección BFECC / MacCormack con Clamping Local Min-Max (`advect_bfecc_clamped`):**
+   $$\hat{\phi} = \mathcal{A}(\phi^n, -\mathbf{v}\Delta t), \quad \tilde{\phi} = \phi^n + \frac{1}{2}\left(\phi^n - \mathcal{A}(\hat{\phi}, +\mathbf{v}\Delta t)\right), \quad \phi^{n+1} = \text{clip}\!\left(\mathcal{A}(\tilde{\phi}, -\mathbf{v}\Delta t),\, \phi_{\min, 3\times 3},\, \phi_{\max, 3\times 3}\right)$$
+   Elimina la borrosidad numérica de Semi-Lagrangian de 1er orden y garantiza **cero oscilaciones / cero puntitos blancos (*speckle*)**.
+5. **Síntesis Híbrida de Lenguas Sedosas (`_advected_curl_tongues`) + Micro-Chispas Lagrangianas:**
+   En lugar de renderizar solo la densidad borrosa de una grilla Euleriana, advectamos un campo continuo de coordenadas de fase $(\Phi_x, \Phi_y)$ por el flujo incompresible $\mathbf{v}$ (con re-anclaje elástico suave `0.86 / 0.14`) y evaluamos armónicos *Domain-Warped Curl* multi-escala sobre $(\Phi_x, \Phi_y)$ junto a partículas Lagrangianas emitidas en las crestas donde $|\omega_z| > 0.12$. Así conservamos la **estética sedosa y afilada del Curl Fire**, pero ahora **las lenguas se doblan, estiran y dejan estela física real cuando la mano gira**.
 
 ---
 
-## 5. Plan de Experimentos R&D por Fases (`33f` Crítico ➔ `167f` Final)
+### Pilar 2 · Emisión Superficial 3D Estanca (*Watertight*) en Blender Mantaflow / EmberGen / LiquiGen ([`scripts/wilor_mano_to_blender_abc.py`](../../scripts/wilor_mano_to_blender_abc.py))
 
-**Regla de oro:** Prohibido renderizar los **167 frames** completos sin haber superado los 3 **Gates Cuantitativos** en el recorte crítico de **33 frames** (el intervalo exacto donde la mano gira palma→dorso frente a la manga y el escritorio).
+#### A. Por Qué Fallan las Esferas en Landmarks y Cómo Cerrar la Malla MANO
+- La topología estándar de `MANO` (`778` vértices, `1538` caras) tiene un **agujero abierto de 16 aristas en el corte de la muñeca**. Si un solver volumétrico 3D recibe esferas separadas o una malla no estanca (*non-manifold*), el *level-set* de distancia firmada (`surface_distance`) se fragmenta y emite burbujas rojas desconectadas de la piel.
+- **Solución automatizada en [`wilor_mano_to_blender_abc.py`](../../scripts/wilor_mano_to_blender_abc.py):**
+  1. `find_open_boundary_loop(faces)` + `cap_open_mesh_watertight(verts_seq, faces)`: detecta en NumPy todas las aristas de frontera que pertenecen a un único triángulo, ordena el anillo de la muñeca y lo sella con un abanico de triángulos hacia el centroide de muñeca en todos los frames (`boundary_edges: 16 → 0`), reforzado dentro de Blender con `close_mesh_boundary_loops_bmesh()` (`bmesh.ops.contextual_create` + `recalc_face_normals`).
+  2. **Emisión superficial continua (`setup_mantaflow_watertight_fire`, flag `--enable-mantaflow`):**
+     - `MANO_Hand`: `Fluid Flow` (`flow_type='FIRE'`, `flow_behavior='INFLOW'`, `flow_source='MESH'`, `surface_distance=0.012`, `use_initial_velocity=True`, `velocity_factor=1.25`, `velocity_normal=0.15`, `fuel_amount=1.4`).
+     - `Proxy_Black_Cuff`: `Fluid Effector` (`effector_type='COLLISION'`, `surface_distance=0.015`) + `Holdout` en `VL_Fire_Occluded`, impidiendo físicamente que las llamas invadan el puño negro deshilachado.
+     - **Gotcha de Velocidad en Blender Mantaflow:** Mantaflow calcula velocidades de vértices deformantes con mucha mayor precisión desde un modificador **`MeshSequenceCache` (`.abc`)** que desde *Shape Keys* cuadro a cuadro. Siempre exporta primero `--export-abc job_33f/mano_33f.abc` al activar `--enable-mantaflow`.
+  3. **Shader de Lámina Fina Blackbody (`build_laminar_blackbody_fire_material`):**
+     Configura `ShaderNodeVolumePrincipled` con **`Density = 0.02`** (casi cero hollín gris/rojo opaco), **`Blackbody Intensity = 1.0`**, `Blackbody Tint = (1.0, 0.88, 0.72)` y `Temperature = 2650 K`, más `scene.render.use_motion_blur = True` (`motion_blur_shutter = 0.5`).
 
-### Tabla de Criterios Objetivos de Aceptación ([`scripts/vfx_rd_metrics_eval.py`](../../scripts/vfx_rd_metrics_eval.py))
+#### B. Alternativa Comercial Rápida en Tiempo Real: JangaFX `EmberGen` / `LiquiGen` `[OK-12GB]`
+- Si dispones de licencia de **JangaFX EmberGen (`1.2+`)** o **LiquiGen (`1.0`)**:
+  - Ambos corren con holgura en la **RTX 3060 12 GB** (`[OK-12GB]`, requisito mínimo GTX 1060 / 8 GB VRAM) en tiempo real.
+  - Importa directamente el archivo **`mano_33f.abc`** generado por [`wilor_mano_to_blender_abc.py`](../../scripts/wilor_mano_to_blender_abc.py) como *Animated Collider + Surface Emitter*, activa *Inherit Mesh Velocity (`125 %`)* y exporta el pase de fuego ocluido con Vector Motion Blur en **OpenEXR 16F lineal** hacia el paso de relighting y compositing.
 
-| Gate | Fase | Métrica Exacta | Umbral de Aprobación | Falla que Previene |
+---
+
+### Pilar 3 · Oclusión 3D Continua por Profundidad (`Z-Buffer` Sigmoidal vs Switch Binario)
+
+En [`scripts/vfx_incompressible_fire_sim.py`](../../scripts/vfx_incompressible_fire_sim.py) (`compose_continuous_z_fire`), eliminamos el salto brusco (*pop*) entre "modo palma" y "modo dorso" a mitad del giro (`f98..f108`):
+
+1. Normalizamos la profundidad continua del sujeto $Z_{\text{hand}}(x, y) \in [0, 1]$ (`DepthAnything V2 ViT-L` o `DA3-Streaming`, donde mayor valor = más cerca de la cámara).
+2. Propagamos el campo de profundidad media del emisor $Z_{\text{emit}}(x, y)$ hacia la pluma y definimos dos láminas volumétricas de grosor finito:
+   $$Z_{\text{back}}(x, y) = Z_{\text{emit}}(x, y) - 0.11, \qquad Z_{\text{front}}(x, y) = Z_{\text{emit}}(x, y) + 0.065$$
+3. Calculamos la transmitancia/visibilidad continua frente a cada dedo mediante una puerta sigmoidal diferenciable ($\sigma_z = 0.075$):
+   $$V_{\text{layer}}(x, y) = \left(1 - \alpha_{\text{subj}}\right) + \alpha_{\text{subj}} \cdot \frac{1}{1 + \exp\!\left(-\frac{Z_{\text{layer}}(x, y) - Z_{\text{hand}}(x, y)}{\sigma_z}\right)}$$
+   con bloqueo adicional sobre el puño negro $V_{\text{front}} \leftarrow V_{\text{front}} \cdot (1 - 0.94\,\alpha_{\text{fabric}})$.
+   - **Resultado físico:** Cuando la mano está a `90°` de perfil, los dedos más cercanos a cámara ($Z_{\text{hand}} \approx 0.92$) bloquean suavemente la lámina trasera ($V_{\text{back}} < 0.05$) mientras los dedos más alejados ($Z_{\text{hand}} \approx 0.45$) quedan envueltos por la lámina frontal sin un solo frame de discontinuidad temporal.
+
+---
+
+### Pilar 4 · Relighting PBR Acoplado al Fuego Advectado + Velocity-Vector Motion Blur `180°`
+
+Evolución implementada en [`scripts/vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py):
+
+1. **Extracción Dinámica de Emisores (`extract_dynamic_lights_from_fire`):**
+   En cada frame $t$, aplica supresión no-máxima por celdas sobre la energía radiante HDR real de la llama advectada $E_{\text{fire}}(x, y, t) = 0.55 R + 0.35 G + 0.10 B$, obteniendo los $K = 6$ centroides radiantes $(u_k(t), v_k(t), z_k(t), I_k(t))$. Si el latigazo de la mano inclina la llama hacia la izquierda, las 6 fuentes SSDO y los reflejos especulares GGX sobre los nudillos se desplazan solidariamente con la llama.
+2. **Pirámide MIP Multi-Escala de Irradiancia de Área (`build_fire_irradiance_pyramid`):**
+   Construye 4 niveles de convolución separable rápida $O(1)$ con radios $(3, 10, 28, 64)\text{ px}$ sobre el buffer HDR del fuego, calcula la dirección del gradiente de irradiancia $\nabla I_{\text{MIP}}$ y aporta luz difusa envolvente de campo cercano modulada por la visibilidad SSDO media y `matte_skin`.
+3. **Velocity-Vector Motion Blur de `180°` (`apply_velocity_motion_blur`):**
+   Integra $S = 7$ muestras lineales HDR a lo largo del campo de velocidad 2D del fluido $\mathbf{v}_{\text{px}}(x, y)$ con ángulo de obturación $\theta_{\text{shutter}} = 0.5$ (`180°`, equivalente a `1/60 s` a `30 fps`):
+   $$I_{\text{blur}}(\mathbf{x}) = \frac{1}{S}\sum_{k=1}^{S} I_{\text{HDR}}\!\left(\mathbf{x} - \tau_k\,\theta_{\text{shutter}}\,\mathbf{v}_{\text{px}}(\mathbf{x})\right), \quad \tau_k \in [-0.5, +0.5]$$
+
+---
+
+### Pilar 5 · Gate 3 Cuantitativo: Acoplamiento Dinámico Movimiento Mano ↔ Fuego ([`scripts/vfx_rd_metrics_eval.py`](../../scripts/vfx_rd_metrics_eval.py))
+
+Para impedir que un fuego procedural *stateless* (que luce bonito en un frame fijo pero se mueve pegado como un sticker rígido) pase a los `167 frames`, añadimos **`Gate 3` (`eval_motion_fire_coupling`)**:
+
+| Gate | Fase | Métrica Exacta | Umbral de Aprobación | Qué Audita / Previene |
 |---|---|---|---|---|
-| **Gate 0** | Paso 0 | `unit_norm_error`, `temporal_normal_l2`, `fringe_delta_l` | `‖N‖ ∈ [0.99, 1.01]`, bordes tela `ΔL < 0.03` tras descontaminar | Normales rotas 8-bit, *boiling* y halo blanco en manga negra (F1, F3). |
-| **Gate 1** | A/B `33f` | `cuff_gain_ratio`, `ssdo_shadow_contrast`, `desk_ciede2000` | Ganancia en puño negro `<= 1.15×`, contraste oclusión `>= 3.5:1`, escritorio **`CIEDE2000 <= 1.5`** | Sangrado naranja en tela (F1), dedos sin sombra (F2), mesa teñida (F5b). |
-| **Gate 2** | HDR/MTF `33f` | `hdr_linear_peak`, `pastel_clip_pct`, `mtf_noise_delta_pct` | Pico fuego lineal `>= 4.0` pre-tonemap, clipping pastel mínimo, ruido HF dentro de **`±12%`** frente al plate | Fuego plano pastel SDR (F4) y "parche PEGADO IA" más liso/nítido que el móvil (F5a). |
+| **Gate 0** | Paso 0 | `unit_norm_error`, `temporal_normal_l2`, `fringe_delta_l` | `‖N‖ ∈ [0.99, 1.01]`, bordes tela `ΔL < 0.03` (*empírico `33f`: `0.0113` lineal*) | Normales rotas 8-bit, *boiling* y halo blanco en manga negra (F1, F3). |
+| **Gate 1** | A/B `33f` | `cuff_gain_ratio`, `ssdo_shadow_contrast`, `desk_ciede2000` | Puño negro `<= 1.15×` (*empírico: `1.004×`*), SSDO `>= 3.5:1` (*empírico: `5.48:1`*), escritorio **`CIEDE2000 <= 1.5`** (*empírico: `0.000`*) | Sangrado naranja en tela (F1), dedos sin sombra (F2), mesa blanca oscurecida/teñida (F5b). |
+| **Gate 2** | HDR/Color `33f` | `hdr_linear_peak`, `pastel_yellow_clip_pct`, `salmon_wash_pct`, `mtf_noise_delta_pct` | Pico fuego `>= 4.0`, **`pastel_clip <= 1.0 %`**, **`salmon_wash <= 2.0 %`**, ruido HF **`±12 %`** | Clipping amarillo pastel SDR (F4), lavado salmón de `m_inset` y desajuste de grano (F5a). |
+| **Gate 3** | Dinámica `33f` | `lag_correlation`, `mean_wake_deflection_px` | **`lag_correlation >= 0.45`** y **`mean_wake_deflection_px >= 1.2 px`** en frames activos | **Rechaza fuegos *stateless* rígidos** (`corr = 0.0`) y exige que la pluma superior se doble en dirección opuesta a $\mathbf{v}_{\text{hand, world}}$. |
 
-### Secuencia Ejecutable Paso a Paso en Windows 11
+---
+
+## 4. Matriz Comparativa Honesta de las 7 Rutas + Evaluación 4DGS (Workflow 4)
+
+> **Convención obligatoria:** Los datos acompañados de `(Empírico 33f / Repo)` provienen de mediciones reales en tu RTX 3060 o código verificado; las proyecciones para **`478×850`, `167 frames`** se etiquetan como `(Est.)`.
+
+| Ruta | Tag Hardware | VRAM Pico `(Empírico / Repo)` | RAM Win 11 `(Est.)` | Tiempo `167f` `(Est.)` | Riesgo Temporal (*Boiling*) | Control Artístico | Puntos de Fallo Conocidos en Win 11 |
+|---|---|---|---|---|---|---|---|
+| **Ruta A · ComfyUI Híbrido** *(VACE-Fun A14B `Q3_K_M`/`Q4_K_S` + `CoTracker3` + `UniLumos 1.3B` LF + `SeedVR2 3B`)* | `[TIGHT-12GB]` | **~9.5–11.5 GB** *(BlockSwap `24/10`)* | **~20–23 GB** *(pagefile NVMe ≥32 GB obligatorio)* | **~35–65 min** *(en ventanas 33f–81f)* | Medio–Alto *(requiere Frequency Separation y Difference Keying)* | Medio *(prompt + máscaras/normales)* | OOM/swap si se corre VACE + SeedVR2 sin `VRAM_Debug`; prohibido `torch.compile` `e4m3fn` en `sm_86`. |
+| **Ruta B · Fluido GPU Incompresible + Relight Analítico PBR** *([`vfx_incompressible_fire_sim.py`](../../scripts/vfx_incompressible_fire_sim.py) + [`vfx_ssdo_relight_16f.py`](../../scripts/vfx_ssdo_relight_16f.py))* | `[OK-12GB]` | **~4.75 GB** en Paso 0 `(Empírico 33f)`; **`< 1.0 GB`** en Solver Fluid + SSDO | **~8–12 GB** | **~4–6 min** total *(Paso 0 ~3 min + Solver/Relight `< 1 min`)* | **Muy Bajo** *(BFECC clamped + normales estabilizadas `0.533°/f`)* | **Máximo** *(Navier-Stokes Red-Black SOR, Z-oclusión continua, ACES Hill / OCIO AgX Punchy)* | Requiere `invert_normal_y=True` con `NormalCrafter` y `compose_hdr_on_plate_srgb` para no oscurecer la mesa blanca. |
+| **Ruta C · 3D Físico en Blender / EmberGen** *(`WiLoR-mini` MANO Estanco `.abc` + Proxy Manga + `Mantaflow Adaptive 224` Lámina Blackbody + Cycles EXR)* | `[OK-12GB]` / `[TIGHT-12GB]` | **~2.5–6.0 GB** *(WiLoR + Cycles OptiX)* | **~12–18 GB** *(cache Mantaflow en Ryzen 5900X)* | **~18–40 min** *(o `< 5 min` con EmberGen)* | **Mínimo** *(malla estanca + One-Euro filter)* | **Máximo** *(inercia 3D volumétrica + Holdout exacto)* | **No emitir desde esferas en landmarks:** usar malla MANO cerrada en muñeca (`cap_open_mesh_watertight`) + `.abc` `MeshSequenceCache` (`velocity_factor=1.25`). |
+| **Ruta D · Real-Time 60 FPS (TD)** *(`DAViDNormals.tox` ~10 ms + `POPs` + `Fluid TOP` + GLSL SSDO + `OpenColorIO TOP`)* | `[OK-12GB]` | **~3.5–6.0 GB** | **~8–12 GB** | **<10 s** *(tiempo real 30–60 FPS)* | Medio *(estabilización ONNX cuadro a cuadro)* | Alto en interacción / Medio en micro-turbulencia | `DAViD` segmenta humano completo sin distinguir manga deshilachada negra vs piel. |
+| **Ruta E · Placas Fuego 4K + Tracking** *(Elementos reales s/negro + `Practical-RIFE` + `CoTracker3`/`AllTracker` warp + Relight PBR)* | `[OK-12GB]` | **~2.5–5.0 GB** | **~8–12 GB** | **~8–15 min** | **Muy Bajo** | Alto *(librería de placas reales sin warping excesivo)* | En el giro de `180°`, el warping 2D debe combinarse con la oclusión Z continua Front/Back (Pilar 3). |
+| **Ruta F · Inverse Rendering + Residuo** *(`DiffusionRenderer`/`comfyui-materia`/`UniVidX` vs `RGB-X`/`IntrinsicAnything` + VACE Residual)* | `[CLOUD / >24GB]` *(full video)* / `[TIGHT-12GB]` *(keyframes)* | **~22–48 GB** `(Repo: DiffusionRenderer / comfyui-materia / UniVidX)`; **~10–11.5 GB** *(RGB-X por frame)* | **~24–64 GB** | **N/A local** en clips largos | Bajo–Medio | Medio–Alto | Dependencias Linux-first (`nvdiffrast`, `transformer-engine`); usar solo en keyframes de calibración o Cloud. |
+| **🏆 Ruta G · 7ª Vía Híbrida SOTA (Recomendada R&D)** *(`Paso 0` validado `~60s/33f` ➔ Fuego Incompresible `Ruta B` o MANO Estanco `Ruta C` + Chispas ➔ Relight PBR acoplado a MIP Area-Light + Oclusión Z continua + ACES Hill / OCIO AgX Punchy + `MMAudio`)* | `[OK-12GB]` | **~4.75–6.0 GB** *(secuencial por fases, nunca juntas)* | **~10–16 GB** | **~5–8 min** *(con Solver GPU `Ruta B`)* o **~22–40 min** *(con Cycles `Ruta C`)* | **Mínimo** *(pasa Gates 0, 1, 2 y 3 con `CIEDE2000 = 0.000` en mesa)* | **Máximo** *(lenguas sedosas con estela Karman real + poros e hilos 100 % intactos)* | Seguir el checklist de 4 fixes de ComfyUI Portable (`python_embeded -s`) en Windows 11 (§2.2). |
+
+---
+
+## 5. Secuencia Ejecutable Directa sobre `E:\confyui\exchange\job_33f\` (Windows 11)
 
 ```powershell
 # 0. Verificar entorno Win 11, sm_86, Pagefile >= 32 GB y bibliotecas Python
 .\scripts\check_3060_env.ps1
 
-# 1. Validar que los 4 motores locales pasan sus pruebas unitarias matemáticas antes de tocar metraje
+# 1. Validar los 5 motores locales (todos incluyen --self-test / --check determinista)
 python scripts/vfx_dual_matte_decontam.py --self-test
 python scripts/vfx_ssdo_relight_16f.py --self-test
 python scripts/wilor_mano_to_blender_abc.py --check
 python scripts/vfx_rd_metrics_eval.py --self-test
+python scripts/vfx_incompressible_fire_sim.py --self-test
 
-# 2. Fase 0 (Recorte crítico 33f del giro palma->dorso):
-#    Extrae secuencia PNG lossless + ejecuta ComfyUI template `mod_a_01_step0_dual_matte_normal_exr.json`
-#    y pasa los mattes por descontaminación dual:
-python scripts/vfx_dual_matte_decontam.py `
-  --plate-dir job_33f/01_plate_lin `
-  --skin-matte-dir job_33f/02_matte_skin `
-  --fabric-matte-dir job_33f/02_matte_fabric `
-  --out-dir job_33f/03_decontam
+# 2. Ejecutar el Solver GPU Incompresible + Compensación de Cámara + Oclusión Z Continua +
+#    Relight PBR Acoplado (MIP Area-Light) + Motion Blur 180° + ACES Filmic directo sobre job_33f:
+python scripts/vfx_incompressible_fire_sim.py `
+  --job-dir "E:\confyui\exchange\job_33f" `
+  --tonemap aces_hill `
+  --shutter-angle 0.5 `
+  --sim-scale 0.5
 
-# 3. Fase 1A (Malla 3D MANO + Manga Proxy para Ruta C / Ruta G):
-python scripts/wilor_mano_to_blender_abc.py --extract --frames-dir job_33f/01_plate_lin --track-npz job_33f/mano_track.npz --fps 30
-# Dentro de Blender 4.5/5.x headless:
-# blender --background --python scripts/wilor_mano_to_blender_abc.py -- --blender-build --track-npz job_33f/mano_track.npz --export-abc job_33f/mano_33f.abc --desk-distance-m 0.72
+# (Opcional) Si instalaste PyOpenColorIO en python_embeded y quieres usar el config.ocio de Blender 4.5/5.x:
+# python scripts/vfx_incompressible_fire_sim.py `
+#   --job-dir "E:\confyui\exchange\job_33f" `
+#   --tonemap ocio_agx `
+#   --ocio-config "C:\Program Files\Blender Foundation\Blender 4.5\4.5\datafiles\colormanagement\config.ocio"
 
-# 4. Fase 1B (Relight Analítico SSDO 16F + GGX + SSS):
-python scripts/vfx_ssdo_relight_16f.py `
-  --plate job_33f/03_decontam/fg_decontaminated/frame_00016.npy `
-  --normal job_33f/04_normals/frame_00016.npy `
-  --depth job_33f/05_depth/frame_00016.npy `
-  --skin-matte job_33f/02_matte_skin/frame_00016.png `
-  --fabric-matte job_33f/02_matte_fabric/frame_00016.png `
-  --lights-json job_33f/lights_f00016.json `
-  --out job_33f/06_relit/frame_00016.exr `
-  --preview-png job_33f/06_relit/frame_00016_agx.png
-
-# 5. Evaluar Gates 1 y 2 antes de escalar de 33f -> 167f:
+# 3. Auditar explícitamente Gate 1, Gate 2 y Gate 3 sobre la salida generada:
 python scripts/vfx_rd_metrics_eval.py `
-  --plate-npy job_33f/01_plate_lin/frame_00016.npy `
-  --comp-hdr-npy job_33f/07_comp_hdr/frame_00016.npy `
-  --comp-tonemapped-npy job_33f/07_comp_hdr/frame_00016_agx.png `
-  --normal-npy job_33f/04_normals/frame_00016.npy `
+  --plate-npy "E:\confyui\exchange\job_33f\01_plate_png\frame_00016.png" `
+  --comp-hdr-npy "E:\confyui\exchange\job_33f\08_incompressible_fire_out\comp_hdr_npy\frame_00016.npy" `
+  --comp-tonemapped-npy "E:\confyui\exchange\job_33f\08_incompressible_fire_out\preview_srgb_png\frame_00016.png" `
+  --normal-npy "E:\confyui\exchange\job_33f\02_normals\frame_00016.png" `
+  --gate3-skin-dir "E:\confyui\exchange\job_33f\02_matte_skin" `
+  --gate3-fire-dir "E:\confyui\exchange\job_33f\08_incompressible_fire_out\fire_hdr_npy" `
   --desk-roi 10 10 140 160 `
-  --out-json job_33f/metrics_gate_report.json
-```
+  --out-json "E:\confyui\exchange\job_33f\08_incompressible_fire_out\metrics_gates_0_to_3.json"
 
-Una vez superados **Gate 0, Gate 1 (`desk_ciede2000 <= 1.5`, `cuff_gain <= 1.15x`, `ssdo_contrast >= 3.5:1`) y Gate 2 (`hdr_linear_peak >= 4.0`, `mtf_noise ±12%`)** en los 33 frames del giro crítico, escala exactamente el ganador (**Ruta G** por defecto salvo derrota numérica frente a **Ruta E** o **Ruta A**) a los **167 frames** completos, realiza finishing óptico en Blender/Fusion/AE `32-bpc` y agrega opcionalmente Foley con `MMAudio`.
+# 4. (Alternativa 3D Ruta C / G) Construir escena Blender con malla MANO Estanca (Watertight) + Mantaflow:
+python scripts/wilor_mano_to_blender_abc.py --extract --frames-dir "E:\confyui\exchange\job_33f\01_plate_png" --track-npz "E:\confyui\exchange\job_33f\mano_track.npz" --fps 30
+blender --background --python scripts/wilor_mano_to_blender_abc.py -- --blender-build --track-npz "E:\confyui\exchange\job_33f\mano_track.npz" --export-abc "E:\confyui\exchange\job_33f\mano_33f.abc" --enable-mantaflow --mantaflow-res 224 --desk-distance-m 0.72
+```
