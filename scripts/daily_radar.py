@@ -125,6 +125,14 @@ WATCHLIST_REPOS: list[str] = [
     "spiritform/comfy-matanyone2",
     "taichi-dev/taichi",
     "tum-pbs/PhiFlow",
+    "kevinraymond/touchdesigner-effects",
+    "Rikiya89/glsl_daily_practice",
+    "torinmb/mediapipe-touchdesigner",
+    "DarienBrito/TDXDepthCamMerger",
+    "forkni/cuda-link",
+    "Kosinkadink/ComfyUI-VideoHelperSuite",
+    "kijai/ComfyUI-KJNodes",
+    "city96/ComfyUI-GGUF",
 ]
 
 HF_PIPELINES: list[tuple[str, str]] = [

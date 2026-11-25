@@ -4,6 +4,21 @@ Este archivo registra hitos iniciales y cada hallazgo agregado por el pipeline d
 
 ---
 
+## 2026-11-25 — Pilar 11: Usos Prácticos TouchDesigner, Distorsiones Analógicas, Instalaciones & Checklist ComfyUI
+
+- **Nuevo Documento ([`docs/11-usos-practicos-touchdesigner-vfx.md`](../docs/11-usos-practicos-touchdesigner-vfx.md)):** 8 recetas reproducibles calibradas para **RTX 3060 12 GB (`sm_86`) + Ryzen 9 5900X + 32 GB RAM + Windows 11**:
+  1. **Espejo Analógico CRT / VHS + Sangrado NTSC (`GLSL TOP` 16F)** con shader GLSL completo (`sTD2DInputs[0]`, `uTD2DInfos[0].res.zw`, `TDOutputSwizzle`), `kevinraymond/touchdesigner-effects`, `aaronmylespereira/TD-Toxes` y nota de webcam compartida vía Spout2/OBS.
+  2. **Feedback Líquido + Optical Flow + Datamosh en Webcam** (`Displace TOP` `0.018`, `Level TOP` `0.965` y truco `Threshold TOP` sobre magnitud de flujo).
+  3. **Ecos Temporales al BPM + Slit-Scan con Oclusión Real** (`temporal_resonator.tox` + `DAViDHuman.tox`, alternativa nativa `Texture 3D TOP (16F)` + `Time Machine TOP` + `Count CHOP`).
+  4. **Silueta de Partículas `POPs` + Raymarching GLSL con Manos (`MediaPipe`)** (`torinmb/mediapipe-touchdesigner` + `Filter CHOP` + *pinch* `Math/Logic CHOP` + `CHOP to TOP` 32F hacia `Rikiya89/glsl_daily_practice` / `POPX v1.5.0`).
+  5. **Relighting PBR en Vivo sobre Webcam (`DAViD Normals` + `OCIO` + `SSDO`)** hacia OBS (`obs-spout2-plugin`).
+  6. **Instalación Multicámara (`Orbbec / Kinect / OAK-D`) + `Web Render TOP`** (`DarienBrito/TDXDepthCamMerger`, `TouchDesigner/TDOAK` `decode -> fill`, regla `User Cache Directory` distinto y `TDMCP`/`touchdesigner-bridge-mcp`).
+  7. **Puente Zero-Copy `TD ↔ Python IA`** (`forkni/cuda-link` en TD `2025.32820+` Win 11 WDDM + `StreamDiffusionTD`).
+  8. **Workflows ComfyUI / E-Commerce / VFX & Checklist Anti-Nodos-Rojos** (`VideoHelperSuite`, `KJNodes`, `ComfyUI-GGUF`, gotchas `$env:AIOHTTP_NOSENDFILE = "1"` y `Workflow -> Export (API)`, más clasificación de 7 proyectos de producción).
+- **Sincronización & Radar:** Actualizados [`README.md`](../README.md), [`AGENTS.md`](../AGENTS.md), [`CLAUDE.md`](../CLAUDE.md), [`GEMINI.md`](../GEMINI.md), [`skills/video-vfx-3060-12gb-local/SKILL.md`](../skills/video-vfx-3060-12gb-local/SKILL.md) y añadidos 8 repos verificados a `WATCHLIST_REPOS` en [`scripts/daily_radar.py`](../scripts/daily_radar.py).
+
+---
+
 ## 2026-11-19 (V6-C Cinema Suite) — Especificación Maestra Hand Fire PBR (`HAND_FIRE_PBR_V6C_SPEC.md`)
 
 - **Nuevo Documento Técnico de Referencia ([`docs/modules/HAND_FIRE_PBR_V6C_SPEC.md`](../docs/modules/HAND_FIRE_PBR_V6C_SPEC.md)):**
