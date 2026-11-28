@@ -1,13 +1,13 @@
 {
-  "generated_at_utc": "2026-11-27 20:33:43",
-  "since_date": "2026-11-20",
+  "generated_at_utc": "2026-11-28 19:26:37",
+  "since_date": "2026-11-21",
   "lookback_days": 7,
   "watchlist": [
     {
       "full_name": "mrdoob/three.js",
       "url": "https://github.com/mrdoob/three.js",
-      "stars": 119557,
-      "pushed_at": "2026-11-27",
+      "stars": 119642,
+      "pushed_at": "2026-11-28",
       "latest_release": "r187",
       "release_date": "2026-10-30",
       "license": "MIT"
@@ -15,7 +15,7 @@
     {
       "full_name": "OpenCut-app/OpenCut",
       "url": "https://github.com/OpenCut-app/OpenCut",
-      "stars": 99504,
+      "stars": 99528,
       "pushed_at": "2026-09-24",
       "latest_release": "v0.3.0",
       "release_date": "2026-04-15",
@@ -24,8 +24,8 @@
     {
       "full_name": "storytold/photocraft",
       "url": "https://github.com/storytold/photocraft",
-      "stars": 81854,
-      "pushed_at": "2026-11-27",
+      "stars": 81972,
+      "pushed_at": "2026-11-28",
       "latest_release": "v0.23.1",
       "release_date": "2026-11-12",
       "license": "Apache-2.0"
@@ -33,8 +33,8 @@
     {
       "full_name": "remotion-dev/remotion",
       "url": "https://github.com/remotion-dev/remotion",
-      "stars": 76155,
-      "pushed_at": "2026-11-27",
+      "stars": 76328,
+      "pushed_at": "2026-11-28",
       "latest_release": "v4.0.547",
       "release_date": "2026-11-24",
       "license": "NOASSERTION"
@@ -42,7 +42,7 @@
     {
       "full_name": "juliangarnier/anime",
       "url": "https://github.com/juliangarnier/anime",
-      "stars": 75141,
+      "stars": 75203,
       "pushed_at": "2026-11-02",
       "latest_release": "v4.5.0",
       "release_date": "2026-06-22",
@@ -51,7 +51,7 @@
     {
       "full_name": "mifi/lossless-cut",
       "url": "https://github.com/mifi/lossless-cut",
-      "stars": 46481,
+      "stars": 46505,
       "pushed_at": "2026-11-25",
       "latest_release": "v3.70.2",
       "release_date": "2026-10-28",
@@ -60,7 +60,7 @@
     {
       "full_name": "storytold/artcraft",
       "url": "https://github.com/storytold/artcraft",
-      "stars": 42528,
+      "stars": 42601,
       "pushed_at": "2026-11-27",
       "latest_release": "artcraft-v0.41.1",
       "release_date": "2026-11-07",
@@ -69,8 +69,8 @@
     {
       "full_name": "ahujasid/mcp-for-blender",
       "url": "https://github.com/ahujasid/mcp-for-blender",
-      "stars": 36023,
-      "pushed_at": "2026-11-26",
+      "stars": 36137,
+      "pushed_at": "2026-11-28",
       "latest_release": "-",
       "release_date": "-",
       "license": "MIT"
@@ -78,7 +78,7 @@
     {
       "full_name": "greensock/GSAP",
       "url": "https://github.com/greensock/GSAP",
-      "stars": 31375,
+      "stars": 31419,
       "pushed_at": "2026-11-04",
       "latest_release": "-",
       "release_date": "-",
@@ -87,7 +87,7 @@
     {
       "full_name": "taichi-dev/taichi",
       "url": "https://github.com/taichi-dev/taichi",
-      "stars": 28479,
+      "stars": 28481,
       "pushed_at": "2026-10-05",
       "latest_release": "v1.7.4",
       "release_date": "2025-07-31",
@@ -96,7 +96,7 @@
     {
       "full_name": "resemble-ai/chatterbox",
       "url": "https://github.com/resemble-ai/chatterbox",
-      "stars": 28165,
+      "stars": 28177,
       "pushed_at": "2026-11-04",
       "latest_release": "v0.1.2",
       "release_date": "2025-06-13",
@@ -105,7 +105,7 @@
     {
       "full_name": "m-bain/whisperX",
       "url": "https://github.com/m-bain/whisperX",
-      "stars": 25849,
+      "stars": 26125,
       "pushed_at": "2026-11-21",
       "latest_release": "v3.8.6",
       "release_date": "2026-05-25",
@@ -114,7 +114,7 @@
     {
       "full_name": "motion-canvas/motion-canvas",
       "url": "https://github.com/motion-canvas/motion-canvas",
-      "stars": 20370,
+      "stars": 20485,
       "pushed_at": "2026-07-02",
       "latest_release": "v3.17.2",
       "release_date": "2024-12-14",
@@ -123,7 +123,7 @@
     {
       "full_name": "KlingAIResearch/LivePortrait",
       "url": "https://github.com/KlingAIResearch/LivePortrait",
-      "stars": 19599,
+      "stars": 19601,
       "pushed_at": "2026-06-01",
       "latest_release": "-",
       "release_date": "-",
@@ -132,8 +132,8 @@
     {
       "full_name": "storytold/filmcraft",
       "url": "https://github.com/storytold/filmcraft",
-      "stars": 19118,
-      "pushed_at": "2026-11-27",
+      "stars": 19166,
+      "pushed_at": "2026-11-28",
       "latest_release": "v0.20.1",
       "release_date": "2026-11-12",
       "license": "Apache-2.0"
@@ -141,7 +141,7 @@
     {
       "full_name": "Wan-Video/Wan2.2",
       "url": "https://github.com/Wan-Video/Wan2.2",
-      "stars": 18977,
+      "stars": 18994,
       "pushed_at": "2026-09-21",
       "latest_release": "-",
       "release_date": "-",
@@ -150,8 +150,8 @@
     {
       "full_name": "storytold/lightcraft",
       "url": "https://github.com/storytold/lightcraft",
-      "stars": 16480,
-      "pushed_at": "2026-11-27",
+      "stars": 16528,
+      "pushed_at": "2026-11-28",
       "latest_release": "v0.21.1",
       "release_date": "2026-11-12",
       "license": "Apache-2.0"
@@ -159,7 +159,7 @@
     {
       "full_name": "facebookresearch/vggt",
       "url": "https://github.com/facebookresearch/vggt",
-      "stars": 14688,
+      "stars": 14692,
       "pushed_at": "2026-05-19",
       "latest_release": "-",
       "release_date": "-",
@@ -168,8 +168,8 @@
     {
       "full_name": "colmap/colmap",
       "url": "https://github.com/colmap/colmap",
-      "stars": 13313,
-      "pushed_at": "2026-11-27",
+      "stars": 13320,
+      "pushed_at": "2026-11-28",
       "latest_release": "4.2.1",
       "release_date": "2026-09-29",
       "license": "NOASSERTION"
@@ -177,7 +177,7 @@
     {
       "full_name": "facebookresearch/sam3",
       "url": "https://github.com/facebookresearch/sam3",
-      "stars": 12419,
+      "stars": 12423,
       "pushed_at": "2026-11-17",
       "latest_release": "-",
       "release_date": "-",
@@ -186,7 +186,7 @@
     {
       "full_name": "deepbeepmeep/WanGP",
       "url": "https://github.com/deepbeepmeep/WanGP",
-      "stars": 12322,
+      "stars": 12353,
       "pushed_at": "2026-11-26",
       "latest_release": "manager-v0.1.21",
       "release_date": "2026-11-26",
@@ -195,7 +195,7 @@
     {
       "full_name": "Lightricks/LTX-2",
       "url": "https://github.com/Lightricks/LTX-2",
-      "stars": 10437,
+      "stars": 10446,
       "pushed_at": "2026-11-24",
       "latest_release": "v1.6.3",
       "release_date": "2026-11-24",
@@ -204,8 +204,8 @@
     {
       "full_name": "storytold/effectcraft",
       "url": "https://github.com/storytold/effectcraft",
-      "stars": 9274,
-      "pushed_at": "2026-11-27",
+      "stars": 9313,
+      "pushed_at": "2026-11-28",
       "latest_release": "v0.25.1",
       "release_date": "2026-11-23",
       "license": "Apache-2.0"
@@ -213,7 +213,7 @@
     {
       "full_name": "kijai/ComfyUI-WanVideoWrapper",
       "url": "https://github.com/kijai/ComfyUI-WanVideoWrapper",
-      "stars": 6839,
+      "stars": 6840,
       "pushed_at": "2026-11-13",
       "latest_release": "-",
       "release_date": "-",
@@ -222,7 +222,7 @@
     {
       "full_name": "ByteDance-Seed/Depth-Anything-3",
       "url": "https://github.com/ByteDance-Seed/Depth-Anything-3",
-      "stars": 6750,
+      "stars": 6752,
       "pushed_at": "2026-07-27",
       "latest_release": "-",
       "release_date": "-",
@@ -231,8 +231,8 @@
     {
       "full_name": "WyattBlue/auto-editor",
       "url": "https://github.com/WyattBlue/auto-editor",
-      "stars": 6184,
-      "pushed_at": "2026-11-27",
+      "stars": 6202,
+      "pushed_at": "2026-11-28",
       "latest_release": "31.10.0",
       "release_date": "2026-11-23",
       "license": "Unlicense"
@@ -249,7 +249,7 @@
     {
       "full_name": "Tencent-Hunyuan/HunyuanVideo-1.5",
       "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5",
-      "stars": 4620,
+      "stars": 4623,
       "pushed_at": "2026-04-10",
       "latest_release": "-",
       "release_date": "-",
@@ -258,8 +258,8 @@
     {
       "full_name": "storytold/soundcraft",
       "url": "https://github.com/storytold/soundcraft",
-      "stars": 4588,
-      "pushed_at": "2026-11-27",
+      "stars": 4608,
+      "pushed_at": "2026-11-28",
       "latest_release": "v0.20.1",
       "release_date": "2026-11-12",
       "license": "Apache-2.0"
@@ -267,10 +267,10 @@
     {
       "full_name": "samuelgursky/davinci-resolve-mcp",
       "url": "https://github.com/samuelgursky/davinci-resolve-mcp",
-      "stars": 4458,
-      "pushed_at": "2026-11-27",
-      "latest_release": "v5.7.0",
-      "release_date": "2026-11-27",
+      "stars": 4474,
+      "pushed_at": "2026-11-28",
+      "latest_release": "v5.7.3",
+      "release_date": "2026-11-28",
       "license": "MIT"
     },
     {
@@ -285,7 +285,7 @@
     {
       "full_name": "kijai/ComfyUI-KJNodes",
       "url": "https://github.com/kijai/ComfyUI-KJNodes",
-      "stars": 3501,
+      "stars": 3505,
       "pushed_at": "2026-11-27",
       "latest_release": "-",
       "release_date": "-",
@@ -303,7 +303,7 @@
     {
       "full_name": "numz/ComfyUI-SeedVR2_VideoUpscaler",
       "url": "https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler",
-      "stars": 3006,
+      "stars": 3010,
       "pushed_at": "2026-11-26",
       "latest_release": "v2.5.23",
       "release_date": "2025-12-24",
@@ -312,7 +312,7 @@
     {
       "full_name": "torinmb/mediapipe-touchdesigner",
       "url": "https://github.com/torinmb/mediapipe-touchdesigner",
-      "stars": 2921,
+      "stars": 2922,
       "pushed_at": "2026-11-06",
       "latest_release": "v0.6.1",
       "release_date": "2026-11-06",
@@ -321,7 +321,7 @@
     {
       "full_name": "Lightricks/LTX-Desktop",
       "url": "https://github.com/Lightricks/LTX-Desktop",
-      "stars": 2348,
+      "stars": 2355,
       "pushed_at": "2026-11-23",
       "latest_release": "v1.3.3",
       "release_date": "2026-11-23",
@@ -330,7 +330,7 @@
     {
       "full_name": "hkchengrex/MMAudio",
       "url": "https://github.com/hkchengrex/MMAudio",
-      "stars": 2333,
+      "stars": 2336,
       "pushed_at": "2026-02-23",
       "latest_release": "v0.1",
       "release_date": "2024-12-07",
@@ -339,7 +339,7 @@
     {
       "full_name": "yyfz/Pi3",
       "url": "https://github.com/yyfz/Pi3",
-      "stars": 2275,
+      "stars": 2277,
       "pushed_at": "2026-11-18",
       "latest_release": "-",
       "release_date": "-",
@@ -357,7 +357,7 @@
     {
       "full_name": "tum-pbs/PhiFlow",
       "url": "https://github.com/tum-pbs/PhiFlow",
-      "stars": 1959,
+      "stars": 1960,
       "pushed_at": "2026-07-16",
       "latest_release": "3.4.0",
       "release_date": "2025-08-02",
@@ -366,7 +366,7 @@
     {
       "full_name": "Kosinkadink/ComfyUI-VideoHelperSuite",
       "url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite",
-      "stars": 1939,
+      "stars": 1940,
       "pushed_at": "2026-11-24",
       "latest_release": "-",
       "release_date": "-",
@@ -375,7 +375,7 @@
     {
       "full_name": "Off-World-Live/obs-spout2-plugin",
       "url": "https://github.com/Off-World-Live/obs-spout2-plugin",
-      "stars": 1134,
+      "stars": 1136,
       "pushed_at": "2026-10-29",
       "latest_release": "1.15.0",
       "release_date": "2026-10-29",
@@ -384,8 +384,8 @@
     {
       "full_name": "rive-app/rive-wasm",
       "url": "https://github.com/rive-app/rive-wasm",
-      "stars": 1040,
-      "pushed_at": "2026-11-27",
+      "stars": 1039,
+      "pushed_at": "2026-11-28",
       "latest_release": "2.55.1",
       "release_date": "2026-11-23",
       "license": "MIT"
@@ -402,8 +402,8 @@
     {
       "full_name": "hetpatel-11/Adobe_Premiere_Pro_MCP",
       "url": "https://github.com/hetpatel-11/Adobe_Premiere_Pro_MCP",
-      "stars": 951,
-      "pushed_at": "2026-11-19",
+      "stars": 954,
+      "pushed_at": "2026-11-28",
       "latest_release": "v1.2.11",
       "release_date": "2026-10-24",
       "license": "MIT"
@@ -411,7 +411,7 @@
     {
       "full_name": "IceClear/SeedVR2",
       "url": "https://github.com/IceClear/SeedVR2",
-      "stars": 947,
+      "stars": 948,
       "pushed_at": "2026-01-27",
       "latest_release": "-",
       "release_date": "-",
@@ -420,7 +420,7 @@
     {
       "full_name": "Dakkshin/after-effects-mcp",
       "url": "https://github.com/Dakkshin/after-effects-mcp",
-      "stars": 943,
+      "stars": 946,
       "pushed_at": "2026-04-01",
       "latest_release": "-",
       "release_date": "-",
@@ -447,8 +447,8 @@
     {
       "full_name": "storytold/texturecraft",
       "url": "https://github.com/storytold/texturecraft",
-      "stars": 768,
-      "pushed_at": "2026-11-27",
+      "stars": 775,
+      "pushed_at": "2026-11-28",
       "latest_release": "v0.6.1",
       "release_date": "2026-11-12",
       "license": "Apache-2.0"
@@ -457,43 +457,43 @@
       "full_name": "8beeeaaat/touchdesigner-mcp",
       "url": "https://github.com/8beeeaaat/touchdesigner-mcp",
       "stars": 642,
-      "pushed_at": "2026-10-31",
-      "latest_release": "v2.2.0",
-      "release_date": "2026-10-30",
+      "pushed_at": "2026-11-28",
+      "latest_release": "v2.3.0",
+      "release_date": "2026-11-28",
       "license": "MIT"
     },
     {
       "full_name": "leancoderkavy/premiere-pro-mcp",
       "url": "https://github.com/leancoderkavy/premiere-pro-mcp",
-      "stars": 596,
-      "pushed_at": "2026-11-27",
+      "stars": 599,
+      "pushed_at": "2026-11-28",
       "latest_release": "v1.31.0",
       "release_date": "2026-11-19",
       "license": "MIT"
     },
     {
+      "full_name": "storytold/anicraft",
+      "url": "https://github.com/storytold/anicraft",
+      "stars": 559,
+      "pushed_at": "2026-11-28",
+      "latest_release": "v0.3.0",
+      "release_date": "2026-11-28",
+      "license": "Apache-2.0"
+    },
+    {
       "full_name": "cvlab-kaist/VideoMaMa",
       "url": "https://github.com/cvlab-kaist/VideoMaMa",
-      "stars": 558,
+      "stars": 557,
       "pushed_at": "2026-10-21",
       "latest_release": "-",
       "release_date": "-",
       "license": "NOASSERTION"
     },
     {
-      "full_name": "storytold/anicraft",
-      "url": "https://github.com/storytold/anicraft",
-      "stars": 550,
-      "pushed_at": "2026-11-27",
-      "latest_release": "v0.2.1",
-      "release_date": "2026-11-12",
-      "license": "Apache-2.0"
-    },
-    {
       "full_name": "storytold/materialcraft",
       "url": "https://github.com/storytold/materialcraft",
-      "stars": 457,
-      "pushed_at": "2026-11-27",
+      "stars": 462,
+      "pushed_at": "2026-11-28",
       "latest_release": "v0.4.1",
       "release_date": "2026-11-12",
       "license": "Apache-2.0"
@@ -519,7 +519,7 @@
     {
       "full_name": "Comfy-Org/comfy-mcp",
       "url": "https://github.com/Comfy-Org/comfy-mcp",
-      "stars": 378,
+      "stars": 381,
       "pushed_at": "2026-11-26",
       "latest_release": "v0.11.0",
       "release_date": "2026-11-16",
@@ -562,18 +562,9 @@
       "license": "Custom"
     },
     {
-      "full_name": "dylanroscover/Embody",
-      "url": "https://github.com/dylanroscover/Embody",
-      "stars": 225,
-      "pushed_at": "2026-11-26",
-      "latest_release": "v6.3.8",
-      "release_date": "2026-11-20",
-      "license": "MIT"
-    },
-    {
       "full_name": "kumoproductions/mcp-aftereffects",
       "url": "https://github.com/kumoproductions/mcp-aftereffects",
-      "stars": 197,
+      "stars": 198,
       "pushed_at": "2026-10-23",
       "latest_release": "v0.3.2",
       "release_date": "2026-10-16",
@@ -591,7 +582,7 @@
     {
       "full_name": "royshil/obs-mcp",
       "url": "https://github.com/royshil/obs-mcp",
-      "stars": 172,
+      "stars": 173,
       "pushed_at": "2025-08-26",
       "latest_release": "-",
       "release_date": "-",
@@ -600,7 +591,7 @@
     {
       "full_name": "TouchDesigner/TDMCP",
       "url": "https://github.com/TouchDesigner/TDMCP",
-      "stars": 128,
+      "stars": 129,
       "pushed_at": "2026-11-16",
       "latest_release": "1.1.58",
       "release_date": "2026-11-15",
@@ -646,7 +637,7 @@
       "full_name": "Code2Collapse/ComfyUI-CustomNodePacks",
       "url": "https://github.com/Code2Collapse/ComfyUI-CustomNodePacks",
       "stars": 59,
-      "pushed_at": "2026-11-27",
+      "pushed_at": "2026-11-28",
       "latest_release": "v2.2.0",
       "release_date": "2026-11-23",
       "license": "Apache-2.0"
@@ -767,139 +758,144 @@
       "latest_release": "-",
       "release_date": "-",
       "license": "Apache-2.0"
+    },
+    {
+      "full_name": "dylanroscover/Embody",
+      "url": "https://github.com/dylanroscover/Embody",
+      "error": "HTTP Error 404: Not Found"
     }
   ],
   "topics": {
     "IA Video Local & ComfyUI": [
       {
-        "full_name": "triXope/ComfyUI-triXope",
-        "url": "https://github.com/triXope/ComfyUI-triXope",
-        "stars": 64,
-        "pushed_at": "2026-11-27",
-        "description": "A collection of custom built ComfyUI nodes designed for film production pipelines.",
-        "license": "Ver repo"
+        "full_name": "OrsoEric/HOWTO-ComfyUI",
+        "url": "https://github.com/OrsoEric/HOWTO-ComfyUI",
+        "stars": 45,
+        "pushed_at": "2026-11-28",
+        "description": "This repo documents my workflows and stack to run comfy ui GenANI assist under windows",
+        "license": "BSD-3-Clause"
       },
       {
-        "full_name": "alisson-anjos/ComfyUI-H3-Text-Encoders",
-        "url": "https://github.com/alisson-anjos/ComfyUI-H3-Text-Encoders",
-        "stars": 17,
-        "pushed_at": "2026-11-27",
-        "description": "",
-        "license": "GPL-3.0"
-      },
-      {
-        "full_name": "fblissjr/ComfyUI-h3-explorations",
-        "url": "https://github.com/fblissjr/ComfyUI-h3-explorations",
-        "stars": 18,
-        "pushed_at": "2026-11-27",
-        "description": "my personal tinkering and research hub for the minimax H3 ecosystem",
+        "full_name": "mrbizarro/Phosphene",
+        "url": "https://github.com/mrbizarro/Phosphene",
+        "stars": 503,
+        "pushed_at": "2026-11-28",
+        "description": "Phosphene is a free, open-source Mac app for making AI videos, pictures, speech and songs offline. Run LTX-2.5 and MiniMax H3 (Hailuo) local",
         "license": "MIT"
       },
       {
-        "full_name": "Comfy-Org/ComfyUI_frontend",
-        "url": "https://github.com/Comfy-Org/ComfyUI_frontend",
-        "stars": 2140,
-        "pushed_at": "2026-11-27",
-        "description": "Official front-end implementation of ComfyUI",
-        "license": "GPL-3.0"
+        "full_name": "WASasquatch/was-node-suite-comfyui",
+        "url": "https://github.com/WASasquatch/was-node-suite-comfyui",
+        "stars": 1905,
+        "pushed_at": "2026-11-28",
+        "description": "WAS-NS v3 Reborn; Tools for image processing, filters, masking, text, logic, numbers, latents, files, 3D scenes, and animation.",
+        "license": "MIT"
       },
       {
-        "full_name": "jbrick2070/ComfyUI-OldTimeRadio",
-        "url": "https://github.com/jbrick2070/ComfyUI-OldTimeRadio",
+        "full_name": "lonecatone23/ComfyUI_LC_AV_nodes",
+        "url": "https://github.com/lonecatone23/ComfyUI_LC_AV_nodes",
         "stars": 16,
-        "pushed_at": "2026-11-27",
+        "pushed_at": "2026-11-28",
         "description": "",
         "license": "MIT"
-      },
-      {
-        "full_name": "jplenio/Plenio-Music-Production-System",
-        "url": "https://github.com/jplenio/Plenio-Music-Production-System",
-        "stars": 142,
-        "pushed_at": "2026-11-27",
-        "description": "Type an idea. Get a finished song. On your own PC. A free, open-source song production suite for ComfyUI: lyrics by a local LLM, YuE2 and Mi",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "Comfy-Org/docs",
-        "url": "https://github.com/Comfy-Org/docs",
-        "stars": 326,
-        "pushed_at": "2026-11-27",
-        "description": "Documentation for ComfyUI",
-        "license": "GPL-3.0"
-      },
-      {
-        "full_name": "fxai666/fxai-toolkit",
-        "url": "https://github.com/fxai666/fxai-toolkit",
-        "stars": 48,
-        "pushed_at": "2026-11-27",
-        "description": "ComfyUI - 凤希全能节点包",
-        "license": "Ver repo"
-      }
-    ],
-    "Rotoscopia, Matting, Depth & Inpainting": [
-      {
-        "full_name": "Travor278/EgoRay",
-        "url": "https://github.com/Travor278/EgoRay",
-        "stars": 48,
-        "pushed_at": "2026-11-27",
-        "description": "Official Code for “Who Is Ego? Scaling Cross-View Camera Wearer Identification and Segmentation beyond Humans”",
-        "license": "NOASSERTION"
-      },
-      {
-        "full_name": "Zarxrax/Sammie-Roto-2",
-        "url": "https://github.com/Zarxrax/Sammie-Roto-2",
-        "stars": 524,
-        "pushed_at": "2026-11-27",
-        "description": "A GUI for masking/rotoscoping video using AI models",
-        "license": "GPL-3.0"
-      },
-      {
-        "full_name": "azzeddinemaadane3-eng/after-effects-nodemar-motion-design",
-        "url": "https://github.com/azzeddinemaadane3-eng/after-effects-nodemar-motion-design",
-        "stars": 153,
-        "pushed_at": "2026-11-27",
-        "description": "Build modular motion design workflows in After Effects with structured node-based composition.",
-        "license": "Ver repo"
-      },
-      {
-        "full_name": "White-YC/pixelmatte",
-        "url": "https://github.com/White-YC/pixelmatte",
-        "stars": 32,
-        "pushed_at": "2026-11-27",
-        "description": "Official repository of \"High-Fidelity Image Matting with Pixel-Space Diffusion Transformers\"",
-        "license": "Apache-2.0"
       },
       {
         "full_name": "Code2Collapse/ComfyUI-CustomNodePacks",
         "url": "https://github.com/Code2Collapse/ComfyUI-CustomNodePacks",
         "stars": 59,
-        "pushed_at": "2026-11-27",
+        "pushed_at": "2026-11-28",
         "description": "Experimental nodes! This is a production suite for ComfyUI — SAM2.1/SAM3 segmentation, alpha matting, inpaint crop/stitch, VFX tools (EXR I/",
         "license": "Apache-2.0"
       },
       {
-        "full_name": "YanghuiSong/ROSE-SAM3",
-        "url": "https://github.com/YanghuiSong/ROSE-SAM3",
-        "stars": 5,
-        "pushed_at": "2026-11-27",
-        "description": "",
+        "full_name": "atakann/dgx-spark-recipes",
+        "url": "https://github.com/atakann/dgx-spark-recipes",
+        "stars": 26,
+        "pushed_at": "2026-11-28",
+        "description": "Measured recipes for the NVIDIA DGX Spark, on one or two Sparks: LLM serving, image, video and speech",
         "license": "MIT"
       },
       {
-        "full_name": "meshroomHub/mrSegmentation",
-        "url": "https://github.com/meshroomHub/mrSegmentation",
-        "stars": 11,
-        "pushed_at": "2026-11-27",
-        "description": "Segmentation and Matting Nodes for Meshroom",
-        "license": "MPL-2.0"
+        "full_name": "triXope/ComfyUI-triXope",
+        "url": "https://github.com/triXope/ComfyUI-triXope",
+        "stars": 73,
+        "pushed_at": "2026-11-28",
+        "description": "A collection of custom built ComfyUI nodes designed for film production pipelines.",
+        "license": "Ver repo"
       },
       {
-        "full_name": "nimcap/nimcap-screenshot",
-        "url": "https://github.com/nimcap/nimcap-screenshot",
-        "stars": 35,
-        "pushed_at": "2026-11-26",
-        "description": "NimCap截图工具是一款 Windows 截图与图像处理工具：区域/长截图、标注、贴图、本地 OCR、翻译、AI 抠图与录屏，一站式搞定。NimCap is a Windows screenshot & image toolkit: capture, annotate, lon",
+        "full_name": "phil-haderer/pxc",
+        "url": "https://github.com/phil-haderer/pxc",
+        "stars": 152,
+        "pushed_at": "2026-11-28",
+        "description": "Generative AI for PhotoCraft: text to image, expand, fill, remove, edit and upscale with local AI models through ComfyUI. Results arrive as ",
         "license": "Apache-2.0"
+      }
+    ],
+    "Rotoscopia, Matting, Depth & Inpainting": [
+      {
+        "full_name": "Code2Collapse/ComfyUI-CustomNodePacks",
+        "url": "https://github.com/Code2Collapse/ComfyUI-CustomNodePacks",
+        "stars": 59,
+        "pushed_at": "2026-11-28",
+        "description": "Experimental nodes! This is a production suite for ComfyUI — SAM2.1/SAM3 segmentation, alpha matting, inpaint crop/stitch, VFX tools (EXR I/",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "flyaurelien/kinesia",
+        "url": "https://github.com/flyaurelien/kinesia",
+        "stars": 6,
+        "pushed_at": "2026-11-28",
+        "description": "Multi-person 3D motion capture from a single fixed-camera video: SAM 3.1, SAM 3D Body and DINOv3 turned into a video system with tracking, r",
+        "license": "CC0-1.0"
+      },
+      {
+        "full_name": "gtanczyk/diorama",
+        "url": "https://github.com/gtanczyk/diorama",
+        "stars": 8,
+        "pushed_at": "2026-11-28",
+        "description": "Type one sentence, walk around in the painted point-and-click game it becomes. Muse Spark plans it, Muse Image paints it, SAM 3.1 cuts it in",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "White-YC/pixelmatte",
+        "url": "https://github.com/White-YC/pixelmatte",
+        "stars": 58,
+        "pushed_at": "2026-11-28",
+        "description": "Official repository of \"High-Fidelity Image Matting with Pixel-Space Diffusion Transformers\"",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "Travor278/EgoRay",
+        "url": "https://github.com/Travor278/EgoRay",
+        "stars": 51,
+        "pushed_at": "2026-11-28",
+        "description": "Official Code for “Who Is Ego? Scaling Cross-View Camera Wearer Identification and Segmentation beyond Humans”",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "grblHAL/SAM3X8E",
+        "url": "https://github.com/grblHAL/SAM3X8E",
+        "stars": 21,
+        "pushed_at": "2026-11-27",
+        "description": "grblHAL driver for Atmel SAM3X8E (Arduino Due)",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "Zarxrax/Sammie-Roto-2",
+        "url": "https://github.com/Zarxrax/Sammie-Roto-2",
+        "stars": 526,
+        "pushed_at": "2026-11-27",
+        "description": "A GUI for masking/rotoscoping video using AI models",
+        "license": "GPL-3.0"
+      },
+      {
+        "full_name": "lettidude/LiveActionAOV",
+        "url": "https://github.com/lettidude/LiveActionAOV",
+        "stars": 71,
+        "pushed_at": "2026-11-27",
+        "description": "Live-action plates in, Nuke-ready AOVs out: mattes and Cryptomatte (SAM 3 + ViTMatte or LTX-2.5 Alpha), depth, normals, motion, camera track",
+        "license": "NOASSERTION"
       }
     ],
     "Capa de Normales, Camera Tracking 3D & Geometría": [
@@ -909,151 +905,175 @@
     ],
     "Color OCIO/ACES, Audio IA, Face VFX & OBS": [
       {
-        "full_name": "CaYatur/SoundVisualizer",
-        "url": "https://github.com/CaYatur/SoundVisualizer",
-        "stars": 24,
-        "pushed_at": "2026-11-27",
-        "description": "CaYaDev SoundVisualizer — free, open-source music visualizer & VJ software for Windows, macOS and Linux, with an Android app on the way. Rea",
-        "license": "MIT"
-      },
-      {
-        "full_name": "imCore-ai/Coreplay",
-        "url": "https://github.com/imCore-ai/Coreplay",
-        "stars": 39,
-        "pushed_at": "2026-11-27",
-        "description": "Fast media player that plays every video format, plus EXR/DPX image sequences, with OpenColorIO colour, A/B compare, live grading and frame-",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "amitsotakis7000/liveportrait-ai-face-animator-portable",
-        "url": "https://github.com/amitsotakis7000/liveportrait-ai-face-animator-portable",
-        "stars": 20,
-        "pushed_at": "2026-11-27",
-        "description": "LivePortrait AI Face Animator Portable — Keypoint Stitching Retargeting, Animal Mode & ComfyUI",
+        "full_name": "AbrahamPaulJ/nightmare-mobile",
+        "url": "https://github.com/AbrahamPaulJ/nightmare-mobile",
+        "stars": 334,
+        "pushed_at": "2026-11-28",
+        "description": "On-device, ComfyUI-style node graph for image/video diffusion on Android. Run MiniMax H3 and WAN 2.2 14B on the Qualcomm Hexagon NPU. SD1.5,",
         "license": "NOASSERTION"
-      },
-      {
-        "full_name": "amit1242/f5-tts-kokoro-local-voice-cloning-gui",
-        "url": "https://github.com/amit1242/f5-tts-kokoro-local-voice-cloning-gui",
-        "stars": 20,
-        "pushed_at": "2026-11-27",
-        "description": "F5-TTS & Kokoro Local Voice Cloning GUI — Flow-Matching 82M Weights, ONNX & Gradio",
-        "license": "NOASSERTION"
-      },
-      {
-        "full_name": "es617/obsidian-sync-mcp",
-        "url": "https://github.com/es617/obsidian-sync-mcp",
-        "stars": 77,
-        "pushed_at": "2026-11-27",
-        "description": "MCP server for Obsidian — access your vault from any AI agent, even when your machine is off. Powered by Self-hosted LiveSync.",
-        "license": "MIT"
-      },
-      {
-        "full_name": "Piotr1215/mcp-obsidian",
-        "url": "https://github.com/Piotr1215/mcp-obsidian",
-        "stars": 25,
-        "pushed_at": "2026-11-27",
-        "description": "simple mcp server for interacting with local obsidian notes",
-        "license": "Ver repo"
       },
       {
         "full_name": "EdwardGlockner/rumblex",
         "url": "https://github.com/EdwardGlockner/rumblex",
         "stars": 8,
-        "pushed_at": "2026-11-27",
+        "pushed_at": "2026-11-28",
         "description": "Transcription, word timestamps, speaker labels and subtitles on Reson8/Rumble-2-Flash",
         "license": "Apache-2.0"
       },
       {
-        "full_name": "AMG555/VoxForge",
-        "url": "https://github.com/AMG555/VoxForge",
-        "stars": 7,
-        "pushed_at": "2026-11-27",
-        "description": "Standalone Rust + Tauri v2 desktop app & TTS server: zero-Python startup + native Piper C++, 646-lang zero-shot cloning, Chatterbox-Turbo/Ki",
+        "full_name": "rzru/nightingale",
+        "url": "https://github.com/rzru/nightingale",
+        "stars": 1571,
+        "pushed_at": "2026-11-28",
+        "description": "Machine learning powered Karaoke app (with scores!)",
+        "license": "GPL-3.0"
+      },
+      {
+        "full_name": "MartinDelophy/ai-video-editor",
+        "url": "https://github.com/MartinDelophy/ai-video-editor",
+        "stars": 1018,
+        "pushed_at": "2026-11-28",
+        "description": "Open-source, local-first video editor where creators and AI agents edit the same real timeline.",
+        "license": "MIT"
+      },
+      {
+        "full_name": "Chenle95165/liveportrait-desktop-suite",
+        "url": "https://github.com/Chenle95165/liveportrait-desktop-suite",
+        "stars": 215,
+        "pushed_at": "2026-11-28",
+        "description": "LivePortrait — LivePortrait Portable & Windows Setup",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "cGutierrez9645/whisperx-gui-desktop-suite",
+        "url": "https://github.com/cGutierrez9645/whisperx-gui-desktop-suite",
+        "stars": 215,
+        "pushed_at": "2026-11-28",
+        "description": "WhisperX GUI — WhisperX GUI Portable & Windows Setup",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "cemmoreno49/f5-tts-desktop-suite",
+        "url": "https://github.com/cemmoreno49/f5-tts-desktop-suite",
+        "stars": 215,
+        "pushed_at": "2026-11-28",
+        "description": "F5-TTS — F5-TTS Portable & Windows Setup",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "VofotiBego3/liveportrait-ai-face-animator-portable",
+        "url": "https://github.com/VofotiBego3/liveportrait-ai-face-animator-portable",
+        "stars": 214,
+        "pushed_at": "2026-11-28",
+        "description": "LivePortrait AI Face Animator Portable — LivePortrait AI Face Animator Portable Portable & Windows Setup",
         "license": "NOASSERTION"
       }
     ],
     "ArtCraft (Storytold Rust Suite)": [
       {
-        "full_name": "storytold/figcraft",
-        "url": "https://github.com/storytold/figcraft",
-        "stars": 5466,
-        "pushed_at": "2026-11-27",
-        "description": "FigCraft: interface design and prototyping; an open-source, clean-room reimplementation of collaborative design workflows in pure Rust",
+        "full_name": "storytold/craft-libs",
+        "url": "https://github.com/storytold/craft-libs",
+        "stars": 549,
+        "pushed_at": "2026-11-28",
+        "description": "Rust libraries for the Craft Apps",
         "license": "Apache-2.0"
       },
       {
-        "full_name": "storytold/pdfcraft",
-        "url": "https://github.com/storytold/pdfcraft",
-        "stars": 21941,
-        "pushed_at": "2026-11-27",
-        "description": "PdfCraft: An open-source PDF reader and editor written from scratch in pure Rust",
+        "full_name": "storytold/wordcraft",
+        "url": "https://github.com/storytold/wordcraft",
+        "stars": 18708,
+        "pushed_at": "2026-11-28",
+        "description": "WordCraft: an open-source, clean-room word processor in pure Rust",
         "license": "Apache-2.0"
       },
       {
         "full_name": "storytold/photocraft",
         "url": "https://github.com/storytold/photocraft",
-        "stars": 81854,
-        "pushed_at": "2026-11-27",
+        "stars": 81972,
+        "pushed_at": "2026-11-28",
         "description": "PhotoCraft: An open-source photo editor written from scratch in pure Rust",
         "license": "Apache-2.0"
       },
       {
-        "full_name": "storytold/craft-libs",
-        "url": "https://github.com/storytold/craft-libs",
-        "stars": 547,
-        "pushed_at": "2026-11-27",
-        "description": "Rust libraries for the Craft Apps",
+        "full_name": "storytold/effectcraft",
+        "url": "https://github.com/storytold/effectcraft",
+        "stars": 9313,
+        "pushed_at": "2026-11-28",
+        "description": "EffectCraft: An open-source motion graphics and compositing tool written from scratch in pure Rust",
         "license": "Apache-2.0"
       },
       {
-        "full_name": "storytold/craft-launcher",
-        "url": "https://github.com/storytold/craft-launcher",
-        "stars": 5728,
-        "pushed_at": "2026-11-27",
-        "description": "The Craft App Launcher",
-        "license": "Apache-2.0"
+        "full_name": "storytold/tokencraft",
+        "url": "https://github.com/storytold/tokencraft",
+        "stars": 6,
+        "pushed_at": "2026-11-28",
+        "description": "",
+        "license": "AGPL-3.0"
       },
       {
-        "full_name": "storytold/gridcraft",
-        "url": "https://github.com/storytold/gridcraft",
-        "stars": 7865,
-        "pushed_at": "2026-11-27",
-        "description": "GridCraft: an open-source, clean-room spreadsheet in pure Rust. By ArtCraft.",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "storytold/texturecraft",
-        "url": "https://github.com/storytold/texturecraft",
-        "stars": 768,
-        "pushed_at": "2026-11-27",
-        "description": "TextureCraft: An open-source, 3D texture painting workflow written from scratch in pure Rust",
+        "full_name": "storytold/autocraft",
+        "url": "https://github.com/storytold/autocraft",
+        "stars": 334,
+        "pushed_at": "2026-11-28",
+        "description": "",
         "license": "Apache-2.0"
       },
       {
         "full_name": "storytold/artcraft-services",
         "url": "https://github.com/storytold/artcraft-services",
-        "stars": 1487,
-        "pushed_at": "2026-11-27",
+        "stars": 1496,
+        "pushed_at": "2026-11-28",
         "description": "backend, web frontend, etc.",
         "license": "NOASSERTION"
+      },
+      {
+        "full_name": "storytold/lightcraft",
+        "url": "https://github.com/storytold/lightcraft",
+        "stars": 16528,
+        "pushed_at": "2026-11-28",
+        "description": "LightCraft: An open-source non-destructive photo editor written from scratch in pure Rust",
+        "license": "Apache-2.0"
       }
     ],
     "Adobe Premiere / After Effects MCP & UXP": [
       {
-        "full_name": "catl24/uxp-plugin-knowledge-graph",
-        "url": "https://github.com/catl24/uxp-plugin-knowledge-graph",
+        "full_name": "jameslashmar/chroma-ae-mcp",
+        "url": "https://github.com/jameslashmar/chroma-ae-mcp",
         "stars": 3,
-        "pushed_at": "2026-11-27",
-        "description": "Adobe UXP Plugin AI Assistant 2026 🤖 | Dev Tools & Spectrum WC Guide",
-        "license": "Ver repo"
+        "pushed_at": "2026-11-28",
+        "description": "Thin guarded MCP listener for Adobe After Effects (CEP panel + Node MCP server)",
+        "license": "AGPL-3.0"
       },
       {
         "full_name": "leancoderkavy/premiere-pro-mcp",
         "url": "https://github.com/leancoderkavy/premiere-pro-mcp",
-        "stars": 596,
-        "pushed_at": "2026-11-27",
+        "stars": 599,
+        "pushed_at": "2026-11-28",
         "description": "Adobe Premiere Pro MCP — independent, local-first server for supported workflows. Connect Claude, Codex, or Cursor through a local CEP bridg",
+        "license": "MIT"
+      },
+      {
+        "full_name": "catl24/uxp-plugin-knowledge-graph",
+        "url": "https://github.com/catl24/uxp-plugin-knowledge-graph",
+        "stars": 3,
+        "pushed_at": "2026-11-28",
+        "description": "Adobe UXP Plugin AI Assistant 2026 🤖 | Dev Tools & Spectrum WC Guide",
+        "license": "Ver repo"
+      },
+      {
+        "full_name": "DicoRocha/JuniorRocha-MCP-for-Adobe-Creative-Cloud-Apps",
+        "url": "https://github.com/DicoRocha/JuniorRocha-MCP-for-Adobe-Creative-Cloud-Apps",
+        "stars": 5,
+        "pushed_at": "2026-11-28",
+        "description": "Local MCP server that lets Claude and ChatGPT operate Photoshop, Illustrator, InDesign, Lightroom Classic, After Effects and Premiere Pro on",
+        "license": "MIT"
+      },
+      {
+        "full_name": "hetpatel-11/Adobe_Premiere_Pro_MCP",
+        "url": "https://github.com/hetpatel-11/Adobe_Premiere_Pro_MCP",
+        "stars": 954,
+        "pushed_at": "2026-11-28",
+        "description": "Adobe Premiere Pro MCP. Tools for AI-driven video editing via MCP, for Codex, Claude, and other MCP clients.",
         "license": "MIT"
       },
       {
@@ -1073,39 +1093,47 @@
         "license": "MIT"
       },
       {
-        "full_name": "DicoRocha/JuniorRocha-MCP-for-Adobe-Creative-Cloud-Apps",
-        "url": "https://github.com/DicoRocha/JuniorRocha-MCP-for-Adobe-Creative-Cloud-Apps",
-        "stars": 5,
-        "pushed_at": "2026-11-24",
-        "description": "Local MCP server that lets Claude and ChatGPT operate Photoshop, Illustrator, InDesign, Lightroom Classic, After Effects and Premiere Pro on",
-        "license": "MIT"
-      },
-      {
         "full_name": "hyperbrew/bolt-uxp",
         "url": "https://github.com/hyperbrew/bolt-uxp",
         "stars": 210,
         "pushed_at": "2026-11-24",
         "description": "A lightning-fast boilerplate for building Adobe UXP Plugins in Svelte, React, or Vue built on Vite + TypeScript + Sass",
         "license": "MIT"
-      },
-      {
-        "full_name": "jameslashmar/chroma-ae-mcp",
-        "url": "https://github.com/jameslashmar/chroma-ae-mcp",
-        "stars": 3,
-        "pushed_at": "2026-11-27",
-        "description": "Thin guarded MCP listener for Adobe After Effects (CEP panel + Node MCP server)",
-        "license": "AGPL-3.0"
-      },
-      {
-        "full_name": "dha-aa/ae-motion",
-        "url": "https://github.com/dha-aa/ae-motion",
-        "stars": 16,
-        "pushed_at": "2026-11-24",
-        "description": "MCP server that lets Claude and other AI assistants build, animate, preview and render motion graphics in a live Adobe After Effects project",
-        "license": "MIT"
       }
     ],
     "TouchDesigner MCP, POPs & Real-Time": [
+      {
+        "full_name": "monoton-music/touchdesigner-bridge",
+        "url": "https://github.com/monoton-music/touchdesigner-bridge",
+        "stars": 10,
+        "pushed_at": "2026-11-28",
+        "description": "Inspect and edit a running TouchDesigner from the shell",
+        "license": "MIT"
+      },
+      {
+        "full_name": "alexanderalber/penumbra",
+        "url": "https://github.com/alexanderalber/penumbra",
+        "stars": 15,
+        "pushed_at": "2026-11-28",
+        "description": "Open-source TouchDesigner alternative in Rust: node-based live visuals, projection mapping onto real objects, camera and blob tracking, soun",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "function-store/FNSTools",
+        "url": "https://github.com/function-store/FNSTools",
+        "stars": 302,
+        "pushed_at": "2026-11-28",
+        "description": "TouchDesigner workflow tools and UX improvements and more",
+        "license": "MIT"
+      },
+      {
+        "full_name": "8beeeaaat/touchdesigner-mcp",
+        "url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+        "stars": 642,
+        "pushed_at": "2026-11-28",
+        "description": "MCP server for TouchDesigner",
+        "license": "MIT"
+      },
       {
         "full_name": "riebschlager/touchdesigner-daily",
         "url": "https://github.com/riebschlager/touchdesigner-daily",
@@ -1123,17 +1151,9 @@
         "license": "NOASSERTION"
       },
       {
-        "full_name": "tridant-io/owlette",
-        "url": "https://github.com/tridant-io/owlette",
-        "stars": 33,
-        "pushed_at": "2026-11-27",
-        "description": "a remote fleet management solution built for venues, shows and museums",
-        "license": "NOASSERTION"
-      },
-      {
         "full_name": "DevxD98/Blobtracking",
         "url": "https://github.com/DevxD98/Blobtracking",
-        "stars": 33,
+        "stars": 34,
         "pushed_at": "2026-11-26",
         "description": "Real-time blob tracking in TouchDesigner: tracking markers, pixel coordinates and connecting lines on your own video. Free .toe project.",
         "license": "MIT"
@@ -1145,33 +1165,65 @@
         "pushed_at": "2026-11-26",
         "description": "LATCH is an open-source visual flow/node programming environment that combines the best of TouchDesigner, PureData, Max/MSP, and Node-RED. B",
         "license": "MIT"
-      },
-      {
-        "full_name": "monoton-music/touchdesigner-bridge",
-        "url": "https://github.com/monoton-music/touchdesigner-bridge",
-        "stars": 10,
-        "pushed_at": "2026-11-26",
-        "description": "Inspect and edit a running TouchDesigner from the shell",
-        "license": "MIT"
-      },
-      {
-        "full_name": "TouchDesigner/TouchEngine-UE-Samples",
-        "url": "https://github.com/TouchDesigner/TouchEngine-UE-Samples",
-        "stars": 70,
-        "pushed_at": "2026-11-25",
-        "description": "A sample project relying on the TouchEngine-UE plugin.",
-        "license": "NOASSERTION"
-      },
-      {
-        "full_name": "dylanroscover/Embody",
-        "url": "https://github.com/dylanroscover/Embody",
-        "stars": 225,
-        "pushed_at": "2026-11-26",
-        "description": "The most comprehensive MCP toolkit for TouchDesigner",
-        "license": "MIT"
       }
     ],
     "Blender, DaVinci Resolve, VFX & Open-Source Video": [
+      {
+        "full_name": "samuelgursky/davinci-resolve-mcp",
+        "url": "https://github.com/samuelgursky/davinci-resolve-mcp",
+        "stars": 4474,
+        "pushed_at": "2026-11-28",
+        "description": "MCP server integration for DaVinci Resolve Studio",
+        "license": "MIT"
+      },
+      {
+        "full_name": "Draise14/bfa_coworker",
+        "url": "https://github.com/Draise14/bfa_coworker",
+        "stars": 9,
+        "pushed_at": "2026-11-28",
+        "description": "Blender MCP fork with a self-contained local setup",
+        "license": "GPL-3.0"
+      },
+      {
+        "full_name": "willturner-maker/resolve-ai-workflow",
+        "url": "https://github.com/willturner-maker/resolve-ai-workflow",
+        "stars": 32,
+        "pushed_at": "2026-11-28",
+        "description": "DaVinci Resolve Studio + local AI workstation: installer, start/stop launchers, three MCP servers, headless Blender title pipeline",
+        "license": "MIT"
+      },
+      {
+        "full_name": "ReSerendipity/SeedVR2-Turbo",
+        "url": "https://github.com/ReSerendipity/SeedVR2-Turbo",
+        "stars": 21,
+        "pushed_at": "2026-11-28",
+        "description": "基于 SeedVR2 的本地视频与图像超分工具，提供 Web 界面和桌面交互，无需 ComfyUI。 | A local video and image super-resolution tool based on SeedVR2, with a web UI and deskt",
+        "license": "Apache-2.0"
+      },
+      {
+        "full_name": "mflux-community/mflux",
+        "url": "https://github.com/mflux-community/mflux",
+        "stars": 2651,
+        "pushed_at": "2026-11-28",
+        "description": "Apple MLX native implementations of state-of-the-art generative image & video models",
+        "license": "MIT"
+      },
+      {
+        "full_name": "youichi-uda/blender-mcp-pro",
+        "url": "https://github.com/youichi-uda/blender-mcp-pro",
+        "stars": 34,
+        "pushed_at": "2026-11-28",
+        "description": "AI-powered MCP server for Blender with 100+ tools. Control lights, modifiers, animation, shader nodes, geometry nodes, and more from Claude,",
+        "license": "Ver repo"
+      },
+      {
+        "full_name": "wonseokjung/blender-mcp-vibecoding",
+        "url": "https://github.com/wonseokjung/blender-mcp-vibecoding",
+        "stars": 17,
+        "pushed_at": "2026-11-28",
+        "description": "영상 바이브코딩 · AI 자율화 | Blender MCP tutorials and practice models by CONNECT AI LAB · AI MENTOR JAY",
+        "license": "NOASSERTION"
+      },
       {
         "full_name": "djeada/blender-mcp-server",
         "url": "https://github.com/djeada/blender-mcp-server",
@@ -1179,127 +1231,71 @@
         "pushed_at": "2026-11-27",
         "description": "Control Blender from AI assistants like Claude Desktop using the Model Context Protocol (MCP).  22 tools across 6 namespaces — create object",
         "license": "MIT"
-      },
-      {
-        "full_name": "willturner-maker/resolve-ai-workflow",
-        "url": "https://github.com/willturner-maker/resolve-ai-workflow",
-        "stars": 32,
-        "pushed_at": "2026-11-27",
-        "description": "DaVinci Resolve Studio + local AI workstation: installer, start/stop launchers, three MCP servers, headless Blender title pipeline",
-        "license": "MIT"
-      },
-      {
-        "full_name": "Aaronstanley78/SEEDVR2-Studio-Complete",
-        "url": "https://github.com/Aaronstanley78/SEEDVR2-Studio-Complete",
-        "stars": 14,
-        "pushed_at": "2026-11-27",
-        "description": "AI-powered image and video upscaling studio with a modern web UI, SeedVR2 GGUF support, live previews, batch processing, and GPU monitoring.",
-        "license": "Ver repo"
-      },
-      {
-        "full_name": "samuelgursky/davinci-resolve-mcp",
-        "url": "https://github.com/samuelgursky/davinci-resolve-mcp",
-        "stars": 4458,
-        "pushed_at": "2026-11-27",
-        "description": "MCP server integration for DaVinci Resolve Studio",
-        "license": "MIT"
-      },
-      {
-        "full_name": "DMontgomery40/bambu-printer-mcp",
-        "url": "https://github.com/DMontgomery40/bambu-printer-mcp",
-        "stars": 382,
-        "pushed_at": "2026-11-27",
-        "description": "MCP server for Bambu Lab 3D printers — STL manipulation, BambuStudio  or FULU/orca slicing, Blender MCP integration, and direct printer cont",
-        "license": "GPL-2.0"
-      },
-      {
-        "full_name": "youichi-uda/blender-mcp-pro",
-        "url": "https://github.com/youichi-uda/blender-mcp-pro",
-        "stars": 34,
-        "pushed_at": "2026-11-27",
-        "description": "AI-powered MCP server for Blender with 100+ tools. Control lights, modifiers, animation, shader nodes, geometry nodes, and more from Claude,",
-        "license": "Ver repo"
-      },
-      {
-        "full_name": "pwillia7/sorant",
-        "url": "https://github.com/pwillia7/sorant",
-        "stars": 29,
-        "pushed_at": "2026-11-27",
-        "description": "Web front end for making video and music on your own ComfyUI — MiniMax H3, Music 3, SeedVR2 upscaling and FLUX Kontext edits. Deploys to Ver",
-        "license": "MIT"
-      },
-      {
-        "full_name": "mflux-community/mflux",
-        "url": "https://github.com/mflux-community/mflux",
-        "stars": 2648,
-        "pushed_at": "2026-11-26",
-        "description": "Apple MLX native implementations of state-of-the-art generative image & video models",
-        "license": "MIT"
       }
     ],
     "Animaciones JS, WebGL & Video-as-Code": [
       {
-        "full_name": "openslop/openslop",
-        "url": "https://github.com/openslop/openslop",
-        "stars": 40,
-        "pushed_at": "2026-11-27",
-        "description": "The open-source AI production studio. Chat your way to finished films, shows, audiobooks, music videos, documentaries, dramas, and more.",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "ZLHad/OpenVideoHarness",
-        "url": "https://github.com/ZLHad/OpenVideoHarness",
-        "stars": 48,
-        "pushed_at": "2026-11-27",
-        "description": "A controllable workflow for making videos with code, open source: say one sentence, a coding agent (Claude Code, Codex) writes the code and ",
-        "license": "MIT"
-      },
-      {
-        "full_name": "Vincentwei1021/video-shotcraft",
-        "url": "https://github.com/Vincentwei1021/video-shotcraft",
-        "stars": 23097,
-        "pushed_at": "2026-11-27",
-        "description": "AI video skill for Claude Code & Codex — cinematic, editable product promos with Remotion: 124 shot recipe cards, 150 motion previews, beat ",
-        "license": "Apache-2.0"
-      },
-      {
-        "full_name": "zhuyansen/awesome-claude-video-skills",
-        "url": "https://github.com/zhuyansen/awesome-claude-video-skills",
-        "stars": 2891,
-        "pushed_at": "2026-11-27",
-        "description": "Open-source skills and toolkits that let Claude Code, Codex and other coding agents make video. 180 repos by type, each security-graded. Eng",
-        "license": "NOASSERTION"
-      },
-      {
         "full_name": "ersinkoc/AI-Video-Factory",
         "url": "https://github.com/ersinkoc/AI-Video-Factory",
-        "stars": 744,
-        "pushed_at": "2026-11-27",
+        "stars": 758,
+        "pushed_at": "2026-11-28",
         "description": "AI video factory: from one topic to a finished, multilingual YouTube video. Claude agents write, plan, draw and review; a Studio keeps the h",
         "license": "MIT"
       },
       {
-        "full_name": "NOTBAD314/2ByteASR",
-        "url": "https://github.com/NOTBAD314/2ByteASR",
-        "stars": 97,
-        "pushed_at": "2026-11-27",
-        "description": "A smarter subtitle studio powered by advanced ASR models. Refine transcripts with AI and custom glossaries, build bilingual subtitles, and e",
-        "license": "GPL-3.0"
+        "full_name": "openslop/openslop",
+        "url": "https://github.com/openslop/openslop",
+        "stars": 41,
+        "pushed_at": "2026-11-28",
+        "description": "The open-source AI production studio. Chat your way to finished films, shows, audiobooks, music videos, documentaries, dramas, and more.",
+        "license": "Apache-2.0"
       },
       {
-        "full_name": "thorvg/thorvg",
-        "url": "https://github.com/thorvg/thorvg",
-        "stars": 1939,
-        "pushed_at": "2026-11-27",
-        "description": "A production-ready C++ vector graphics engine supporting SVG and Lottie formats, featuring advanced rendering backends such as WebGPU for hi",
+        "full_name": "ghost1412/shortsflow",
+        "url": "https://github.com/ghost1412/shortsflow",
+        "stars": 20,
+        "pushed_at": "2026-11-28",
+        "description": "Self-hosted Opus Clip / Klap / Vizard alternative: turn long videos into captioned 9:16 Shorts with local Whisper, face tracking, active-spe",
         "license": "MIT"
       },
       {
-        "full_name": "riaz37/remotion-ui",
-        "url": "https://github.com/riaz37/remotion-ui",
-        "stars": 92,
-        "pushed_at": "2026-11-27",
-        "description": "Production-ready motion for Remotion. Source you own.",
+        "full_name": "zhuyansen/awesome-claude-video-skills",
+        "url": "https://github.com/zhuyansen/awesome-claude-video-skills",
+        "stars": 2961,
+        "pushed_at": "2026-11-28",
+        "description": "Open-source skills and toolkits that let Claude Code, Codex and other coding agents make video. 180 repos by type, each security-graded. Eng",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "shadcn-labs/snapcn",
+        "url": "https://github.com/shadcn-labs/snapcn",
+        "stars": 717,
+        "pushed_at": "2026-11-28",
+        "description": "A shadcn registry of Remotion components for product demo videos. Install a text reveal, device frame, terminal session, logo sting or a who",
+        "license": "MIT"
+      },
+      {
+        "full_name": "STARDUSTLC666/dsh-remotion",
+        "url": "https://github.com/STARDUSTLC666/dsh-remotion",
+        "stars": 44,
+        "pushed_at": "2026-11-28",
+        "description": "DeepSeek Harness React 视频创作工作台：默认 OP-DSH 硬件多轨导演台（实时监看屏 / 24-LED 矩阵 / 可擦洗多轨时间轴，1 键切表单），内置官方 Remotion 技能、模板库、素材排序、Studio 预览、本地 MP4 导出与 13 套风格 ",
+        "license": "MIT"
+      },
+      {
+        "full_name": "fahniazz/claude-shorts-skills",
+        "url": "https://github.com/fahniazz/claude-shorts-skills",
+        "stars": 394,
+        "pushed_at": "2026-11-28",
+        "description": "Claude Code skills that turn your PC into an animation studio: 3D cartoon story Shorts (three.js + Remotion), word-synced green-screen capti",
+        "license": "NOASSERTION"
+      },
+      {
+        "full_name": "Remocn/remocn",
+        "url": "https://github.com/Remocn/remocn",
+        "stars": 2013,
+        "pushed_at": "2026-11-28",
+        "description": "Production-ready animations, transitions, backgrounds, and scenes for Remotion",
         "license": "MIT"
       }
     ]
@@ -1310,75 +1306,75 @@
         "id": "apple/FastFrames-L",
         "url": "https://huggingface.co/apple/FastFrames-L",
         "downloads": 0,
-        "likes": 682
-      },
-      {
-        "id": "H3-Tiny/MiniMax-H3-Tiny-ComfyUI",
-        "url": "https://huggingface.co/H3-Tiny/MiniMax-H3-Tiny-ComfyUI",
-        "downloads": 41509,
-        "likes": 36
+        "likes": 701
       },
       {
         "id": "Alissonerdx/Qwen3.5-9B-Minimax-H3",
         "url": "https://huggingface.co/Alissonerdx/Qwen3.5-9B-Minimax-H3",
         "downloads": 0,
-        "likes": 31
+        "likes": 34
       },
       {
         "id": "Wan-AI/Wan2.2-TI2V-5B",
         "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B",
-        "downloads": 19446,
-        "likes": 1083
+        "downloads": 19440,
+        "likes": 1091
+      },
+      {
+        "id": "H3-Tiny/MiniMax-H3-Tiny-ComfyUI",
+        "url": "https://huggingface.co/H3-Tiny/MiniMax-H3-Tiny-ComfyUI",
+        "downloads": 47824,
+        "likes": 37
       },
       {
         "id": "ReDiverse/ReDiverse-MiniMax-H3",
         "url": "https://huggingface.co/ReDiverse/ReDiverse-MiniMax-H3",
-        "downloads": 464,
-        "likes": 41
+        "downloads": 474,
+        "likes": 42
       },
       {
         "id": "larryvrh/MiniMax-H3-Turbo-Lora",
         "url": "https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora",
-        "downloads": 198550,
-        "likes": 1289
+        "downloads": 195918,
+        "likes": 1291
       }
     ],
     "Image-to-Video": [
       {
         "id": "Lightricks/LTX-2.5",
         "url": "https://huggingface.co/Lightricks/LTX-2.5",
-        "downloads": 3080701,
-        "likes": 13710
+        "downloads": 3088512,
+        "likes": 13822
       },
       {
         "id": "OliviaRossi/Minimax-H3-Sulphur3-10Erosmax-SingularityV2-TriPrism-TurboFusion",
         "url": "https://huggingface.co/OliviaRossi/Minimax-H3-Sulphur3-10Erosmax-SingularityV2-TriPrism-TurboFusion",
         "downloads": 0,
-        "likes": 126
+        "likes": 161
       },
       {
         "id": "OliviaRossi/Minimax-H3-Sulphur3-10Erosmax-SingularityV2-TriPrism",
         "url": "https://huggingface.co/OliviaRossi/Minimax-H3-Sulphur3-10Erosmax-SingularityV2-TriPrism",
         "downloads": 0,
-        "likes": 32
+        "likes": 33
       },
       {
         "id": "Pika-Labs/Pika-H3-Flex",
         "url": "https://huggingface.co/Pika-Labs/Pika-H3-Flex",
-        "downloads": 205835,
-        "likes": 714
+        "downloads": 211101,
+        "likes": 719
       },
       {
         "id": "WarmBloodAban/Minimax-h3_Singularity",
         "url": "https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity",
-        "downloads": 1136519,
-        "likes": 1026
+        "downloads": 1125221,
+        "likes": 1030
       },
       {
-        "id": "Wuli-art/Gemma4-for-MiniMax-H3-Prompt-Extend",
-        "url": "https://huggingface.co/Wuli-art/Gemma4-for-MiniMax-H3-Prompt-Extend",
-        "downloads": 4934,
-        "likes": 42
+        "id": "Ashmotv/H3-Style-Transfer-LoRA",
+        "url": "https://huggingface.co/Ashmotv/H3-Style-Transfer-LoRA",
+        "downloads": 3244,
+        "likes": 22
       }
     ],
     "Video Classification / Segmentation / Depth": [
@@ -1386,37 +1382,37 @@
         "id": "apple/DepthPro2",
         "url": "https://huggingface.co/apple/DepthPro2",
         "downloads": 0,
-        "likes": 1358
+        "likes": 1387
       },
       {
         "id": "apple/DepthPro2-H",
         "url": "https://huggingface.co/apple/DepthPro2-H",
-        "downloads": 2884,
-        "likes": 32
-      },
-      {
-        "id": "apple/DepthPro2-focal",
-        "url": "https://huggingface.co/apple/DepthPro2-focal",
-        "downloads": 1181,
-        "likes": 24
-      },
-      {
-        "id": "apple/DepthPro2-coreml",
-        "url": "https://huggingface.co/apple/DepthPro2-coreml",
-        "downloads": 682,
-        "likes": 15
+        "downloads": 3106,
+        "likes": 34
       },
       {
         "id": "apple/DepthPro2-S",
         "url": "https://huggingface.co/apple/DepthPro2-S",
-        "downloads": 3221,
+        "downloads": 3438,
         "likes": 13
+      },
+      {
+        "id": "huawei-bayerlab/marigold-v2-0",
+        "url": "https://huggingface.co/huawei-bayerlab/marigold-v2-0",
+        "downloads": 0,
+        "likes": 132
       },
       {
         "id": "apple/DepthPro2-B",
         "url": "https://huggingface.co/apple/DepthPro2-B",
-        "downloads": 1485,
-        "likes": 9
+        "downloads": 1580,
+        "likes": 10
+      },
+      {
+        "id": "apple/DepthPro2-focal",
+        "url": "https://huggingface.co/apple/DepthPro2-focal",
+        "downloads": 1268,
+        "likes": 24
       }
     ]
   }
